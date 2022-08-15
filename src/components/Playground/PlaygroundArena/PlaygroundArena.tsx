@@ -5,7 +5,7 @@ import {PLAYGROUNDCASES} from "./data/types";
 import {ELEMENT_ADDRESS} from "../../../globalTypes/elementTypes";
 import {setDropId} from "../../../helpers";
 import { useAppSelector, useAppDispatch } from "../../../store/hooks";
-import {addField} from "../../../store/slices/fields/fields";
+import {addField, updateFields} from "../../../store/slices/fields/fields";
 import {DroppedElement} from "../../DroppedElements/DroppedElement/DroppedElement";
 import "./PlaygroundArena.sass";
 
@@ -33,14 +33,16 @@ export const PlaygroundArena = React.memo(() => {
     }));
 
     const moveCard = useCallback((drag_id: number, drop_id: number) => {
-        dispatch({
-            type: PLAYGROUNDCASES.UPDATE_ELEMENTS,
-            data: {
-                drag_id: drag_id,
-                drop_id: drop_id,
-            }
-        })}, [])
-
+        // dispatch({
+        //     type: PLAYGROUNDCASES.UPDATE_ELEMENTS,
+        //     data: {
+        //         drag_id: drag_id,
+        //         drop_id: drop_id,
+        //     }
+        // })
+        dispatch(updateFields({drag_id: drag_id, drop_id: drop_id}))
+        }, []
+    )
 
     const fieldsRender = fields.map((item: { elementType: string, id: string, dropid: number }, index: number) => {
         return (

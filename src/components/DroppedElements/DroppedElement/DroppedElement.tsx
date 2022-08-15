@@ -23,7 +23,7 @@ export const DroppedElement: FC<IDroppedElement> = memo (
     // console.log(`render check`);
 
     const [{ handlerId }, drop] = useDrop<TDragItem, void, { handlerId: Identifier | null }>({
-        accept: 'droppedElement',
+        accept: 'element',
         collect(monitor: DropTargetMonitor<TDragItem, void>) {
             return {
                 handlerId: monitor.getHandlerId(),
@@ -31,6 +31,8 @@ export const DroppedElement: FC<IDroppedElement> = memo (
         },
 
         hover(item: TDragItem, monitor: DropTargetMonitor) {
+
+            if (item.elementAddress !== 'DROPPED') return;
 
             if (!droppedElementRef.current) return;
 
@@ -59,7 +61,7 @@ export const DroppedElement: FC<IDroppedElement> = memo (
     })
 
     const [{ isDragging }, drag] = useDrag({
-        type: 'droppedElement',
+        type: 'element',
         item: { dropid, index, elementAddress, id: nanoid() },
 
         collect: (monitor: DragSourceMonitor) => ({
@@ -70,7 +72,7 @@ export const DroppedElement: FC<IDroppedElement> = memo (
     drag(drop(droppedElementRef));
 
     return (
-        <div className='DroppedElement' ref={droppedElementRef} data-handler-id={handlerId}>
+        <div className='DroppedElement' ref={droppedElementRef} data-handler-id={handlerId} style={{opacity: isDragging ? 0  : 1}}>
             dropid: {dropid}
             {/*<span className='DroppedElement__Description'>{description}</span>*/}
             {/*<input*/}

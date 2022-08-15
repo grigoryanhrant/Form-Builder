@@ -1,7 +1,7 @@
-import React from 'react';
-import {Playground} from './components/Playground/Playground';
-import {useDrop} from 'react-dnd';
-import './app.sass';
+import React from "react";
+import {Playground} from "./components/Playground/Playground";
+import {useDrop} from "react-dnd";
+import "./app.sass";
 
 export const App = () => {
 

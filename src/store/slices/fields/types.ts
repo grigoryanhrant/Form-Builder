@@ -1,9 +1,9 @@
-// export interface IElementPayloadData {
-//     payload: {
-//         elementType: string
-//         dropid: number
-//         id: string
-//     }
-// }
+export interface IElement {
+    elementType: string
+    dropid: number
+    id: string
+}
 
-export {}
+export interface IElementPayloadData {
+    payload: IElement
+}
