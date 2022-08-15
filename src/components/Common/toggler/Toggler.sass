@@ -1,0 +1,48 @@
+.switchWrapper
+
+  input[type="checkbox"]
+    opacity: 0
+    position: absolute
+
+    &:checked + span
+      transform: translateX(50%) translateX(-19px)
+
+  & > span
+    transform: translateX(5px)
+
+  &:disabled + span
+    background: #ccc
+
+  border-radius: 20px
+  cursor: pointer
+  height: 24px
+  float: left
+  overflow: hidden
+  position: relative
+  width: 48px
+  background-color: #92A8D1
+  transition: 0.2s all
+
+  &__Switch
+    display: block
+    height: 100%
+    left: -100%
+    position: relative
+    transition: 100ms linear
+    width: 200%
+    top: -3px
+
+    &__Handler
+      background: #fff
+      border-radius: 50%
+      display: inline-block
+      height: 14px
+      left: 50%
+      position: relative
+      top: 50%
+      width: 14px
+      z-index: 3
+      transform: translateY(-50%)
+
+.switchOn
+  background-color: #34568B
