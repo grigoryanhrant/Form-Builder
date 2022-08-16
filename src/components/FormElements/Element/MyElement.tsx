@@ -5,8 +5,6 @@ import "./MyElement.sass";
 
 export const MyElement = ({name, type, icon, elementAddress = ELEMENT_ADDRESS.FORM}: Readonly<IElement>) => {
 
-    // console.log(`render check`);
-
     const [{isDragging}, drag] = useDrag(() => ({
         type: 'element',
         item: {type, elementAddress},

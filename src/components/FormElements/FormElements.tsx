@@ -4,8 +4,6 @@ import "./FormElements.sass";
 
 export const FormElements = () => {
 
-    // console.log(`render check`);
-
     return (
         <div className='FormElements'>
             <span className='FormElements__Name'>BASIC ELEMENTS</span>
