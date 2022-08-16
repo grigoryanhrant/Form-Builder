@@ -1,87 +1,160 @@
-import React, {FC, memo, useRef} from "react";
-import {IDroppedElement, TDragItem} from "./types/types";
-import {DragSourceMonitor, DropTargetMonitor, useDrag, useDrop} from "react-dnd";
-import {ELEMENT_ADDRESS} from "../../../globalTypes/elementTypes";
-import {nanoid} from "@reduxjs/toolkit";
-import {Identifier, XYCoord} from "dnd-core";
+// import type {Identifier, XYCoord} from 'dnd-core'
+// import type {FC} from 'react'
+// import React, {useRef} from 'react'
+// import {useDrag, useDrop} from 'react-dnd'
+// import {IDroppedElement, TDragItem} from "./types/types";
+// import "./DroppedElement.sass";
+//
+// export const DroppedElement: FC<IDroppedElement> = ({id, index, moveCard, description, placeholder, value, elementType}) => {
+//     const ref = useRef<HTMLDivElement>(null)
+//     const [{handlerId}, drop] = useDrop<TDragItem,
+//         void,
+//         { handlerId: Identifier | null }>({
+//         accept: "CARD",
+//         collect(monitor) {
+//             return {
+//                 handlerId: monitor.getHandlerId(),
+//             }
+//         },
+//         hover(item: TDragItem, monitor) {
+//
+//             console.log(item)
+//
+//             if (!ref.current) {
+//                 return
+//             }
+//             const dragIndex = item.index
+//             const hoverIndex = index
+//
+//             if (dragIndex === hoverIndex) {
+//                 return
+//             }
+//
+//             const hoverBoundingRect = ref.current?.getBoundingClientRect()
+//
+//             const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
+//
+//             const clientOffset = monitor.getClientOffset()
+//
+//             const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top
+//
+//             if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+//                 return
+//             }
+//
+//             if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+//                 return
+//             }
+//
+//             moveCard(dragIndex, hoverIndex)
+//
+//             item.index = hoverIndex
+//         },
+//     })
+//
+//     const [{isDragging}, drag] = useDrag({
+//         type: "CARD",
+//         item: () => {
+//             return {id, index}
+//         },
+//         collect: (monitor: any) => ({
+//             isDragging: monitor.isDragging(),
+//         }),
+//     })
+//
+//     drag(drop(ref))
+//
+//     return (
+//
+//         <div className='DroppedElement' ref={ref} data-handler-id={handlerId} style={{opacity: isDragging ? 0 : 1}}>
+//
+//             <span className='DroppedElement__Description'>{description}</span>
+//             <input
+//                 className='DroppedElement__Input'
+//                 placeholder={placeholder}
+//                 value={value}
+//                 type={elementType === 'NUMBERINPUT' ? 'number' : 'text'}
+//                 onChange={() => {}} />
+//         </div>
+//     )
+// }
+
+import type { Identifier, XYCoord } from 'dnd-core'
+import type { FC } from 'react'
+import { useRef } from 'react'
+import { useDrag, useDrop } from 'react-dnd'
 import "./DroppedElement.sass";
 
-export const DroppedElement: FC<IDroppedElement> = memo (
-    ({
-         description = 'Ask for a number here. What number do you want to know?',
-         placeholder = 'e.g. 42',
-         value = '',
-         elementType,
-         elementAddress = ELEMENT_ADDRESS.DROPPED,
-         dropid,
-         index,
-         moveCard,
-     }) => {
-
-    const droppedElementRef = useRef<HTMLDivElement>(null);
-
-    // console.log(`render check`);
-
-    const [{ handlerId }, drop] = useDrop<TDragItem, void, { handlerId: Identifier | null }>({
-        accept: 'element',
-        collect(monitor: DropTargetMonitor<TDragItem, void>) {
+export const DroppedElement: FC<any> = ({ id, text, index, moveCard, description, placeholder, value, elementType }) => {
+    const ref = useRef<HTMLDivElement>(null)
+    const [{ handlerId }, drop] = useDrop<
+        any,
+        void,
+        { handlerId: Identifier | null }
+        >({
+        accept: 'CARD',
+        collect(monitor) {
             return {
                 handlerId: monitor.getHandlerId(),
             }
         },
+        hover(item: any, monitor) {
+            if (!ref.current) {
+                return
+            }
+            const dragIndex = item.index
+            const hoverIndex = index
 
-        hover(item: TDragItem, monitor: DropTargetMonitor) {
+            if (dragIndex === hoverIndex) {
+                return
+            }
 
-            if (item.elementAddress !== 'DROPPED') return;
+            const hoverBoundingRect = ref.current?.getBoundingClientRect()
 
-            if (!droppedElementRef.current) return;
+            const hoverMiddleY =
+                (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
 
-            const dragIndex = item.index;
 
-            const hoverIndex: number | undefined = index;
+            const clientOffset = monitor.getClientOffset()
 
-            // if (dragIndex === hoverIndex) return;
+            const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top
 
-            const hoverBoundingRect = droppedElementRef.current?.getBoundingClientRect();
+            if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+                return
+            }
 
-            const middleY = hoverBoundingRect.bottom - hoverBoundingRect.top;
+            if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+                return
+            }
 
-            const hoverMiddleY = middleY / 2;
+            moveCard(dragIndex, hoverIndex)
 
-            const clientOffset = monitor.getClientOffset();
-
-            const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top;
-
-            if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) return;
-
-            if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) return;
-
-            moveCard(item.dropid, dropid);
+            item.index = hoverIndex
         },
     })
 
     const [{ isDragging }, drag] = useDrag({
-        type: 'element',
-        item: { dropid, index, elementAddress, id: nanoid() },
-
-        collect: (monitor: DragSourceMonitor) => ({
+        type: "CARD",
+        item: () => {
+            return { id, index }
+        },
+        collect: (monitor: any) => ({
             isDragging: monitor.isDragging(),
         }),
-    });
+    })
 
-    drag(drop(droppedElementRef));
-
+    const opacity = isDragging ? 0 : 1
+    drag(drop(ref))
     return (
-        <div className='DroppedElement' ref={droppedElementRef} data-handler-id={handlerId} style={{opacity: isDragging ? 0  : 1}}>
-            dropid: {dropid}
-            {/*<span className='DroppedElement__Description'>{description}</span>*/}
-            {/*<input*/}
-            {/*    className='DroppedElement__Input'*/}
-            {/*    placeholder={placeholder}*/}
-            {/*    value={value}*/}
-            {/*    type={elementType === 'NUMBERINPUT' ? 'number' : 'text'}*/}
-            {/*    onChange={() => {}}*/}
-            {/*/>*/}
+        <div className='DroppedElement' ref={ref} data-handler-id={handlerId} style={{opacity: isDragging ? 0 : 1}}>
+
+            <span className='DroppedElement__Description'>{description}</span>
+            <input
+                className='DroppedElement__Input'
+                placeholder={placeholder}
+                value={value}
+                type={elementType === 'NUMBERINPUT' ? 'number' : 'text'}
+                onChange={() => {}} />
         </div>
-    )}
-)
+    )
+}

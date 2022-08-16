@@ -1,19 +1,50 @@
-import React, {useCallback} from "react";
+import React, {useCallback, useState} from "react";
 import {nanoid} from "@reduxjs/toolkit";
 import {DropTargetMonitor, useDrop} from "react-dnd";
-import {PLAYGROUNDCASES} from "./data/types";
 import {ELEMENT_ADDRESS} from "../../../globalTypes/elementTypes";
 import {setDropId} from "../../../helpers";
 import { useAppSelector, useAppDispatch } from "../../../store/hooks";
 import {addField, updateFields} from "../../../store/slices/fields/fields";
 import {DroppedElement} from "../../DroppedElements/DroppedElement/DroppedElement";
 import "./PlaygroundArena.sass";
+import update from 'immutability-helper'
 
 export const PlaygroundArena = React.memo(() => {
 
     const { fields } = useAppSelector((state) => state.fieldsSlices)
 
     const dispatch = useAppDispatch()
+
+    const [cards, setCards] = useState([
+        {
+            id: 1,
+            text: 'Write a cool JS library',
+        },
+        {
+            id: 2,
+            text: 'Make it generic enough',
+        },
+        {
+            id: 3,
+            text: 'Write README',
+        },
+        {
+            id: 4,
+            text: 'Create some examples',
+        },
+        {
+            id: 5,
+            text: 'Spam in Twitter and IRC to promote it (note that this element is taller than the others)',
+        },
+        {
+            id: 6,
+            text: '???',
+        },
+        {
+            id: 7,
+            text: 'PROFIT',
+        },
+    ])
 
     const [{isOver}, drop] = useDrop(() => ({
         accept: 'element',
@@ -32,25 +63,22 @@ export const PlaygroundArena = React.memo(() => {
         }),
     }));
 
-    const moveCard = useCallback((drag_id: number, drop_id: number) => {
-        // dispatch({
-        //     type: PLAYGROUNDCASES.UPDATE_ELEMENTS,
-        //     data: {
-        //         drag_id: drag_id,
-        //         drop_id: drop_id,
-        //     }
-        // })
-        dispatch(updateFields({drag_id: drag_id, drop_id: drop_id}))
-        }, []
-    )
+    const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
+        setCards((prevCards: any[]) =>
+            update(prevCards, {
+                $splice: [
+                    [dragIndex, 1],
+                    [hoverIndex, 0, prevCards[dragIndex] as any],
+                ],
+            }),
+        )
+    }, [])
 
-    const fieldsRender = fields.map((item: { elementType: string, id: string, dropid: number }, index: number) => {
+    const fieldsRender = cards.map((item: any, index: number) => {
         return (
             <DroppedElement
                 key={item.id}
-                elementType={item.elementType}
                 id={item.id}
-                dropid={item.dropid}
                 index={index}
                 moveCard={moveCard}
             />
