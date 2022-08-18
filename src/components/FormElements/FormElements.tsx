@@ -1,7 +1,6 @@
-import {TextIcon} from "./Icons/TextIcon";
 import {MyElement} from "./Element/MyElement";
 import "./FormElements.sass";
-import EmailIcon from "./Icons/EmailIcon";
+import {EmailIcon, NameIcon, PhoneIcon, TextIcon} from "./Icons";
 
 export const FormElements = () => {
 
@@ -20,10 +19,26 @@ export const FormElements = () => {
                 <MyElement
                     type='EMAIL_INPUT'
                     name='Email'
-                    description='Whats your name?'
+                    description='Your Email'
                     placeholder=''
 
                     icon={<EmailIcon/>}/>
+
+                <MyElement
+                    type='TEXT_INPUT'
+                    name='Name'
+                    description='Whats your name?'
+                    placeholder=''
+
+                    icon={<NameIcon/>}/>
+
+                <MyElement
+                    type='PHONE_INPUT'
+                    name='Phone'
+                    description='Your Phone Number'
+                    placeholder=''
+
+                    icon={<PhoneIcon/>}/>
 
 
             </div>

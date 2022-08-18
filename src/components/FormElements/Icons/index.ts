@@ -1,0 +1,1 @@
+export { IconsGroup, NameIcon, PhoneIcon, TextIcon, EmailIcon } from "./IconsGroup";
