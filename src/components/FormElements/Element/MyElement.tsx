@@ -1,9 +1,9 @@
 import {DragSourceMonitor, useDrag} from "react-dnd";
 import {ELEMENT_ADDRESS} from "../../../globalTypes/elementTypes";
-import {IElement} from "./types/types";
+import {IFormElement} from "./types/types";
 import "./MyElement.sass";
 
-export const MyElement = ({name, type, icon, elementAddress = ELEMENT_ADDRESS.FORM}: Readonly<IElement>) => {
+export const MyElement = ({name, type, icon, elementAddress = ELEMENT_ADDRESS.FORM}: Readonly<IFormElement>) => {
 
     const [{isDragging}, drag] = useDrag(() => ({
         type: 'element',

@@ -1,12 +1,10 @@
 import React from "react";
 import "Loader.sass";
 
-const Loader = () => {
+export const Loader = () => {
     return (
         <div>
             Loading...
         </div>
     );
 };
-
-export default Loader;

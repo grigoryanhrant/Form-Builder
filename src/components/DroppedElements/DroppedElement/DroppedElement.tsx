@@ -1,11 +1,11 @@
-import type { Identifier, XYCoord } from "dnd-core";
-import { useRef, FC } from "react";
+import type { Identifier } from "dnd-core";
+import {useRef, FC, memo} from "react";
 import {DragSourceMonitor, DropTargetMonitor, useDrag, useDrop} from "react-dnd";
-import "./DroppedElement.sass";
 import {IDroppedElement, TDragObject} from "./types/types";
-import {ELEMENT_ADDRESS} from "../../../globalTypes/elementTypes";
+import {DragDropCounting} from "./utility/DragDropCounting";
+import "./DroppedElement.sass";
 
-export const DroppedElement: FC<IDroppedElement> = (
+export const DroppedElement: FC<IDroppedElement> = memo( (
     {
         description,
         placeholder,
@@ -31,33 +31,11 @@ export const DroppedElement: FC<IDroppedElement> = (
         },
 
         hover(item: TDragObject, monitor: DropTargetMonitor<TDragObject, void>) {
-
-            if(item.elementAddress !== ELEMENT_ADDRESS.DROPPED) return
-
-            if (!DroppedRef.current) return
-
-            const dragIndex = item.index
-
-            const hoverIndex = index
-
-            if (dragIndex === hoverIndex) return
-
-            const hoverBoundingRect = DroppedRef.current?.getBoundingClientRect()
-
-            const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
-
-            const clientOffset = monitor.getClientOffset()
-
-            const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top
-
-            if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) return
-
-            if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) return
-
-            moveCard(dragIndex, hoverIndex)
-
-            item.index = hoverIndex
+            DragDropCounting(item, monitor, DroppedRef, index, moveCard)
         },
+
+        drop() {}
+
     })
 
     const [{ isDragging }, drag] = useDrag({
@@ -82,4 +60,4 @@ export const DroppedElement: FC<IDroppedElement> = (
                 onChange={() => {}} />
         </div>
     )
-}
+})

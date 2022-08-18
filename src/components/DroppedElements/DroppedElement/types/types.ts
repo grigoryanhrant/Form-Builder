@@ -17,3 +17,7 @@ export type TDragObject = {
     index: number
     elementAddress?: string
 }
+
+export type TDroppedRef = {
+    current: HTMLDivElement | null
+}

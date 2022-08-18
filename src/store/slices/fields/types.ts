@@ -4,6 +4,10 @@ export interface IElement {
     id: string
 }
 
+export interface IFieldInitialState {
+    fields: IElement[]
+}
+
 export interface IElementPayloadData {
     payload: IElement
 }

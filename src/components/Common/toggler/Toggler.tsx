@@ -10,7 +10,6 @@ export const Toggler = (
         active = 'switchOn'
     }: Partial<IToggler>) => {
 
-
     let togglerStatus = checked ? active : inactive;
 
     return (

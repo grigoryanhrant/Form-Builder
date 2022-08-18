@@ -1,8 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {RootState} from "../../store";
-import {IElementPayloadData} from "./types";
+import {IElementPayloadData, IFieldInitialState} from "./types";
 
-const initialState: any = {
+const initialState: IFieldInitialState = {
     fields: []
 }
 
