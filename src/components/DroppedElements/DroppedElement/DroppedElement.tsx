@@ -7,17 +7,21 @@ import "./DroppedElement.sass";
 
 export const DroppedElement: FC<IDroppedElement> = memo( (
     {
+        type,
+        name,
         description,
         placeholder,
+
         value,
 
-        elementType,
         elementAddress,
         id,
 
         index,
         moveCard
     }) => {
+
+    console.log(type)
 
     const DroppedRef = useRef<HTMLDivElement>(null)
 
@@ -52,11 +56,13 @@ export const DroppedElement: FC<IDroppedElement> = memo( (
         <div className='DroppedElement' ref={DroppedRef} data-handler-id={handlerId} style={{opacity: isDragging ? 0 : 1}}>
 
             <span className='DroppedElement__Description'>{description}</span>
+
             <input
-                className='DroppedElement__Input'
+                name={name}
                 placeholder={placeholder}
                 value={value}
-                type={elementType === 'NUMBERINPUT' ? 'number' : 'text'}
+                className='DroppedElement__Input'
+                type={type === 'NUMBERINPUT' ? 'number' : 'text'}
                 onChange={() => {}} />
         </div>
     )

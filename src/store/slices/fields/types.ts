@@ -1,7 +1,11 @@
 export interface IElement {
-    elementType: string
     dropid: number
     id: string
+
+    type: string
+    name: string
+    description: string
+    placeholder: string
 }
 
 export interface IFieldInitialState {

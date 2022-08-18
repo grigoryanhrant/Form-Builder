@@ -1,13 +1,14 @@
-import React, {memo, useCallback, useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {nanoid} from "@reduxjs/toolkit";
 import {DropTargetMonitor, useDrop} from "react-dnd";
-import {ELEMENT_ADDRESS, TCardLocal} from "../../../globalTypes/elementTypes";
+import {ELEMENT_ADDRESS} from "../../../globalTypes/elementTypes";
 import {setDropId} from "../../../helpers";
 import { useAppSelector, useAppDispatch } from "../../../store/hooks";
 import {DroppedElement} from "../../DroppedElements/DroppedElement/DroppedElement";
 import {addField, updateFields} from "../../../store/slices/fields/fields";
 import update from 'immutability-helper';
 import "./PlaygroundArena.sass";
+import {IElement} from "../../../store/slices/fields/types";
 
 export const PlaygroundArena = () => {
     const { fields } = useAppSelector((state) => state.fieldsSlices)
@@ -26,9 +27,18 @@ export const PlaygroundArena = () => {
 
     const [{isOver}, drop] = useDrop(() => ({
         accept: 'element',
-        drop: (item: { elementAddress: string, type: string }) => {
+        drop: (item: { elementAddress: string, type: string, name: string, description: string, placeholder: string }) => {
+            console.log(item)
             if (item.elementAddress !== ELEMENT_ADDRESS.FORM) return
-            dispatch(addField({elementType: item.type, id: nanoid(), dropid: setDropId()}))
+            dispatch(addField({
+                id: nanoid(),
+                dropid: setDropId(),
+
+                type: item.type,
+                name: item.name,
+                description: item.description,
+                placeholder: item.placeholder,
+            }))
         },
 
         collect: (monitor: DropTargetMonitor) => ({
@@ -38,18 +48,21 @@ export const PlaygroundArena = () => {
     }));
 
     const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
-        setCards((prevCards: TCardLocal[]) =>
+
+        console.log(cards)
+
+        setCards((prevCards: IElement[]) =>
             update(prevCards, {
                 $splice: [
                     [dragIndex, 1],
-                    [hoverIndex, 0, prevCards[dragIndex] as TCardLocal],
+                    [hoverIndex, 0, prevCards[dragIndex] as IElement],
                 ],
             })
         )
     }, [cards])
 
     const fieldsRenderCallback = useCallback(
-        (item: TCardLocal, index: number) => {
+        (item: IElement, index: number) => {
             return (
                 <DroppedElement
                     key={item.id}
@@ -57,6 +70,11 @@ export const PlaygroundArena = () => {
                     index={index}
                     moveCard={moveCard}
                     elementAddress={ELEMENT_ADDRESS.DROPPED}
+
+                    type={item.type}
+                    name={item.name}
+                    description={item.description}
+                    placeholder={item.placeholder}
                 />
             )
         },

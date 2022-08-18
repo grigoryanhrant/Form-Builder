@@ -1,15 +1,15 @@
 export interface IDroppedElement {
-    description?: string
-    placeholder?: string
-    value?: string
-
-    elementType?: string
+    index: number
+    moveCard: (dragIndex: number, hoverIndex: number) => void
     elementAddress?: string
     id: string
 
-    index: number
+    type?: string
+    name?: string
+    description?: string
+    placeholder?: string
 
-    moveCard: (dragIndex: number, hoverIndex: number) => void
+    value?: string
 }
 
 export type TDragObject = {

@@ -3,11 +3,28 @@ import {ELEMENT_ADDRESS} from "../../../globalTypes/elementTypes";
 import {IFormElement} from "./types/types";
 import "./MyElement.sass";
 
-export const MyElement = ({name, type, icon, elementAddress = ELEMENT_ADDRESS.FORM}: Readonly<IFormElement>) => {
+export const MyElement = (
+    {
+        elementAddress = ELEMENT_ADDRESS.FORM,
+        icon,
+
+        type,
+        name,
+        description,
+        placeholder,
+
+    }: Readonly<IFormElement>) => {
 
     const [{isDragging}, drag] = useDrag(() => ({
         type: 'element',
-        item: {type, elementAddress},
+        item: {
+            elementAddress,
+
+            type,
+            name,
+            description,
+            placeholder
+        },
 
         collect: (monitor: DragSourceMonitor) => ({
             isDragging: !!monitor.isDragging(),
@@ -16,7 +33,7 @@ export const MyElement = ({name, type, icon, elementAddress = ELEMENT_ADDRESS.FO
     }));
 
     return (
-        <div className='MyElement' ref={drag} style={{cursor: isDragging ? 'default' : 'default'}}>
+        <div className='MyElement' ref={drag} style={{cursor: isDragging ? 'move' : 'move'}}>
             <div className='MyElement__Icon'>{icon}</div>
             <span className='MyElement__Name'>{name}</span>
         </div>
