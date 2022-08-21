@@ -28,7 +28,7 @@ export const PlaygroundArena = () => {
     const [{isOver}, drop] = useDrop(() => ({
         accept: 'element',
         drop: (item: { elementAddress: string, type: string, name: string, description: string, placeholder: string }) => {
-            console.log(item)
+            // console.log(item)
             if (item.elementAddress !== ELEMENT_ADDRESS.FORM) return
             dispatch(addField({
                 id: nanoid(),
@@ -49,7 +49,7 @@ export const PlaygroundArena = () => {
 
     const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
 
-        console.log(cards)
+        // console.log(cards)
 
         setCards((prevCards: IElement[]) =>
             update(prevCards, {
