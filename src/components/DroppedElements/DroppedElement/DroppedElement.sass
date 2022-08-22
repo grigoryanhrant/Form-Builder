@@ -1,8 +1,14 @@
 .DroppedElement
-  margin-bottom: 20px
+  margin-bottom: 54px
   max-width: 500px
-  border: 1px dashed #CCD6DD
-  padding: 8px
+
+  &__Card
+    border: 1px dashed #CCD6DD
+    padding: 8px
+    position: relative
+
+  &:hover
+    cursor: pointer
 
   &:last-child
     margin-bottom: unset
@@ -10,9 +16,11 @@
   &__Move
     width: max-content
     height: 20px
-    background-color: green
     cursor: move
     margin-left: auto
+    position: absolute
+    top: 8px
+    right: 8px
 
   &__Input
     margin-top: 20px

@@ -4,8 +4,9 @@ import {DragSourceMonitor, DropTargetMonitor, useDrag, useDrop} from "react-dnd"
 import {IDroppedElement, TDragObject} from "./types/types";
 import {DragDropCounting} from "./utility/DragDropCounting";
 import {DroppedElementTools} from "./DroppedElementTools/DroppedElementTools";
-import "./DroppedElement.sass";
 import {useOnClickOutside} from "../../../hooks/useOnClickOutside";
+import {MovingIcon} from "../../Common/Icons/MoveIcon";
+import "./DroppedElement.sass";
 
 export const DroppedElement: FC<IDroppedElement> = memo( (
     {
@@ -42,7 +43,7 @@ export const DroppedElement: FC<IDroppedElement> = memo( (
 
     })
 
-    const [{ isDragging }, drag, preview] = useDrag({
+    const [{ isDragging }, drag] = useDrag({
         type: "element",
         item: { id, index, elementAddress },
         collect: (monitor: DragSourceMonitor<TDragObject, TDragObject>) => ({
@@ -65,27 +66,39 @@ export const DroppedElement: FC<IDroppedElement> = memo( (
     useOnClickOutside(outSideRef, () => setDroppedElementTools(false));
 
     return (
-        <div className="DroppedElement" ref={outSideRef}>
+        <div
+            className="DroppedElement"
+            ref={outSideRef}
+            style={{
+                opacity: isDragging ? 0 : 1,
+            }}
+            onClick={showDroppedElementTools}>
+
+            {droppedElementToolsRender}
+
             <div
-                className=''
-                ref={preview}
-                data-handler-id={handlerId}
-                style={{opacity: isDragging ? 0 : 1}}
-                onClick={showDroppedElementTools}>
+                className='DroppedElement__Card'
+                ref={DroppedRef}
+                style={{
+                    borderColor: droppedElementTools ? "#08d68f" : "",
+                    borderStyle: droppedElementTools ? "solid" : "",
+                }}
+                data-handler-id={handlerId}>
 
-                <div ref={DroppedRef} className="DroppedElement__Move">Move</div>
-
-                {droppedElementToolsRender}
+                <div className="DroppedElement__Move">
+                    <MovingIcon/>
+                </div>
 
                 <span className='DroppedElement__Description'>{description}</span>
 
                 <input
-                    name={name}
-                    placeholder={placeholder}
-                    value={value}
-                    className='DroppedElement__Input'
-                    type={type === 'NUMBERINPUT' ? 'number' : 'text'}
-                    onChange={() => {}} />
+                  name={name}
+                  placeholder={placeholder}
+                  value={value}
+                  className='DroppedElement__Input'
+                  type={type === 'NUMBERINPUT' ? 'number' : 'text'}
+                  onChange={() => {}} />
+
             </div>
         </div>
     )

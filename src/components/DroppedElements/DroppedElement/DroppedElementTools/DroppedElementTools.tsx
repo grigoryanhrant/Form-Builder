@@ -5,7 +5,7 @@ import "./DroppedElementTools.sass"
 export const DroppedElementTools: FC<IDroppedElementTools> = () => {
     return (
         <div className="DroppedElementTools">
-            Tool
+            Tools
         </div>
     );
 };
