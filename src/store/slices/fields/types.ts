@@ -12,6 +12,14 @@ export interface IFieldInitialState {
     fields: IElement[]
 }
 
-export interface IElementPayloadData {
+export interface IAddFieldPayload {
     payload: IElement
+}
+
+export interface IUpdateFieldPayload {
+    payload: IElement[]
+}
+
+export interface IRemoveFieldPayload {
+    payload: string
 }

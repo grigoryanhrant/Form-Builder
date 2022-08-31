@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useEffect, useLayoutEffect, useRef, useState} from "react";
 import {nanoid} from "@reduxjs/toolkit";
 import {DropTargetMonitor, useDrop} from "react-dnd";
 import {ELEMENT_ADDRESS} from "../../../globalTypes/elementTypes";
@@ -7,29 +7,46 @@ import { useAppSelector, useAppDispatch } from "../../../store/hooks";
 import {DroppedElement} from "../../DroppedElements/DroppedElement/DroppedElement";
 import {addField, updateFields} from "../../../store/slices/fields/fields";
 import update from 'immutability-helper';
-import "./PlaygroundArena.sass";
 import {IElement} from "../../../store/slices/fields/types";
+import "./PlaygroundArena.sass";
 
 export const PlaygroundArena = () => {
-    const { fields } = useAppSelector((state) => state.fieldsSlices)
 
     const dispatch = useAppDispatch()
 
+    const myElement = useRef<any>(null);
+
+    const { fields } = useAppSelector((state) => state.fieldsSlices)
+
     const [cards, setCards] = useState(fields);
+
+    const cardsPrevStateRef: any = useRef()
+
+    cardsPrevStateRef.current = cards
+
+
+    const mouseLeaveUpdateHandler = () => {
+        dispatch(updateFields(cards))
+    }
+
+    useEffect(() => {
+        myElement.current.addEventListener('mouseleave', mouseLeaveUpdateHandler, false)
+
+        return () => {
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+            myElement.current.removeEventListener('mouseleave', mouseLeaveUpdateHandler, false)
+        }
+    }, [cards])
 
     useEffect(() => {
         setCards(fields)
     }, [fields])
 
-    useEffect(() => {
-        dispatch(updateFields(cards))
-    }, [cards])
-
     const [{isOver}, drop] = useDrop(() => ({
         accept: 'element',
         drop: (item: { elementAddress: string, type: string, name: string, description: string, placeholder: string }) => {
-            // console.log(item)
             if (item.elementAddress !== ELEMENT_ADDRESS.FORM) return
+
             dispatch(addField({
                 id: nanoid(),
                 dropid: setDropId(),
@@ -48,9 +65,6 @@ export const PlaygroundArena = () => {
     }));
 
     const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
-
-        // console.log(cards)
-
         setCards((prevCards: IElement[]) =>
             update(prevCards, {
                 $splice: [
@@ -82,10 +96,15 @@ export const PlaygroundArena = () => {
     )
 
     return (
-        <div ref={drop} className='PlaygroundArena' style={{borderColor: isOver ? '#58cfef' : ''}}>
-            {cards.map((card, i) => fieldsRenderCallback(card, i))}
+        <div ref={myElement} style={{width: '100%'}}>
+            <div ref={drop} className='PlaygroundArena' style={{borderColor: isOver ? '#58cfef' : ''}}>
 
-            {isOver && <div className='PlaygroundArena__DropHere'>DROP THE ELEMENT HERE</div>}
+                {cards.map((card, i) => fieldsRenderCallback(card, i))}
+
+                <div onClick={() => console.log(cards)} style={{margin: 'auto auto'}}>dsfsdfsdfdsdfsf</div>
+
+                {isOver && <div className='PlaygroundArena__DropHere'>DROP THE ELEMENT HERE</div>}
+            </div>
         </div>
     );
 };
