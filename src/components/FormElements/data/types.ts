@@ -10,5 +10,6 @@ export interface IElementsGroup {
 }
 
 export interface IMyElementList {
-    basicElements: IElementsGroup[]
+    contactInfo: IElementsGroup[]
+    special: IElementsGroup[]
 }

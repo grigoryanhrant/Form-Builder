@@ -1,10 +1,10 @@
 import {BsTrash} from "@react-icons/all-files/bs/BsTrash";
 import {GrDocumentConfig} from "@react-icons/all-files/gr/GrDocumentConfig";
-import {MovingIcon} from "../../Common/Icons/MoveIcon";
 import {useAppDispatch} from "../../../store/hooks";
 import {removeField} from "../../../store/slices/fields/fields";
 import {IDroppedElement} from "./types/types";
 import './DroppedElement.sass';
+import {MovingIcon} from "../../../common/Icons/MoveIcon";
 
 export const DroppedElement = (
     {

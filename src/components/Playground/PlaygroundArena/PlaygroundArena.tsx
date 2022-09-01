@@ -9,6 +9,7 @@ import update from 'immutability-helper';
 import {IElement} from "../../../store/slices/fields/types";
 import {DroppedElementContainer} from "../../_DroppedElement/DroppedElementContainer";
 import "./PlaygroundArena.sass";
+import _ from "lodash";
 
 export const PlaygroundArena = () => {
 
@@ -21,7 +22,9 @@ export const PlaygroundArena = () => {
     const [cards, setCards] = useState(fields);
 
     const mouseLeaveUpdateHandler = () => {
-        dispatch(updateFields(cards))
+        if(!_.isEqual(cards, fields)) {
+            dispatch(updateFields(cards))
+        }
     }
 
     useEffect(() => {
@@ -30,7 +33,7 @@ export const PlaygroundArena = () => {
         return () => {
             myElement.current.removeEventListener('mouseleave', mouseLeaveUpdateHandler, false)
         }
-    }, [cards])
+    }, [cards, fields])
 
     useEffect(() => {
         setCards(fields)
@@ -90,13 +93,12 @@ export const PlaygroundArena = () => {
     )
 
     return (
-        <div ref={myElement} style={{width: '100%'}}>
+        <div ref={myElement} className='PlaygroundArenaWrapper'>
             <div ref={drop} className='PlaygroundArena' style={{borderColor: isOver ? '#58cfef' : ''}}>
 
                 {cards.map((card, i) => fieldsRenderCallback(card, i))}
 
                 {isOver && <div className='PlaygroundArena__DropHere'>DROP THE ELEMENT HERE</div>}
-
             </div>
         </div>
     );

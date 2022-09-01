@@ -2,12 +2,12 @@ import {EmailIcon, NameIcon, PhoneIcon, TextIcon} from "../Icons";
 import {IMyElementList} from "./types";
 
 export const myElementList: IMyElementList = {
-    basicElements: [
+    contactInfo: [
         {
             type: "TEXT_INPUT",
             name: "Text",
             description: "I'm a text field, type in any text you want",
-            placeholder: '',
+            placeholder: "",
             icon: <TextIcon />,
             id: 1,
         },
@@ -16,7 +16,7 @@ export const myElementList: IMyElementList = {
             type: "EMAIL_INPUT",
             name: "Email",
             description: "Your Email",
-            placeholder: '',
+            placeholder: "",
             icon: <EmailIcon/>,
             id: 2,
         },
@@ -25,7 +25,7 @@ export const myElementList: IMyElementList = {
             type: "TEXT_INPUT",
             name: "Name",
             description: "Whats your name?",
-            placeholder: '',
+            placeholder: "",
             icon: <NameIcon/>,
             id: 3,
         },
@@ -34,9 +34,38 @@ export const myElementList: IMyElementList = {
             type: "PHONE_INPUT",
             name: "Phone",
             description: "Your Phone Number",
-            placeholder: '',
+            placeholder: "",
             icon: <PhoneIcon/>,
             id: 4,
         },
-    ]
+    ],
+
+    special: [
+        {
+            type: "SHORT_TEXT",
+            name: "Short text",
+            description: "Ask for an extended question here. What do you want to ask?",
+            placeholder: "My answer is...",
+            icon: <TextIcon />,
+            id: 5,
+        },
+
+        {
+            type: "LONG_TEXT",
+            name: "Long text",
+            description: "Ask for an extended question here. What do you want to ask?",
+            placeholder: "Let me tell you about this",
+            icon: <TextIcon />,
+            id: 6,
+        },
+
+        {
+            type: "DROPDOWN",
+            name: "Dropdown",
+            description: "What's your least favorite chore",
+            placeholder: "",
+            icon: <TextIcon />,
+            id: 7,
+        },
+    ],
 }

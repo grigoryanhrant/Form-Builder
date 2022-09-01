@@ -1,5 +1,5 @@
 import React from "react";
-import "Loader.sass";
+import "./Loader.sass";
 
 export const Loader = () => {
     return (
