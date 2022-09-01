@@ -1,4 +1,4 @@
-export interface IDroppedElement {
+export interface IDroppedElementContainer {
     index: number
     moveCard: (dragIndex: number, hoverIndex: number) => void
     elementAddress?: string

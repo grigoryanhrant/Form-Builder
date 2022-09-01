@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import {Provider} from "react-redux";
 import {store} from "./store/store";
-import {DndProvider, useDrop} from "react-dnd";
+import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
 import {App} from "./App";
 

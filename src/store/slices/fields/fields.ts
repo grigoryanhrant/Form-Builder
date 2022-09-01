@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {IAddFieldPayload, IFieldInitialState, IRemoveFieldPayload, IUpdateFieldPayload} from "./types";
+import {RootState} from "../../store";
 
 const initialState: IFieldInitialState = {
     fields: []
@@ -10,7 +11,6 @@ export const fieldsSlice = createSlice({
     initialState,
     reducers: {
         addField: (draft, action: IAddFieldPayload) => {
-            console.log(`hi`)
             draft.fields.push(action.payload)
         },
 
@@ -27,6 +27,6 @@ export const fieldsSlice = createSlice({
 
 export const { addField, updateFields, removeField } = fieldsSlice.actions
 
-// export const selectFields = (state: RootState) => state.fieldsSlices
+export const selectFields = (state: RootState) => state.fieldsSlices
 
 export default fieldsSlice.reducer

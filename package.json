@@ -22,7 +22,7 @@
     "react-redux": "^8.0.2",
     "react-scripts": "5.0.1",
     "sass": "^1.54.3",
-    "typescript": "^4.7.4"
+    "typescript": "*"
   },
   "scripts": {
     "start": "react-scripts start",
