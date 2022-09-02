@@ -2,10 +2,10 @@ import {BsTrash} from "@react-icons/all-files/bs/BsTrash";
 import {GrDocumentConfig} from "@react-icons/all-files/gr/GrDocumentConfig";
 import {useAppDispatch} from "../../../store/hooks";
 import {removeField} from "../../../store/slices/fields/fields";
-import {IDroppedElement} from "./types/types";
+import {IDroppedElementCard} from "./types/types";
 import {MovingIcon} from "../../../common/Icons/MoveIcon";
+import {DroppedElementBottom} from "./DroppedElementBottom/DroppedElementBottom";
 import './DroppedElement.sass';
-import {inputTypeChecker} from "./helpers";
 
 export const DroppedElement = (
     {
@@ -19,8 +19,8 @@ export const DroppedElement = (
         name,
         description,
         placeholder,
-        value
-    }: IDroppedElement) => {
+        value,
+    }: IDroppedElementCard) => {
 
     const dispatch = useAppDispatch()
 
@@ -28,15 +28,13 @@ export const DroppedElement = (
         dispatch(removeField(id))
     }
 
-    console.log(type)
-
     return (
         <div
             className='DroppedElement'
             style={{opacity: isDragging ? 1 : 1,}}>
 
             <div
-                className={isDragging ? 'DroppedElement__Drop' : 'DroppedElement__Card'}
+                className={isDragging ? 'DroppedElement__isDragging' : 'DroppedElement__isNotDragging'}
                 ref={DroppedRef}
                 data-handler-id={handlerId}>
 
@@ -59,13 +57,15 @@ export const DroppedElement = (
                 <div className='DroppedElement__Details'>
                     <span className='DroppedElement__Description'>{description}</span>
 
-                    <input
-                        name={name}
-                        placeholder={placeholder}
-                        value={value}
-                        className='DroppedElement__Input'
-                        type={inputTypeChecker(type)}
-                        onChange={() => {}} />
+                    <DroppedElementBottom id={id} type={type} name={name} placeholder={placeholder} value={value}/>
+
+                    {/*<input*/}
+                    {/*    name={name}*/}
+                    {/*    placeholder={placeholder}*/}
+                    {/*    value={value}*/}
+                    {/*    className='DroppedElement__Input'*/}
+                    {/*    type={'text'}*/}
+                    {/*    onChange={() => {}} />*/}
                 </div>
 
             </div>
