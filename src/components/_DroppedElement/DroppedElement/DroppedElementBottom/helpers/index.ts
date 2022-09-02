@@ -6,6 +6,4 @@ export const inputTypeChecker = (_type: any) => {
         || ''
 }
 
-export const elementTypeChecker = (_type: any) => {
-
-}
+export const bottomElementChecker = (_type: any) => {}
