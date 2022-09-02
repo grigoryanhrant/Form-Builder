@@ -4,7 +4,7 @@ export interface IElementsGroup {
     type: string
     name: string
     description: string
-    placeholder: string
+    placeholder?: string
     icon: ReactElement
     id: number
 }

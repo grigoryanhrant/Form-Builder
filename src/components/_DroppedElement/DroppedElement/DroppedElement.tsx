@@ -3,8 +3,9 @@ import {GrDocumentConfig} from "@react-icons/all-files/gr/GrDocumentConfig";
 import {useAppDispatch} from "../../../store/hooks";
 import {removeField} from "../../../store/slices/fields/fields";
 import {IDroppedElement} from "./types/types";
-import './DroppedElement.sass';
 import {MovingIcon} from "../../../common/Icons/MoveIcon";
+import './DroppedElement.sass';
+import {inputTypeChecker} from "./helpers";
 
 export const DroppedElement = (
     {
@@ -26,6 +27,8 @@ export const DroppedElement = (
     const cardRemoveHandler = () => {
         dispatch(removeField(id))
     }
+
+    console.log(type)
 
     return (
         <div
@@ -61,7 +64,7 @@ export const DroppedElement = (
                         placeholder={placeholder}
                         value={value}
                         className='DroppedElement__Input'
-                        type={type === 'NUMBERINPUT' ? 'number' : 'text'}
+                        type={inputTypeChecker(type)}
                         onChange={() => {}} />
                 </div>
 

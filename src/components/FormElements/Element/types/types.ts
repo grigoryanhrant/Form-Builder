@@ -8,5 +8,5 @@ export interface IFormElement {
     type: string
     name: string
     description: string
-    placeholder: string
+    placeholder?: string
 }

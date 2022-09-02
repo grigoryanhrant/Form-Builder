@@ -63,7 +63,6 @@ export const myElementList: IMyElementList = {
             type: "DROPDOWN",
             name: "Dropdown",
             description: "What's your least favorite chore",
-            placeholder: "",
             icon: <TextIcon />,
             id: 7,
         },

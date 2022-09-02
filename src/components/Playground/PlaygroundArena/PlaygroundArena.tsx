@@ -17,15 +17,11 @@ export const PlaygroundArena = () => {
 
     const { fields } = useAppSelector((state) => state.fieldsSlices)
 
-    const myElement = useRef<any>(null);
-
     const [cards, setCards] = useState(fields);
 
-    const mouseLeaveUpdateHandler = () => {
-        if(!_.isEqual(cards, fields)) {
-            dispatch(updateFields(cards))
-        }
-    }
+    useEffect(() => {
+        setCards(fields)
+    }, [fields])
 
     useEffect(() => {
         myElement.current.addEventListener('mouseleave', mouseLeaveUpdateHandler, false)
@@ -35,9 +31,13 @@ export const PlaygroundArena = () => {
         }
     }, [cards, fields])
 
-    useEffect(() => {
-        setCards(fields)
-    }, [fields])
+    const mouseLeaveUpdateHandler = () => {
+        if(!_.isEqual(cards, fields)) {
+            dispatch(updateFields(cards))
+        }
+    }
+
+    const myElement = useRef<any>(null);
 
     const [{isOver}, drop] = useDrop(() => ({
         accept: 'element',
