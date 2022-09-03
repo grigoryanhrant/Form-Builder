@@ -11,6 +11,7 @@ export const MyElement = (
         type,
         name,
         description,
+        descriptionForInput,
         placeholder,
 
     }: Readonly<IFormElement>) => {
@@ -23,6 +24,7 @@ export const MyElement = (
             type,
             name,
             description,
+            descriptionForInput,
             placeholder
         },
 

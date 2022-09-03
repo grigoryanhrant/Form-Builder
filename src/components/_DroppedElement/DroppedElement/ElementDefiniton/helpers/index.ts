@@ -3,5 +3,7 @@ export const setInputType = ($type: string) => {
         || $type === 'EMAIL_INPUT' && 'email'
         || $type === 'PHONE_INPUT' && 'tel'
         || $type === 'SHORT_TEXT' && 'text'
+        || $type === 'CHECKBOX' && 'checkbox'
+        || $type === 'DATEPICKER' && 'date'
         || ''
 }

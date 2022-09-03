@@ -1,5 +1,16 @@
 import {IMyElementList} from "./types";
-import {BiText, SiGmail, HiUser, BsPhone, GrTextAlignLeft, MdLocationCity, MdArrowDropDownCircle} from "../Icons";
+import {
+    BiText,
+    SiGmail,
+    HiUser,
+    BsPhone,
+    GrTextAlignLeft,
+    MdLocationCity,
+    BiCheckbox,
+    RiCheckboxMultipleBlankLine,
+    AiOutlineCheckSquare,
+    MdDateRange
+} from "../Icons";
 
 export const myElementList: IMyElementList = {
     contactInfo: [
@@ -60,11 +71,37 @@ export const myElementList: IMyElementList = {
         },
 
         {
-            type: "DROPDOWN",
-            name: "Dropdown",
+            type: "SELECT",
+            name: "Select",
             description: "What's your least favorite chore",
-            icon: <MdArrowDropDownCircle />,
+            icon: <BiCheckbox />,
             id: 7,
+        },
+
+        {
+            type: "MULTISELECT",
+            name: "Multi Select",
+            description: "Select a set of ",
+            icon: <RiCheckboxMultipleBlankLine />,
+            id: 8,
+        },
+
+        {
+            type: "CHECKBOX",
+            name: "Checkbox",
+            description: "",
+            descriptionForInput: "I have read and agreed to Terms and Conditions",
+            icon: <AiOutlineCheckSquare />,
+            id: 9,
+        },
+
+        {
+            type: "DATEPICKER",
+            name: "Date",
+            description: "Date",
+            // descriptionForInput: "Date",
+            icon: <MdDateRange />,
+            id: 10,
         },
     ],
 }

@@ -1,3 +1,7 @@
+export {MdDateRange} from "@react-icons/all-files/md/MdDateRange";
+export {AiOutlineCheckSquare} from "@react-icons/all-files/ai/AiOutlineCheckSquare";
+export {RiCheckboxMultipleBlankLine} from "@react-icons/all-files/ri/RiCheckboxMultipleBlankLine";
+export {BiCheckbox} from "@react-icons/all-files/bi/BiCheckbox";
 export {MdArrowDropDownCircle} from "@react-icons/all-files/md/MdArrowDropDownCircle";
 export {MdLocationCity} from "@react-icons/all-files/md/MdLocationCity";
 export {GrTextAlignLeft} from "@react-icons/all-files/gr/GrTextAlignLeft";

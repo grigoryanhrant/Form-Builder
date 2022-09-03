@@ -4,12 +4,13 @@ import { useAppSelector, useAppDispatch } from "../../../store/hooks";
 import {addField, updateFields} from "../../../store/slices/fields/fields";
 import {IElement} from "../../../store/slices/fields/types";
 import update from 'immutability-helper';
-import {setDropId} from "../../../helpers";
 import {DropTargetMonitor, useDrop} from "react-dnd";
 import {ELEMENT_ADDRESS} from "../../../globalTypes/elementAddress";
 import {DroppedElementContainer} from "../../_DroppedElement/DroppedElementContainer";
 import _ from "lodash";
+import {IPlaygroundArenaDropItem} from "./types/types";
 import "./PlaygroundArena.sass";
+import _uniqueId from "lodash/uniqueId";
 
 export const PlaygroundArena = () => {
 
@@ -41,17 +42,18 @@ export const PlaygroundArena = () => {
 
     const [{isOver}, drop] = useDrop(() => ({
         accept: 'element',
-        drop: (item: { elementAddress: string, type: string, name: string, description: string, placeholder: string }) => {
+        drop: (item: IPlaygroundArenaDropItem) => {
 
             if (item.elementAddress !== ELEMENT_ADDRESS.FORM) return
 
             dispatch(addField({
                 id: nanoid(),
-                dropid: setDropId(),
+                dropid: Number(_uniqueId()),
 
                 type: item.type,
                 name: item.name,
                 description: item.description,
+                descriptionForInput: item.descriptionForInput,
                 placeholder: item.placeholder,
             }))
         },
@@ -86,6 +88,7 @@ export const PlaygroundArena = () => {
                     type={item.type}
                     name={item.name}
                     description={item.description}
+                    descriptionForInput={item.descriptionForInput}
                     placeholder={item.placeholder}
                 />
             )

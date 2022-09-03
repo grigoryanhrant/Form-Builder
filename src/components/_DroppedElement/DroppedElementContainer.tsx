@@ -10,6 +10,7 @@ export const DroppedElementContainer: FC<IDroppedElementContainer> = memo( (
         type,
         name,
         description,
+        descriptionForInput,
         placeholder,
 
         value,
@@ -60,6 +61,7 @@ export const DroppedElementContainer: FC<IDroppedElementContainer> = memo( (
 
             name={name}
             description={description}
+            descriptionForInput={descriptionForInput}
             placeholder={placeholder}
             value={value}
         />

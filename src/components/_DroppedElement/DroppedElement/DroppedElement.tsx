@@ -1,7 +1,7 @@
 import {useAppDispatch} from "../../../store/hooks";
 import {removeField} from "../../../store/slices/fields/fields";
 import {ElementDefinition} from "./ElementDefiniton/ElementDefintion";
-import {BiMove, BsTrash, GrDocumentConfig} from "../../../common/Icons";
+import {BsArrowsMove, BsTrash, GrDocumentConfig} from "../../../common/Icons";
 import {IDroppedElement} from "./types/types";
 import './DroppedElement.sass';
 
@@ -16,6 +16,7 @@ export const DroppedElement = (
 
         name,
         description,
+        descriptionForInput,
         placeholder,
         value,
     }: IDroppedElement) => {
@@ -49,14 +50,14 @@ export const DroppedElement = (
                 </div>
 
                 <div className='DroppedElement__Move'>
-                    <BiMove/>
+                    <BsArrowsMove/>
                 </div>
 
                 <div className='DroppedElement__Details'>
                     <span className='DroppedElement__Description'>{description}</span>
 
                     <div className='DroppedElement__Definition'>
-                        <ElementDefinition id={id} type={type} name={name} placeholder={placeholder} value={value}/>
+                        <ElementDefinition id={id} type={type} name={name} placeholder={placeholder} value={value} descriptionForInput={descriptionForInput}/>
                     </div>
                 </div>
 

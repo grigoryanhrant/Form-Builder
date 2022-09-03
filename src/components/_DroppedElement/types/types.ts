@@ -7,6 +7,7 @@ export interface IDroppedElementContainer {
     type?: string
     name?: string
     description?: string
+    descriptionForInput?: string
     placeholder?: string
 
     value?: string

@@ -5,6 +5,7 @@ export interface IElement {
     type: string
     name: string
     description: string
+    descriptionForInput?: string
     placeholder: string
 }
 

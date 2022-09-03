@@ -11,6 +11,7 @@ export interface IDroppedElement {
 
     name: string | undefined,
     description: string | undefined,
+    descriptionForInput: string | undefined,
     placeholder: string | undefined,
     value: string | undefined,
 }

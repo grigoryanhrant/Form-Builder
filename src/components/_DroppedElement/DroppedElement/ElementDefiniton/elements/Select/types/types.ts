@@ -5,3 +5,7 @@ export interface ISelectOption {
     readonly isFixed?: boolean;
     readonly isDisabled?: boolean;
 }
+
+export interface IMySelect {
+    multiselect?: boolean
+}

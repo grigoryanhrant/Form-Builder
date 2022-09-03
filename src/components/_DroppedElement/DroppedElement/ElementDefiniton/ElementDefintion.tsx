@@ -3,13 +3,15 @@ import {setInputType} from "./helpers";
 import {Input, MySelect, Textarea} from "./elements";
 import {IElementDefinition} from "./types/types";
 
-export const ElementDefinition = ({id, type, name, placeholder, value}: IElementDefinition) => {
+export const ElementDefinition = ({id, type, name, placeholder, value, descriptionForInput}: IElementDefinition) => {
 
     switch(type) {
         case 'TEXT_INPUT':
         case 'EMAIL_INPUT':
         case 'PHONE_INPUT':
         case 'SHORT_TEXT':
+        case 'CHECKBOX':
+        case 'DATEPICKER':
             const $type = setInputType(type);
 
             return (
@@ -17,6 +19,7 @@ export const ElementDefinition = ({id, type, name, placeholder, value}: IElement
                     id={id}
                     name={name}
                     placeholder={placeholder}
+                    descriptionForInput={descriptionForInput}
                     value={value}
                     type={$type}/>
             )
@@ -30,9 +33,14 @@ export const ElementDefinition = ({id, type, name, placeholder, value}: IElement
                     value={value}/>
             )
 
-        case 'DROPDOWN':
+        case 'SELECT':
             return (
                 <MySelect />
+            )
+
+        case 'MULTISELECT':
+            return (
+                <MySelect multiselect={true}/>
             )
         default:
     }
