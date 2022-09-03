@@ -1,15 +1,15 @@
 import React, {useCallback, useEffect, useRef, useState} from "react";
 import {nanoid} from "@reduxjs/toolkit";
-import {DropTargetMonitor, useDrop} from "react-dnd";
-import {ELEMENT_ADDRESS} from "../../../globalTypes/elementTypes";
-import {setDropId} from "../../../helpers";
 import { useAppSelector, useAppDispatch } from "../../../store/hooks";
 import {addField, updateFields} from "../../../store/slices/fields/fields";
-import update from 'immutability-helper';
 import {IElement} from "../../../store/slices/fields/types";
+import update from 'immutability-helper';
+import {setDropId} from "../../../helpers";
+import {DropTargetMonitor, useDrop} from "react-dnd";
+import {ELEMENT_ADDRESS} from "../../../globalTypes/elementAddress";
 import {DroppedElementContainer} from "../../_DroppedElement/DroppedElementContainer";
-import "./PlaygroundArena.sass";
 import _ from "lodash";
+import "./PlaygroundArena.sass";
 
 export const PlaygroundArena = () => {
 

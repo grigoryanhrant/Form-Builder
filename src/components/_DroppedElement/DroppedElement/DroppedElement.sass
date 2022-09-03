@@ -11,10 +11,12 @@
     top: 8px
     right: 8px
 
+
   &__isNotDragging
     border: 1px dashed #CCD6DD
     padding: 8px
     position: relative
+
 
   &__isDragging
     position: relative
@@ -34,6 +36,7 @@
       font-size: 15px
       font-weight: 700
 
+
   &__Details
     margin-top: 14px
 
@@ -44,8 +47,22 @@
     margin-bottom: unset
 
   &__Input
-    margin-top: 14px
     width: 100%
+    outline: none
+    border: 1px solid rgba(145,145,145,.4)
+    padding: 8px 8px
+    font-size: 13px
+
+    &::-webkit-inner-spin-button
+      appearance: none
+
+    &::-webkit-outer-spin-button
+      appearance: none
+
+  &__Textarea
+    width: 100%
+    height: 100px
+    resize: none
     outline: none
     border: 1px solid rgba(145,145,145,.4)
     padding: 8px 8px
@@ -61,6 +78,9 @@
     color: #c3ccd7
     font-weight: 700
     font-size: 15px
+
+  &__Definition
+    margin-top: 14px
 
 .DroppedElementTools
   display: flex

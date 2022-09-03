@@ -1,10 +1,8 @@
-import {BsTrash} from "@react-icons/all-files/bs/BsTrash";
-import {GrDocumentConfig} from "@react-icons/all-files/gr/GrDocumentConfig";
 import {useAppDispatch} from "../../../store/hooks";
 import {removeField} from "../../../store/slices/fields/fields";
-import {IDroppedElementCard} from "./types/types";
-import {MovingIcon} from "../../../common/Icons/MoveIcon";
-import {DroppedElementBottom} from "./DroppedElementBottom/DroppedElementBottom";
+import {ElementDefinition} from "./ElementDefiniton/ElementDefintion";
+import {BiMove, BsTrash, GrDocumentConfig} from "../../../common/Icons";
+import {IDroppedElement} from "./types/types";
 import './DroppedElement.sass';
 
 export const DroppedElement = (
@@ -20,7 +18,7 @@ export const DroppedElement = (
         description,
         placeholder,
         value,
-    }: IDroppedElementCard) => {
+    }: IDroppedElement) => {
 
     const dispatch = useAppDispatch()
 
@@ -51,21 +49,15 @@ export const DroppedElement = (
                 </div>
 
                 <div className='DroppedElement__Move'>
-                    <MovingIcon/>
+                    <BiMove/>
                 </div>
 
                 <div className='DroppedElement__Details'>
                     <span className='DroppedElement__Description'>{description}</span>
 
-                    <DroppedElementBottom id={id} type={type} name={name} placeholder={placeholder} value={value}/>
-
-                    {/*<input*/}
-                    {/*    name={name}*/}
-                    {/*    placeholder={placeholder}*/}
-                    {/*    value={value}*/}
-                    {/*    className='DroppedElement__Input'*/}
-                    {/*    type={'text'}*/}
-                    {/*    onChange={() => {}} />*/}
+                    <div className='DroppedElement__Definition'>
+                        <ElementDefinition id={id} type={type} name={name} placeholder={placeholder} value={value}/>
+                    </div>
                 </div>
 
             </div>

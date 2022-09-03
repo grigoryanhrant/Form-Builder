@@ -1,7 +1,7 @@
 import {RefObject} from "react";
 import {Identifier} from "dnd-core";
 
-export interface IDroppedElementCard {
+export interface IDroppedElement {
     isDragging: boolean,
     DroppedRef: RefObject<HTMLDivElement>,
     handlerId: Identifier | null,

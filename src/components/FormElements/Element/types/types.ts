@@ -1,5 +1,5 @@
 import {ReactElement} from "react";
-import {ELEMENT_ADDRESS} from "../../../../globalTypes/elementTypes";
+import {ELEMENT_ADDRESS} from "../../../../globalTypes/elementAddress";
 
 export interface IFormElement {
     elementAddress?: ELEMENT_ADDRESS.FORM

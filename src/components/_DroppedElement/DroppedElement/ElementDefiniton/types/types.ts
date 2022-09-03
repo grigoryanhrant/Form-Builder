@@ -1,4 +1,4 @@
-export interface IDroppedElement {
+export interface IElementDefinition {
     id: string
     type?: string
     name?: string

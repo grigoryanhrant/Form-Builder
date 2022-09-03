@@ -1,9 +1,9 @@
-import type { Identifier } from "dnd-core";
 import {useRef, FC, memo} from "react";
+import type { Identifier } from "dnd-core";
 import {DragSourceMonitor, DropTargetMonitor, useDrag, useDrop} from "react-dnd";
-import {IDroppedElementContainer, TDragObject} from "./types/types";
-import {DragDropCounting} from "./utility/DragDropCounting";
+import {DragDropCounting} from "./helpers/DragDropCounting";
 import {DroppedElement} from "./DroppedElement/DroppedElement";
+import {IDroppedElementContainer, TDragObject} from "./types/types";
 
 export const DroppedElementContainer: FC<IDroppedElementContainer> = memo( (
     {

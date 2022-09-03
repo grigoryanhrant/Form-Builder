@@ -1,14 +1,14 @@
-import {EmailIcon, NameIcon, PhoneIcon, TextIcon} from "../Icons";
 import {IMyElementList} from "./types";
+import {BiText, SiGmail, HiUser, BsPhone, GrTextAlignLeft, MdLocationCity, MdArrowDropDownCircle} from "../Icons";
 
 export const myElementList: IMyElementList = {
     contactInfo: [
         {
             type: "TEXT_INPUT",
-            name: "Text",
+            name: "Address",
             description: "I'm a text field, type in any text you want",
             placeholder: "",
-            icon: <TextIcon />,
+            icon: <MdLocationCity />,
             id: 1,
         },
 
@@ -17,7 +17,7 @@ export const myElementList: IMyElementList = {
             name: "Email",
             description: "Your Email",
             placeholder: "",
-            icon: <EmailIcon/>,
+            icon: <SiGmail/>,
             id: 2,
         },
 
@@ -26,7 +26,7 @@ export const myElementList: IMyElementList = {
             name: "Name",
             description: "Whats your name?",
             placeholder: "",
-            icon: <NameIcon/>,
+            icon: <HiUser/>,
             id: 3,
         },
 
@@ -35,7 +35,7 @@ export const myElementList: IMyElementList = {
             name: "Phone",
             description: "Your Phone Number",
             placeholder: "",
-            icon: <PhoneIcon/>,
+            icon: <BsPhone />,
             id: 4,
         },
     ],
@@ -46,7 +46,7 @@ export const myElementList: IMyElementList = {
             name: "Short text",
             description: "Ask for an extended question here. What do you want to ask?",
             placeholder: "My answer is...",
-            icon: <TextIcon />,
+            icon: <BiText />,
             id: 5,
         },
 
@@ -55,7 +55,7 @@ export const myElementList: IMyElementList = {
             name: "Long text",
             description: "Ask for an extended question here. What do you want to ask?",
             placeholder: "Let me tell you about this",
-            icon: <TextIcon />,
+            icon: <GrTextAlignLeft />,
             id: 6,
         },
 
@@ -63,7 +63,7 @@ export const myElementList: IMyElementList = {
             type: "DROPDOWN",
             name: "Dropdown",
             description: "What's your least favorite chore",
-            icon: <TextIcon />,
+            icon: <MdArrowDropDownCircle />,
             id: 7,
         },
     ],
