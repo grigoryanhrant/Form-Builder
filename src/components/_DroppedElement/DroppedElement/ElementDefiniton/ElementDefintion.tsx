@@ -1,6 +1,6 @@
 import React from 'react';
 import {setInputType} from "./helpers";
-import {Input, MySelect, Textarea} from "./elements";
+import {FileUpload, Input, MySelect, Textarea} from "./elements";
 import {IElementDefinition} from "./types/types";
 
 export const ElementDefinition = ({id, type, name, placeholder, value, descriptionForInput}: IElementDefinition) => {
@@ -41,6 +41,11 @@ export const ElementDefinition = ({id, type, name, placeholder, value, descripti
         case 'MULTISELECT':
             return (
                 <MySelect multiselect={true}/>
+            )
+
+        case 'UPLOAD':
+            return (
+                <FileUpload />
             )
         default:
     }

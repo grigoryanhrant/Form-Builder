@@ -9,7 +9,8 @@ import {
     BiCheckbox,
     RiCheckboxMultipleBlankLine,
     AiOutlineCheckSquare,
-    MdDateRange
+    MdDateRange,
+    RiFileUploadLine
 } from "../Icons";
 
 export const myElementList: IMyElementList = {
@@ -102,6 +103,14 @@ export const myElementList: IMyElementList = {
             // descriptionForInput: "Date",
             icon: <MdDateRange />,
             id: 10,
+        },
+
+        {
+            type: "UPLOAD",
+            name: "File Upload",
+            description: "Describe the files to upload",
+            icon: <RiFileUploadLine />,
+            id: 11,
         },
     ],
 }

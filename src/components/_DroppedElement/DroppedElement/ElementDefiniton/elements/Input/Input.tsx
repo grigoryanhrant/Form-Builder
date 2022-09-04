@@ -16,8 +16,6 @@ export const Input = ({id, type, name, placeholder, value, descriptionForInput}:
         </label>
     )
 
-    console.log(type)
-
     return (
         <div className='DroppedElement__InputWrapper'>
             <input

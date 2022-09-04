@@ -1,3 +1,4 @@
+export {RiFileUploadLine} from "@react-icons/all-files/ri/RiFileUploadLine";
 export {MdDateRange} from "@react-icons/all-files/md/MdDateRange";
 export {AiOutlineCheckSquare} from "@react-icons/all-files/ai/AiOutlineCheckSquare";
 export {RiCheckboxMultipleBlankLine} from "@react-icons/all-files/ri/RiCheckboxMultipleBlankLine";

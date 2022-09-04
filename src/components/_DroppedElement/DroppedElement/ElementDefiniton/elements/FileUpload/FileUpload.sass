@@ -1,0 +1,58 @@
+.DroppedElementUpload
+  &__Files
+    display: flex
+    flex-direction: column
+    margin-top: 14px
+
+  &__File
+    font-size: 14px
+    color: #8f8f8f
+    margin-bottom: 8px
+
+    &:last-child
+      margin-bottom: unset
+
+.TargetBox
+  width: 100%
+  height: 250px
+  display: flex
+  justify-content: center
+  align-items: center
+  border: 1px dashed #aab2b7
+  border-radius: 4px
+  cursor: pointer
+
+  &__Center
+    width: 100%
+    height: 100%
+
+    & label
+      display: flex
+      flex-direction: column
+      align-items: center
+      width: 100%
+      height: 100%
+      padding: 14px
+
+      & input
+        display: none
+
+  &__Icon
+    & svg
+      fill: #CCD6DD
+      font-size: 60px
+
+  &__Details
+    display: flex
+    flex-direction: column
+    align-items: center
+    margin: auto auto
+
+  &__UploadFromInput
+    margin-top: 20px
+
+  &__Description
+    font-size: 15px
+    font-weight: 700
+    color: #CCD6DD
+    text-transform: uppercase
