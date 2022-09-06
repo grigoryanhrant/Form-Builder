@@ -50,5 +50,5 @@ export const ElementDefinition = ({id, type, name, placeholder, value, descripti
         default:
     }
 
-    return null
+    // return null
 };
