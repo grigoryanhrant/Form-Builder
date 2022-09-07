@@ -1,5 +1,5 @@
 export interface IElementDefinition {
-    id: string
+    id: string | undefined
     type?: string
     name?: string
     placeholder?: string

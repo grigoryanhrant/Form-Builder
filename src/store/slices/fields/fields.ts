@@ -1,16 +1,23 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, nanoid} from "@reduxjs/toolkit";
 import {IAddFieldPayload, IFieldInitialState, IRemoveFieldPayload, IUpdateFieldPayload} from "./types";
 import {RootState} from "../../store";
+import {dropId} from "./helpers";
 
 const initialState: IFieldInitialState = {
     fields: []
 }
+
 
 export const fieldsSlice = createSlice({
     name: 'fields',
     initialState,
     reducers: {
         addField: (draft, action: IAddFieldPayload) => {
+
+            action.payload.dropid = dropId();
+
+            action.payload.id = nanoid();
+
             draft.fields.push(action.payload)
         },
 

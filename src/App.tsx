@@ -2,6 +2,8 @@ import React from "react";
 import {Playground} from "./components/Playground/Playground";
 import {useDrop} from "react-dnd";
 import "./app.sass";
+import {nanoid} from "@reduxjs/toolkit";
+import _uniqueId from "lodash/uniqueId";
 
 export const App = () => {
 

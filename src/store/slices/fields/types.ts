@@ -1,6 +1,6 @@
 export interface IElement {
-    dropid: number
-    id: string
+    dropid?: number
+    id?: string
 
     type: string
     name: string

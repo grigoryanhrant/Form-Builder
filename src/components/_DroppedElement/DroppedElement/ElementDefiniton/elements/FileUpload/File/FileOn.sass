@@ -1,0 +1,23 @@
+@import '../../../../../../../mixins'
+
+.DroppedElementUpload__File
+  display: flex
+  align-items: center
+  margin-bottom: 10px
+
+  &:last-child
+    margin-bottom: unset
+
+  & span
+    font-size: 14px
+    color: #8f8f8f
+    margin-left: 8px
+
+.DroppedElementUpload__FileRemove
+
+  width: 15px
+  cursor: pointer
+  @include flex-center
+
+  svg
+    fill: #8f8f8f

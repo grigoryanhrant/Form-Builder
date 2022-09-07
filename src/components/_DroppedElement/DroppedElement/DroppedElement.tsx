@@ -24,6 +24,8 @@ export const DroppedElement = (
     const dispatch = useAppDispatch()
 
     const cardRemoveHandler = () => {
+        if(!id) return
+
         dispatch(removeField(id))
     }
 

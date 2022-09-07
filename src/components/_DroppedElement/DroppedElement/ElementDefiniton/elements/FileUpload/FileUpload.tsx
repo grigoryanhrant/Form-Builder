@@ -1,36 +1,55 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, useCallback, useState} from 'react';
 import {DropTargetMonitor, useDrop} from "react-dnd";
 import {NativeTypes} from "react-dnd-html5-backend";
 import {AiOutlineCloudUpload} from "../../../../../../common/Icons";
 import _uniqueId from "lodash/uniqueId";
 import "./FileUpload.sass";
+import {FileOn} from "./File/FileOn";
+import {IFile} from "./types/types";
 
 export const FileUpload = () => {
 
-    const handleChange = (evt: any) => {
+    const [uploadFiles, setUploadFiles] = useState<any>([])
+
+    const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
         evt.preventDefault();
+
+        if (!evt.target.files) return;
+
         addFileHandler(evt.target.files[0])
     }
 
-    const [uploadFiles, setUploadFiles] = useState<any>([])
-
-    const addFileHandler = (item: any) => {
-        setUploadFiles((prev: any) => [...prev, item]);
+    const addFileHandler = (item: IFile) => {
+        setUploadFiles((prev: IFile[]) => [...prev, item]);
     }
 
-    const [{ canDrop, isOver }, drop] = useDrop(
+    // const fileRemoveHandler = (name, lastModified, lastModifiedDate, size, type, webkitRelativePath): any => {
+    //     console.log(uploadFiles)
+    // }
+
+    // const fileRemoveHandler = useCallback((name: any, size: any, type: any) => {
+    //     console.log('hello')
+    //     },
+    //     [],
+    // );
+
+    const fileRemoveHandler = (name: string, size: number) => {
+        console.log(`hello world`)
+    }
+
+    const [{canDrop, isOver}, drop] = useDrop(
         () => ({
             accept: [NativeTypes.FILE],
 
-            drop(item: { files: any[] }) {
+            drop(item: { files: IFile[] }) {
                 addFileHandler(item.files[0])
             },
 
-            canDrop(item: any) {return true},
+            canDrop(item) {
+                return true
+            },
 
             collect: (monitor: DropTargetMonitor) => {
-                const item = monitor.getItem() as any
-
                 return {
                     isOver: monitor.isOver(),
                     canDrop: monitor.canDrop(),
@@ -40,15 +59,15 @@ export const FileUpload = () => {
         [],
     )
 
-    let filesRender = uploadFiles.map((item: any) => (
-        <div key={_uniqueId()} className='DroppedElementUpload__File'>
-            {item.name} size: {item.size} kb
-        </div>))
-
-    uploadFiles.map((item: any) => console.log(item))
+    let filesRender = uploadFiles.map((item: IFile) => {
+        return (
+            <FileOn key={_uniqueId()} name={item.name} size={item.size} fileRemoveHandler={fileRemoveHandler}/>
+        )
+    })
 
     return (
         <div className='DroppedElementUpload'>
+
             <div ref={drop} className='TargetBox'>
                 <div className='TargetBox__Center'>
 
@@ -56,7 +75,7 @@ export const FileUpload = () => {
 
                         <div className='TargetBox__Details'>
                             <div className='TargetBox__Icon'>
-                                <AiOutlineCloudUpload />
+                                <AiOutlineCloudUpload/>
                             </div>
 
                             <div className='TargetBox__Description'>
@@ -69,9 +88,9 @@ export const FileUpload = () => {
                         </div>
 
                         <input
-                            type={'file'}
-                            id={'happy'}
-                            name={'happy'}
+                            type='file'
+                            id='happy'
+                            name='happy'
                             onChange={handleChange}
                         />
 

@@ -12,11 +12,20 @@ import {
     MdDateRange,
     RiFileUploadLine
 } from "../Icons";
+import {
+    CHECKBOX,
+    DATEPICKER, EMAIL_INPUT,
+    LONG_TEXT,
+    MULTISELECT, PHONE_INPUT,
+    SELECT, SHORT_TEXT,
+    TEXT_INPUT,
+    UPLOAD
+} from "../../../globalTypes/elementTypes";
 
 export const myElementList: IMyElementList = {
     contactInfo: [
         {
-            type: "TEXT_INPUT",
+            type: TEXT_INPUT,
             name: "Address",
             description: "I'm a text field, type in any text you want",
             placeholder: "",
@@ -25,7 +34,7 @@ export const myElementList: IMyElementList = {
         },
 
         {
-            type: "EMAIL_INPUT",
+            type: EMAIL_INPUT,
             name: "Email",
             description: "Your Email",
             placeholder: "",
@@ -34,7 +43,7 @@ export const myElementList: IMyElementList = {
         },
 
         {
-            type: "TEXT_INPUT",
+            type: TEXT_INPUT,
             name: "Name",
             description: "Whats your name?",
             placeholder: "",
@@ -43,7 +52,7 @@ export const myElementList: IMyElementList = {
         },
 
         {
-            type: "PHONE_INPUT",
+            type: PHONE_INPUT,
             name: "Phone",
             description: "Your Phone Number",
             placeholder: "",
@@ -54,7 +63,7 @@ export const myElementList: IMyElementList = {
 
     special: [
         {
-            type: "SHORT_TEXT",
+            type: SHORT_TEXT,
             name: "Short text",
             description: "Ask for an extended question here. What do you want to ask?",
             placeholder: "My answer is...",
@@ -63,7 +72,7 @@ export const myElementList: IMyElementList = {
         },
 
         {
-            type: "LONG_TEXT",
+            type: LONG_TEXT,
             name: "Long text",
             description: "Ask for an extended question here. What do you want to ask?",
             placeholder: "Let me tell you about this",
@@ -72,7 +81,7 @@ export const myElementList: IMyElementList = {
         },
 
         {
-            type: "SELECT",
+            type: SELECT,
             name: "Select",
             description: "What's your least favorite chore",
             icon: <BiCheckbox />,
@@ -80,7 +89,7 @@ export const myElementList: IMyElementList = {
         },
 
         {
-            type: "MULTISELECT",
+            type: MULTISELECT,
             name: "Multi Select",
             description: "Select a set of ",
             icon: <RiCheckboxMultipleBlankLine />,
@@ -88,7 +97,7 @@ export const myElementList: IMyElementList = {
         },
 
         {
-            type: "CHECKBOX",
+            type: CHECKBOX,
             name: "Checkbox",
             description: "",
             descriptionForInput: "I have read and agreed to Terms and Conditions",
@@ -97,7 +106,7 @@ export const myElementList: IMyElementList = {
         },
 
         {
-            type: "DATEPICKER",
+            type: DATEPICKER,
             name: "Date",
             description: "Date",
             // descriptionForInput: "Date",
@@ -106,7 +115,7 @@ export const myElementList: IMyElementList = {
         },
 
         {
-            type: "UPLOAD",
+            type: UPLOAD,
             name: "File Upload",
             description: "Describe the files to upload",
             icon: <RiFileUploadLine />,

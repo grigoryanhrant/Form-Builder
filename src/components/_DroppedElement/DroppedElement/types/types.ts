@@ -6,7 +6,7 @@ export interface IDroppedElement {
     DroppedRef: RefObject<HTMLDivElement>,
     handlerId: Identifier | null,
 
-    id: string,
+    id: string | undefined
     type: string | undefined,
 
     name: string | undefined,

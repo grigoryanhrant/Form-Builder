@@ -2,7 +2,7 @@ export interface IDroppedElementContainer {
     index: number
     moveCard: (dragIndex: number, hoverIndex: number) => void
     elementAddress?: string
-    id: string
+    id: string | undefined
 
     type?: string
     name?: string
