@@ -1,6 +1,6 @@
 export interface IFile {
     lastModified: number
-    lastModifiedDate?: any
+    lastModifiedDate?: string
     name: string
     size: number
     type: string

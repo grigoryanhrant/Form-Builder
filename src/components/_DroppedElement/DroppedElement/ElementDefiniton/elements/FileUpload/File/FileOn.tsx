@@ -1,18 +1,20 @@
 import {IFileDiv} from "./types/types";
 import {BsTrash} from "../../../../../../../common/Icons"
-import {memo} from "react";
+import {IFile} from "../types/types";
 import "./FileOn.sass";
 
-export const FileOn = memo ( ({ name, size, fileRemoveHandler }: IFileDiv) => {
+export const FileOn = ({ name, size, uploadFiles, setUploadFiles }: IFileDiv) => {
 
-    console.log(`hello world`)
+    const fileRemoveHandler = () => {
+        setUploadFiles(uploadFiles.filter((item: IFile) => item.name !== name))
+    }
 
     return (
         <div className='DroppedElementUpload__File'>
-            <div className='DroppedElementUpload__FileRemove' onClick={() => fileRemoveHandler(name, size)}>
+            <div className='DroppedElementUpload__FileRemove' onClick={fileRemoveHandler}>
                 <BsTrash/>
             </div>
             <span>{name} size: {size}</span>
         </div>
     );
-})
+}

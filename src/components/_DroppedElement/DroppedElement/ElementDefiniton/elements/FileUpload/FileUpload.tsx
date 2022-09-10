@@ -3,50 +3,33 @@ import {DropTargetMonitor, useDrop} from "react-dnd";
 import {NativeTypes} from "react-dnd-html5-backend";
 import {AiOutlineCloudUpload} from "../../../../../../common/Icons";
 import _uniqueId from "lodash/uniqueId";
-import "./FileUpload.sass";
 import {FileOn} from "./File/FileOn";
 import {IFile} from "./types/types";
+import "./FileUpload.sass";
 
 export const FileUpload = () => {
 
-    const [uploadFiles, setUploadFiles] = useState<any>([])
+    const [uploadFiles, setUploadFiles] = useState<IFile[]>([])
 
     const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+
         evt.preventDefault();
 
         if (!evt.target.files) return;
 
-        addFileHandler(evt.target.files[0])
+        addFileHandler(evt.target.files)
     }
 
-    const addFileHandler = (item: IFile) => {
-        setUploadFiles((prev: IFile[]) => [...prev, item]);
-    }
-
-    // const fileRemoveHandler = (name, lastModified, lastModifiedDate, size, type, webkitRelativePath): any => {
-    //     console.log(uploadFiles)
-    // }
-
-    // const fileRemoveHandler = useCallback((name: any, size: any, type: any) => {
-    //     console.log('hello')
-    //     },
-    //     [],
-    // );
-
-    const fileRemoveHandler = (name: string, size: number) => {
-        console.log(`hello world`)
+    const addFileHandler = (item: FileList) => {
+        setUploadFiles((prev: IFile[]) => [...prev, ...item]);
     }
 
     const [{canDrop, isOver}, drop] = useDrop(
         () => ({
             accept: [NativeTypes.FILE],
 
-            drop(item: { files: IFile[] }) {
-                addFileHandler(item.files[0])
-            },
-
-            canDrop(item) {
-                return true
+            drop(item: { files: FileList }) {
+                addFileHandler(item.files)
             },
 
             collect: (monitor: DropTargetMonitor) => {
@@ -61,7 +44,13 @@ export const FileUpload = () => {
 
     let filesRender = uploadFiles.map((item: IFile) => {
         return (
-            <FileOn key={_uniqueId()} name={item.name} size={item.size} fileRemoveHandler={fileRemoveHandler}/>
+            <FileOn
+                key={_uniqueId()}
+                name={item.name}
+                size={item.size}
+                uploadFiles={uploadFiles}
+                setUploadFiles={setUploadFiles}
+            />
         )
     })
 
@@ -91,6 +80,7 @@ export const FileUpload = () => {
                             type='file'
                             id='happy'
                             name='happy'
+                            multiple
                             onChange={handleChange}
                         />
 

@@ -1,5 +1,9 @@
+import {IFile} from "../../types/types";
+import {Dispatch, SetStateAction} from "react";
+
 export interface IFileDiv {
     name: string
     size: number
-    fileRemoveHandler: any
+    uploadFiles: IFile[]
+    setUploadFiles: Dispatch<SetStateAction<IFile[]>>
 }
