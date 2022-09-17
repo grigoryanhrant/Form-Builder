@@ -9,7 +9,7 @@ import {
     PHONE_INPUT, SELECT,
     SHORT_TEXT,
     TEXT_INPUT, UPLOAD
-} from "../../../../globalTypes/elementTypes";
+} from "../../../../global/constants";
 
 export const ElementDefinition = ({id, type, name, placeholder, value, descriptionForInput}: IElementDefinition) => {
 

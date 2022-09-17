@@ -20,7 +20,7 @@ import {
     SELECT, SHORT_TEXT,
     TEXT_INPUT,
     UPLOAD
-} from "../../../globalTypes/elementTypes";
+} from "../../../global/constants";
 
 export const myElementList: IMyElementList = {
     contactInfo: [

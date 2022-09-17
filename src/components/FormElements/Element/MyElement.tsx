@@ -1,7 +1,7 @@
 import {DragSourceMonitor, useDrag} from "react-dnd";
 import {IFormElement} from "./types/types";
 import "./MyElement.sass";
-import {ELEMENT_ADDRESS} from "../../../globalTypes/elementAddress";
+import {ELEMENT_ADDRESS} from "../../../global/enums";
 
 export const MyElement = (
     {

@@ -8,7 +8,7 @@ import {DroppedElementContainer} from "../../_DroppedElement/DroppedElementConta
 import _ from "lodash";
 import {IPlaygroundArenaDropItem} from "./types/types";
 import "./PlaygroundArena.sass";
-import {ELEMENT_ADDRESS} from "../../../globalTypes/elementAddress";
+import {ELEMENT_ADDRESS} from "../../../global/enums";
 
 
 export const PlaygroundArena = () => {
