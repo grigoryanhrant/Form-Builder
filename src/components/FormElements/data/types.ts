@@ -6,6 +6,7 @@ export interface IElementsGroup {
     description: string
     descriptionForInput?: string
     placeholder?: string
+    required?: boolean
     icon: ReactElement
     id: number
 }

@@ -7,6 +7,7 @@ export interface IElement {
     description: string
     descriptionForInput?: string
     placeholder: string
+    required?: boolean
 }
 
 export interface IFieldInitialState {
@@ -23,4 +24,11 @@ export interface IUpdateFieldPayload {
 
 export interface IRemoveFieldPayload {
     payload: string
+}
+
+export interface IChangePlaceholderPayload {
+    payload: {
+        id: string
+        inputPlaceholder: string
+    }
 }

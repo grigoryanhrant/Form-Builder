@@ -18,10 +18,11 @@ export interface IElementDefinition {
     placeholder?: string
     descriptionForInput?: string
     value?: string
+    required?: boolean
 }
 
 
-export const ElementDefinition = ({id, type, name, placeholder, value, descriptionForInput}: IElementDefinition) => {
+export const ElementDefinition = ({id, type, name, placeholder, value, descriptionForInput, required}: IElementDefinition) => {
 
     switch(type) {
         case TEXT_INPUT:
@@ -38,6 +39,7 @@ export const ElementDefinition = ({id, type, name, placeholder, value, descripti
                     placeholder={placeholder}
                     descriptionForInput={descriptionForInput}
                     value={value}
+                    required={required}
                     type={setInputType(type)}/>
             )
 

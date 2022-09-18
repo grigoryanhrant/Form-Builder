@@ -1,4 +1,7 @@
-.FormElements
+.ElementEditing
+  position: absolute
+  top: 0
+  right: 0
   min-width: 250px
   height: max-content
   display: flex
@@ -6,12 +9,6 @@
   padding: 16px
   background-color: #eff8ff
   border-radius: 2px
-
-  &__Wrapper
-    margin-bottom: 24px
-
-    &:last-child
-      margin-bottom: unset
 
   &__Name
     font-weight: 600
@@ -23,3 +20,17 @@
     display: flex
     flex-direction: column
     margin-top: 16px
+
+  &__Label
+    display: block
+    margin-bottom: 8px
+    font-style: italic
+    font-size: 14px
+    color: #212529
+
+  &__Input
+    display: block
+    width: 100%
+    padding: 8px
+    outline: none
+    border: 1px solid rgba(145, 145, 145, 0.4)

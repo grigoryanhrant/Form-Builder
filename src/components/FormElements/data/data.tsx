@@ -28,8 +28,9 @@ export const myElementList: IMyElementList = {
             type: TEXT_INPUT,
             name: "Address",
             description: "I'm a text field, type in any text you want",
-            placeholder: "",
+            placeholder: "hi",
             icon: <MdLocationCity />,
+            required: false,
             id: 1,
         },
 
@@ -39,6 +40,7 @@ export const myElementList: IMyElementList = {
             description: "Your Email",
             placeholder: "",
             icon: <SiGmail/>,
+            required: false,
             id: 2,
         },
 
@@ -48,6 +50,7 @@ export const myElementList: IMyElementList = {
             description: "Whats your name?",
             placeholder: "",
             icon: <HiUser/>,
+            required: false,
             id: 3,
         },
 
@@ -57,6 +60,7 @@ export const myElementList: IMyElementList = {
             description: "Your Phone Number",
             placeholder: "",
             icon: <BsPhone />,
+            required: false,
             id: 4,
         },
     ],
@@ -68,6 +72,7 @@ export const myElementList: IMyElementList = {
             description: "Ask for an extended question here. What do you want to ask?",
             placeholder: "My answer is...",
             icon: <BiText />,
+            required: false,
             id: 5,
         },
 
@@ -77,6 +82,7 @@ export const myElementList: IMyElementList = {
             description: "Ask for an extended question here. What do you want to ask?",
             placeholder: "Let me tell you about this",
             icon: <GrTextAlignLeft />,
+            required: false,
             id: 6,
         },
 
@@ -102,6 +108,7 @@ export const myElementList: IMyElementList = {
             description: "",
             descriptionForInput: "I have read and agreed to Terms and Conditions",
             icon: <AiOutlineCheckSquare />,
+            required: false,
             id: 9,
         },
 

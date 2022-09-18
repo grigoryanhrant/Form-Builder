@@ -1,12 +1,12 @@
 import React, {useCallback, useEffect, useRef, useState} from "react";
-import { useAppSelector, useAppDispatch } from "../../../store/hooks";
-import {addField, updateFields} from "../../../store/slices/fields/fields";
-import {IElement} from "../../../store/slices/fields/types";
+import { useAppSelector, useAppDispatch } from "../../store/hooks";
+import {addField, updateFields} from "../../store/slices/fields/fields";
+import {IElement} from "../../store/slices/fields/types";
 import update from 'immutability-helper';
 import {DropTargetMonitor, useDrop} from "react-dnd";
-import {DroppedElementContainer} from "../../_DroppedElement/DroppedElementContainer";
+import {DroppedElementContainer} from "../_DroppedElement/DroppedElementContainer";
 import _ from "lodash";
-import {ELEMENT_ADDRESS_DROPPED, ELEMENT_ADDRESS_FORM} from "../../../global/constants";
+import {ELEMENT_ADDRESS_DROPPED, ELEMENT_ADDRESS_FORM} from "../../global/constants";
 import "./PlaygroundArena.sass";
 
 interface IPlaygroundArenaDropItem {
@@ -16,6 +16,7 @@ interface IPlaygroundArenaDropItem {
     description: string,
     descriptionForInput?: string,
     placeholder: string
+    required?: boolean
 }
 
 export const PlaygroundArena = () => {
@@ -58,6 +59,7 @@ export const PlaygroundArena = () => {
                 description: item.description,
                 descriptionForInput: item.descriptionForInput,
                 placeholder: item.placeholder,
+                required: item.required
             }))
         },
 

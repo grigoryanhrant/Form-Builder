@@ -1,5 +1,5 @@
 import React from "react";
-import {Playground} from "./components/Playground/Playground";
+import {Playground} from "./pages/Playground/Playground";
 import {useDrop} from "react-dnd";
 import "./app.sass";
 

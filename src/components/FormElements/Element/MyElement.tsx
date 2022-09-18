@@ -12,6 +12,7 @@ interface IFormElement {
     description: string
     descriptionForInput?: string
     placeholder?: string
+    required?: boolean
 }
 
 
@@ -25,6 +26,7 @@ export const MyElement = (
         description,
         descriptionForInput,
         placeholder,
+        required
 
     }: Readonly<IFormElement>) => {
 
@@ -37,7 +39,8 @@ export const MyElement = (
             name,
             description,
             descriptionForInput,
-            placeholder
+            placeholder,
+            required
         },
 
         collect: (monitor: DragSourceMonitor) => ({

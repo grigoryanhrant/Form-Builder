@@ -1,6 +1,6 @@
-import {FormElements} from "../FormElements/FormElements";
-import {PlaygroundArena} from "./PlaygroundArena/PlaygroundArena";
-import {FormDesigner} from "./FormDesigner/FormDesigner";
+import {FormElements} from "../../components/FormElements/FormElements";
+import {PlaygroundArena} from "../../components/PlaygroundArena/PlaygroundArena";
+import {FormDesigner} from "../../components/FormDesigner/FormDesigner";
 import "./Playground.sass";
 
 export const Playground = () => {

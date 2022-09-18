@@ -2,22 +2,24 @@ import {useAppDispatch} from "../../../store/hooks";
 import {removeField} from "../../../store/slices/fields/fields";
 import {ElementDefinition} from "./ElementDefiniton/ElementDefintion";
 import {BsArrowsMove, BsTrash, GrDocumentConfig} from "../../../common/Icons";
-import './DroppedElement.sass';
 import {RefObject} from "react";
 import {Identifier} from "dnd-core";
+import {ElementEditingContainer} from "./ElementEditing/ElementEditingContainer";
+import './DroppedElement.sass';
 
 interface IDroppedElement {
     isDragging: boolean,
     DroppedRef: RefObject<HTMLDivElement>,
     handlerId: Identifier | null,
 
-    id: string | undefined
+    id: string
     type: string | undefined,
 
     name: string | undefined,
     description: string | undefined,
     descriptionForInput: string | undefined,
     placeholder: string | undefined,
+    required: boolean | undefined,
     value: string | undefined,
 }
 
@@ -35,6 +37,7 @@ export const DroppedElement = (
         description,
         descriptionForInput,
         placeholder,
+        required,
         value,
     }: IDroppedElement) => {
 
@@ -50,6 +53,13 @@ export const DroppedElement = (
         <div
             className='DroppedElement'
             style={{opacity: isDragging ? 1 : 1,}}>
+
+            <ElementEditingContainer
+                id={id}
+                name={name}
+                placeholder={placeholder}
+                type={type}
+            />
 
             <div
                 className={isDragging ? 'DroppedElement__isDragging' : 'DroppedElement__isNotDragging'}
@@ -76,7 +86,15 @@ export const DroppedElement = (
                     <span className='DroppedElement__Description'>{description}</span>
 
                     <div className='DroppedElement__Definition'>
-                        <ElementDefinition id={id} type={type} name={name} placeholder={placeholder} value={value} descriptionForInput={descriptionForInput}/>
+                        <ElementDefinition
+                            id={id}
+                            type={type}
+                            name={name}
+                            placeholder={placeholder}
+                            value={value}
+                            descriptionForInput={descriptionForInput}
+                            required={required}
+                        />
                     </div>
                 </div>
 

@@ -9,7 +9,8 @@ export const contactInfoElementsRender = myElementList.contactInfo.map(item => {
                    name={item.name}
                    description={item.description}
                    descriptionForInput={item.descriptionForInput}
-                   placeholder={item.placeholder}/>
+                   placeholder={item.placeholder}
+                   required={item.required}/>
     )
 })
 
@@ -22,5 +23,6 @@ export const specialElementsRender = myElementList.special.map(item => {
             name={item.name}
             description={item.description}
             descriptionForInput={item.descriptionForInput}
-            placeholder={item.placeholder}/>)
+            placeholder={item.placeholder}
+            required={item.required}/>)
 })
