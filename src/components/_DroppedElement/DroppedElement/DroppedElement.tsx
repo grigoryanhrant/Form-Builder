@@ -2,8 +2,25 @@ import {useAppDispatch} from "../../../store/hooks";
 import {removeField} from "../../../store/slices/fields/fields";
 import {ElementDefinition} from "./ElementDefiniton/ElementDefintion";
 import {BsArrowsMove, BsTrash, GrDocumentConfig} from "../../../common/Icons";
-import {IDroppedElement} from "./types";
 import './DroppedElement.sass';
+import {RefObject} from "react";
+import {Identifier} from "dnd-core";
+
+interface IDroppedElement {
+    isDragging: boolean,
+    DroppedRef: RefObject<HTMLDivElement>,
+    handlerId: Identifier | null,
+
+    id: string | undefined
+    type: string | undefined,
+
+    name: string | undefined,
+    description: string | undefined,
+    descriptionForInput: string | undefined,
+    placeholder: string | undefined,
+    value: string | undefined,
+}
+
 
 export const DroppedElement = (
     {

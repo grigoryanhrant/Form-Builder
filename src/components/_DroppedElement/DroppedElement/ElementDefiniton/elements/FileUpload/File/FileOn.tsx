@@ -3,7 +3,7 @@ import {Dispatch, SetStateAction} from "react";
 import {IFile} from "../FileUpload";
 import "./FileOn.sass";
 
-export interface IFileDiv {
+interface IFileDiv {
     name: string
     size: number
     uploadFiles: IFile[]

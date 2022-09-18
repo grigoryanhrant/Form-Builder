@@ -9,7 +9,7 @@ import _ from "lodash";
 import {ELEMENT_ADDRESS_DROPPED, ELEMENT_ADDRESS_FORM} from "../../../global/constants";
 import "./PlaygroundArena.sass";
 
-export interface IPlaygroundArenaDropItem {
+interface IPlaygroundArenaDropItem {
     elementAddress: string,
     type: string,
     name: string,

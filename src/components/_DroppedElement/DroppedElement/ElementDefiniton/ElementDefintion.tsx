@@ -1,7 +1,7 @@
 import React from 'react';
 import {setInputType} from "./helpers";
 import {FileUpload, Input, MySelect, Textarea} from "./elements";
-import {IElementDefinition} from "./types";
+
 import {
     CHECKBOX,
     DATEPICKER,
@@ -10,6 +10,16 @@ import {
     SHORT_TEXT,
     TEXT_INPUT, UPLOAD
 } from "../../../../global/constants";
+
+export interface IElementDefinition {
+    id: string | undefined
+    type?: string
+    name?: string
+    placeholder?: string
+    descriptionForInput?: string
+    value?: string
+}
+
 
 export const ElementDefinition = ({id, type, name, placeholder, value, descriptionForInput}: IElementDefinition) => {
 

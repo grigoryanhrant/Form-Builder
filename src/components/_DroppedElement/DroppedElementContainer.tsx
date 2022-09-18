@@ -3,7 +3,27 @@ import type { Identifier } from "dnd-core";
 import {DragSourceMonitor, DropTargetMonitor, useDrag, useDrop} from "react-dnd";
 import {DragDropCounting} from "./helpers/DragDropCounting";
 import {DroppedElement} from "./DroppedElement/DroppedElement";
-import {IDroppedElementContainer, TDragObject} from "./types";
+
+interface IDroppedElementContainer {
+    index: number
+    moveCard: (dragIndex: number, hoverIndex: number) => void
+    elementAddress?: string
+    id: string | undefined
+
+    type?: string
+    name?: string
+    description?: string
+    descriptionForInput?: string
+    placeholder?: string
+
+    value?: string
+}
+
+export type TDragObject = {
+    id: string | undefined
+    index: number
+    elementAddress?: string
+}
 
 export const DroppedElementContainer: FC<IDroppedElementContainer> = memo( (
     {

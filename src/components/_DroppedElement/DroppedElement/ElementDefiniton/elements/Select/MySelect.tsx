@@ -10,7 +10,7 @@ export interface ISelectOption {
     readonly isDisabled?: boolean;
 }
 
-export interface IMySelect {
+interface IMySelect {
     multiselect?: boolean
 }
 

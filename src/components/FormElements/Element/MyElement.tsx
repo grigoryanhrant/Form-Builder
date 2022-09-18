@@ -3,7 +3,7 @@ import "./MyElement.sass";
 import {ELEMENT_ADDRESS_FORM} from "../../../global/constants";
 import {ReactElement} from "react";
 
-export interface IFormElement {
+interface IFormElement {
     elementAddress?: typeof ELEMENT_ADDRESS_FORM,
     icon: ReactElement
 
