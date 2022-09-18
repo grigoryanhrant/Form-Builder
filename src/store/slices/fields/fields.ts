@@ -1,7 +1,7 @@
 import {createSlice, nanoid} from "@reduxjs/toolkit";
 import {
     IAddFieldPayload,
-    IChangePlaceholderPayload,
+    IChangePlaceholderPayload, IEditModePayload,
     IFieldInitialState,
     IRemoveFieldPayload,
     IUpdateFieldPayload
@@ -23,6 +23,8 @@ export const fieldsSlice = createSlice({
 
             action.payload.id = nanoid();
 
+            action.payload.editMode = false;
+
             draft.fields.push(action.payload)
         },
 
@@ -34,21 +36,21 @@ export const fieldsSlice = createSlice({
             draft.fields = draft.fields.filter(item => item.id !== action.payload)
         },
 
-
         placeholderChange: (draft, action: IChangePlaceholderPayload) => {
-
-            console.log(action.payload)
-
             draft.fields.map(item => {
                 if(item.id === action.payload.id) {
                     item.placeholder = action.payload.inputPlaceholder
                 }
             })
         },
+
+        editMode: (draft, action: IEditModePayload) => {
+            draft.fields.map(item => item.editMode = item.id === action.payload)
+        }
     },
 })
 
-export const { addField, updateFields, removeField, placeholderChange } = fieldsSlice.actions
+export const { addField, updateFields, removeField, placeholderChange, editMode } = fieldsSlice.actions
 
 export const selectFields = (state: RootState) => state.fieldsSlices
 

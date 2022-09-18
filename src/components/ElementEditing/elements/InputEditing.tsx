@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {useAppDispatch} from "../../../../../store/hooks";
-import {placeholderChange} from "../../../../../store/slices/fields/fields";
+import {useAppDispatch} from "../../../store/hooks";
+import {placeholderChange} from "../../../store/slices/fields/fields";
 
 export interface IEditingInput {
     id: string

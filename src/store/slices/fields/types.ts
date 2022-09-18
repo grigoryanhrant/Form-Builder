@@ -7,6 +7,7 @@ export interface IElement {
     description: string
     descriptionForInput?: string
     placeholder: string
+    editMode?: boolean
     required?: boolean
 }
 
@@ -31,4 +32,8 @@ export interface IChangePlaceholderPayload {
         id: string
         inputPlaceholder: string
     }
+}
+
+export interface IEditModePayload {
+    payload: string
 }

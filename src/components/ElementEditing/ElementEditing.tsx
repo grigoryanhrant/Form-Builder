@@ -9,7 +9,7 @@ import {
     PHONE_INPUT, SELECT,
     SHORT_TEXT,
     TEXT_INPUT, UPLOAD
-} from "../../../../global/constants";
+} from "../../global/constants";
 import {InputEditing} from "./elements/InputEditing";
 import {TextareaEditing} from "./elements/TextareaEditing";
 import {SelectEditing} from "./elements/SelectEditing";
@@ -61,7 +61,6 @@ export const ElementEditing = ({ id, name, placeholder, type }: IElementEditing)
                 <FileUploadEditing />
             )
     }
-
 
     return null
 };

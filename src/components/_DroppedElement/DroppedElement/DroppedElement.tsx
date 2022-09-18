@@ -1,19 +1,17 @@
 import {useAppDispatch} from "../../../store/hooks";
-import {removeField} from "../../../store/slices/fields/fields";
+import {editMode, removeField} from "../../../store/slices/fields/fields";
 import {ElementDefinition} from "./ElementDefiniton/ElementDefintion";
 import {BsArrowsMove, BsTrash, GrDocumentConfig} from "../../../common/Icons";
-import {RefObject, useRef, useState} from "react";
+import {RefObject, useState} from "react";
 import {Identifier} from "dnd-core";
-import {ElementEditingContainer} from "./ElementEditing/ElementEditingContainer";
 import './DroppedElement.sass';
-import {useOutsideClick} from "../../../hooks/useOutsideClick";
 
 interface IDroppedElement {
     isDragging: boolean,
     DroppedRef: RefObject<HTMLDivElement>,
     handlerId: Identifier | null,
 
-    id: string
+    id: string | undefined
     type: string | undefined,
 
     name: string | undefined,
@@ -51,27 +49,15 @@ export const DroppedElement = (
 
     const [editingIsOpen, setEditingIsOpen] = useState<boolean>(false)
 
-    const editingOpenHandler = () => setEditingIsOpen(!editingIsOpen)
-
-    const closeEditPanel = () => setEditingIsOpen(false)
-
-    const editRef = useRef(null)
-
-    useOutsideClick(DroppedRef, closeEditPanel, editRef)
+    const setEditing = () => {
+        dispatch(editMode(id))
+    }
 
     return (
         <div
             className='DroppedElement'
+            onClick={setEditing}
             style={{opacity: isDragging ? 1 : 1,}}>
-
-            <div ref={editRef}>
-            {editingIsOpen && <ElementEditingContainer
-                id={id}
-                name={name}
-                placeholder={placeholder}
-                type={type}
-            />}
-            </div>
 
             <div
                 className={isDragging ? 'DroppedElement__isDragging' : 'DroppedElement__isNotDragging'}
@@ -84,7 +70,7 @@ export const DroppedElement = (
                         <BsTrash />
                     </div>
 
-                    <div className='DroppedElementTools__Icon DroppedElementTools__ConfigIcon' onClick={editingOpenHandler}>
+                    <div className='DroppedElementTools__Icon DroppedElementTools__ConfigIcon'>
                         <GrDocumentConfig />
                     </div>
                 </div>

@@ -3,6 +3,7 @@ import type { Identifier } from "dnd-core";
 import {DragSourceMonitor, DropTargetMonitor, useDrag, useDrop} from "react-dnd";
 import {DragDropCounting} from "./helpers/DragDropCounting";
 import {DroppedElement} from "./DroppedElement/DroppedElement";
+import {ElementEditingContainer} from "../ElementEditing/ElementEditingContainer";
 
 interface IDroppedElementContainer {
     index: number
@@ -15,6 +16,7 @@ interface IDroppedElementContainer {
     description?: string
     descriptionForInput?: string
     placeholder?: string
+    required?: boolean
 
     value?: string
 }
@@ -32,6 +34,7 @@ export const DroppedElementContainer: FC<IDroppedElementContainer> = memo( (
         description,
         descriptionForInput,
         placeholder,
+        required,
 
         value,
 
@@ -83,6 +86,7 @@ export const DroppedElementContainer: FC<IDroppedElementContainer> = memo( (
             description={description}
             descriptionForInput={descriptionForInput}
             placeholder={placeholder}
+            required={required}
             value={value}
         />
     )
