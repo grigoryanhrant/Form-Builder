@@ -11,6 +11,10 @@ import {
     TEXT_INPUT, UPLOAD
 } from "../../../../global/constants";
 import {InputEditing} from "./elements/InputEditing";
+import {TextareaEditing} from "./elements/TextareaEditing";
+import {SelectEditing} from "./elements/SelectEditing";
+import {MultiselectEditing} from "./elements/MultiselectEditing";
+import {FileUploadEditing} from "./elements/FileUploadEditing";
 
 export interface IElementEditing {
     id: string
@@ -36,33 +40,25 @@ export const ElementEditing = ({ id, name, placeholder, type }: IElementEditing)
         case LONG_TEXT:
 
             return (
-                <div className='ElementEditing'>
-                    LONG_TEXT editing
-                </div>
+                <TextareaEditing />
             )
 
         case SELECT:
 
             return (
-                <div className='ElementEditing'>
-                    SELECT editing
-                </div>
+                <SelectEditing />
             )
 
         case MULTISELECT:
 
             return (
-                <div className='ElementEditing'>
-                    MULTISELECT editing
-                </div>
+                <MultiselectEditing />
             )
 
         case UPLOAD:
 
             return (
-                <div className='ElementEditing'>
-                    UPLOAD editing
-                </div>
+                <FileUploadEditing />
             )
     }
 

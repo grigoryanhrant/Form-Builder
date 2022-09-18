@@ -1,9 +1,9 @@
 import React from 'react';
 
-export const FileUploadEditing = () => {
+export const MultiselectEditing = () => {
     return (
         <div>
-            FileUploadEditing
+            MultiselectEditing
         </div>
     );
 };

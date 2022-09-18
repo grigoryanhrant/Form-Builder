@@ -2,10 +2,11 @@ import {useAppDispatch} from "../../../store/hooks";
 import {removeField} from "../../../store/slices/fields/fields";
 import {ElementDefinition} from "./ElementDefiniton/ElementDefintion";
 import {BsArrowsMove, BsTrash, GrDocumentConfig} from "../../../common/Icons";
-import {RefObject} from "react";
+import {RefObject, useRef, useState} from "react";
 import {Identifier} from "dnd-core";
 import {ElementEditingContainer} from "./ElementEditing/ElementEditingContainer";
 import './DroppedElement.sass';
+import {useOutsideClick} from "../../../hooks/useOutsideClick";
 
 interface IDroppedElement {
     isDragging: boolean,
@@ -22,7 +23,6 @@ interface IDroppedElement {
     required: boolean | undefined,
     value: string | undefined,
 }
-
 
 export const DroppedElement = (
     {
@@ -49,17 +49,29 @@ export const DroppedElement = (
         dispatch(removeField(id))
     }
 
+    const [editingIsOpen, setEditingIsOpen] = useState<boolean>(false)
+
+    const editingOpenHandler = () => setEditingIsOpen(!editingIsOpen)
+
+    const closeEditPanel = () => setEditingIsOpen(false)
+
+    const editRef = useRef(null)
+
+    useOutsideClick(DroppedRef, closeEditPanel, editRef)
+
     return (
         <div
             className='DroppedElement'
             style={{opacity: isDragging ? 1 : 1,}}>
 
-            <ElementEditingContainer
+            <div ref={editRef}>
+            {editingIsOpen && <ElementEditingContainer
                 id={id}
                 name={name}
                 placeholder={placeholder}
                 type={type}
-            />
+            />}
+            </div>
 
             <div
                 className={isDragging ? 'DroppedElement__isDragging' : 'DroppedElement__isNotDragging'}
@@ -67,13 +79,12 @@ export const DroppedElement = (
                 data-handler-id={handlerId}>
 
                 <div className='DroppedElementTools'>
-                    <div
-                        className='DroppedElementTools__Icon DroppedElementTools__RemoveIcon'
+                    <div className='DroppedElementTools__Icon DroppedElementTools__RemoveIcon'
                         onClick={cardRemoveHandler}>
                         <BsTrash />
                     </div>
 
-                    <div className='DroppedElementTools__Icon DroppedElementTools__ConfigIcon'>
+                    <div className='DroppedElementTools__Icon DroppedElementTools__ConfigIcon' onClick={editingOpenHandler}>
                         <GrDocumentConfig />
                     </div>
                 </div>
