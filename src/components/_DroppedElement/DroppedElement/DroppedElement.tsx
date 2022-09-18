@@ -2,7 +2,7 @@ import {useAppDispatch} from "../../../store/hooks";
 import {removeField} from "../../../store/slices/fields/fields";
 import {ElementDefinition} from "./ElementDefiniton/ElementDefintion";
 import {BsArrowsMove, BsTrash, GrDocumentConfig} from "../../../common/Icons";
-import {IDroppedElement} from "./types/types";
+import {IDroppedElement} from "./types";
 import './DroppedElement.sass';
 
 export const DroppedElement = (

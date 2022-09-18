@@ -1,7 +1,19 @@
 import Select from "react-select";
-import {selectOptions} from "./data/data";
+import {selectOptions} from "./data";
 import {customStyles} from "./customStyles/customStyles";
-import {IMySelect} from "./types/types";
+
+export interface ISelectOption {
+    readonly value: string;
+    readonly label: string;
+    readonly color: string;
+    readonly isFixed?: boolean;
+    readonly isDisabled?: boolean;
+}
+
+export interface IMySelect {
+    multiselect?: boolean
+}
+
 
 export const MySelect = ({ multiselect }: IMySelect) => {
     return (

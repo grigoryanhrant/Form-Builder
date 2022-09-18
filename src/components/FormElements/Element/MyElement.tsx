@@ -1,11 +1,23 @@
 import {DragSourceMonitor, useDrag} from "react-dnd";
-import {IFormElement} from "./types/types";
 import "./MyElement.sass";
-import {ELEMENT_ADDRESS} from "../../../global/enums";
+import {ELEMENT_ADDRESS_FORM} from "../../../global/constants";
+import {ReactElement} from "react";
+
+export interface IFormElement {
+    elementAddress?: typeof ELEMENT_ADDRESS_FORM,
+    icon: ReactElement
+
+    type: string
+    name: string
+    description: string
+    descriptionForInput?: string
+    placeholder?: string
+}
+
 
 export const MyElement = (
     {
-        elementAddress = ELEMENT_ADDRESS.FORM,
+        elementAddress = ELEMENT_ADDRESS_FORM,
         icon,
 
         type,

@@ -3,7 +3,7 @@ import type { Identifier } from "dnd-core";
 import {DragSourceMonitor, DropTargetMonitor, useDrag, useDrop} from "react-dnd";
 import {DragDropCounting} from "./helpers/DragDropCounting";
 import {DroppedElement} from "./DroppedElement/DroppedElement";
-import {IDroppedElementContainer, TDragObject} from "./types/types";
+import {IDroppedElementContainer, TDragObject} from "./types";
 
 export const DroppedElementContainer: FC<IDroppedElementContainer> = memo( (
     {

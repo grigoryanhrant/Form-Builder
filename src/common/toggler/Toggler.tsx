@@ -1,5 +1,12 @@
-import {IToggler} from "./types/types";
 import "./Toggler.sass";
+
+interface IToggler {
+    checked: boolean,
+    disabled: boolean,
+    onChange: any,
+    inactive: string,
+    active: string,
+}
 
 export const Toggler = (
     {

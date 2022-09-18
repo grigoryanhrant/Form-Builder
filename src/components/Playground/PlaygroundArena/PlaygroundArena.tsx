@@ -6,10 +6,17 @@ import update from 'immutability-helper';
 import {DropTargetMonitor, useDrop} from "react-dnd";
 import {DroppedElementContainer} from "../../_DroppedElement/DroppedElementContainer";
 import _ from "lodash";
-import {IPlaygroundArenaDropItem} from "./types/types";
+import {ELEMENT_ADDRESS_DROPPED, ELEMENT_ADDRESS_FORM} from "../../../global/constants";
 import "./PlaygroundArena.sass";
-import {ELEMENT_ADDRESS} from "../../../global/enums";
 
+export interface IPlaygroundArenaDropItem {
+    elementAddress: string,
+    type: string,
+    name: string,
+    description: string,
+    descriptionForInput?: string,
+    placeholder: string
+}
 
 export const PlaygroundArena = () => {
 
@@ -43,7 +50,7 @@ export const PlaygroundArena = () => {
         accept: 'element',
         drop: (item: IPlaygroundArenaDropItem) => {
 
-            if (item.elementAddress !== ELEMENT_ADDRESS.FORM) return
+            if (item.elementAddress !== ELEMENT_ADDRESS_FORM) return
 
             dispatch(addField({
                 type: item.type,
@@ -79,7 +86,7 @@ export const PlaygroundArena = () => {
                     id={item.id}
                     index={index}
                     moveCard={moveCard}
-                    elementAddress={ELEMENT_ADDRESS.DROPPED}
+                    elementAddress={ELEMENT_ADDRESS_DROPPED}
 
                     type={item.type}
                     name={item.name}

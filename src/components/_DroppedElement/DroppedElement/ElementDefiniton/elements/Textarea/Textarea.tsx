@@ -1,4 +1,4 @@
-import {IElementDefinition} from "../../types/types";
+import {IElementDefinition} from "../../types";
 
 export const Textarea = ({id, type, name, placeholder, value}: IElementDefinition) => {
     return (

@@ -1,7 +1,7 @@
-import {TDragObject, TDroppedRef} from "../types/types";
+import {TDragObject, TDroppedRef} from "../types";
 import {DropTargetMonitor} from "react-dnd";
 import {XYCoord} from "dnd-core";
-import {ELEMENT_ADDRESS} from "../../../global/enums";
+import {ELEMENT_ADDRESS_DROPPED} from "../../../global/constants";
 
 export const DragDropCounting = (
     item: TDragObject,
@@ -10,7 +10,7 @@ export const DragDropCounting = (
     index: number,
     moveCard: (dragIndex: number, hoverIndex: number) => void) => {
 
-    if (item.elementAddress !== ELEMENT_ADDRESS.DROPPED) return
+    if (item.elementAddress !== ELEMENT_ADDRESS_DROPPED) return
 
     if (!DroppedRef.current) return
 

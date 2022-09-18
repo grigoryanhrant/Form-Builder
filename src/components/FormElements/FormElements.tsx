@@ -1,4 +1,4 @@
-import {contactInfoElementsRender, specialElementsRender} from "./data/RenderList";
+import {contactInfoElementsRender, specialElementsRender} from "./data/renderList";
 import "./FormElements.sass";
 
 export const FormElements = () => {

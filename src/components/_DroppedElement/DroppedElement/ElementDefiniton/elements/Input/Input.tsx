@@ -1,7 +1,7 @@
-import {IElementDefinition} from "../../types/types";
+import {IElementDefinition} from "../../types";
 import _uniqueId from "lodash/uniqueId";
+import {getCurrentDate} from "../../../../../../global/helpers";
 import "./Input.sass"
-import {getCurrentDate} from "../../../../../../helpers";
 
 export const Input = ({id, type, name, placeholder, value, descriptionForInput}: IElementDefinition) => {
 

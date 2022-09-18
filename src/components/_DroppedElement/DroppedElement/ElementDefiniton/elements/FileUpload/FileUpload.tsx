@@ -1,11 +1,21 @@
-import React, {ChangeEvent, useCallback, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {DropTargetMonitor, useDrop} from "react-dnd";
 import {NativeTypes} from "react-dnd-html5-backend";
 import {AiOutlineCloudUpload} from "../../../../../../common/Icons";
 import _uniqueId from "lodash/uniqueId";
 import {FileOn} from "./File/FileOn";
-import {IFile} from "./types/types";
+import {UniqueObjectsSet} from "../../../../../../global/helpers";
 import "./FileUpload.sass";
+
+export interface IFile {
+    lastModified: number
+    lastModifiedDate?: string
+    name: string
+    size: number
+    type: string
+    webkitRelativePath: string
+}
+
 
 export const FileUpload = () => {
 
@@ -20,9 +30,9 @@ export const FileUpload = () => {
         addFileHandler(evt.target.files)
     }
 
-    const addFileHandler = (item: FileList) => {
+    const addFileHandler = useCallback((item: FileList) => {
         setUploadFiles((prev: IFile[]) => [...prev, ...item]);
-    }
+    }, [uploadFiles])
 
     const [{canDrop, isOver}, drop] = useDrop(
         () => ({
@@ -42,7 +52,9 @@ export const FileUpload = () => {
         [],
     )
 
-    let filesRender = uploadFiles.map((item: IFile) => {
+    const uniqueFiles = Array.from(new UniqueObjectsSet(uploadFiles))
+
+    let filesRender = uniqueFiles.map((item: IFile) => {
         return (
             <FileOn
                 key={_uniqueId()}
@@ -54,13 +66,15 @@ export const FileUpload = () => {
         )
     })
 
+    const $htmlForInput = _uniqueId()
+
     return (
         <div className='DroppedElementUpload'>
 
             <div ref={drop} className='TargetBox'>
                 <div className='TargetBox__Center'>
 
-                    <label htmlFor={'happy'}>
+                    <label htmlFor={$htmlForInput}>
 
                         <div className='TargetBox__Details'>
                             <div className='TargetBox__Icon'>
@@ -78,8 +92,8 @@ export const FileUpload = () => {
 
                         <input
                             type='file'
-                            id='happy'
-                            name='happy'
+                            id={$htmlForInput}
+                            name='upload'
                             multiple
                             onChange={handleChange}
                         />

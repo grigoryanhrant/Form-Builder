@@ -1,7 +1,7 @@
 import React from 'react';
 import {setInputType} from "./helpers";
 import {FileUpload, Input, MySelect, Textarea} from "./elements";
-import {IElementDefinition} from "./types/types";
+import {IElementDefinition} from "./types";
 import {
     CHECKBOX,
     DATEPICKER,
