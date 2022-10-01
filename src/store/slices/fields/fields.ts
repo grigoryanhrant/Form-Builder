@@ -44,13 +44,13 @@ export const fieldsSlice = createSlice({
             })
         },
 
-        editMode: (draft, action: IEditModePayload) => {
+        editModeOn: (draft, action: IEditModePayload) => {
             draft.fields.map(item => item.editMode = item.id === action.payload)
         }
     },
 })
 
-export const { addField, updateFields, removeField, placeholderChange, editMode } = fieldsSlice.actions
+export const { addField, updateFields, removeField, placeholderChange, editModeOn } = fieldsSlice.actions
 
 export const selectFields = (state: RootState) => state.fieldsSlices
 

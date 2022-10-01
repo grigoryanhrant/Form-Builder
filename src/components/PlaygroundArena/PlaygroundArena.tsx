@@ -59,7 +59,8 @@ export const PlaygroundArena = () => {
                 description: item.description,
                 descriptionForInput: item.descriptionForInput,
                 placeholder: item.placeholder,
-                required: item.required
+                required: item.required,
+                editMode: false,
             }))
         },
 
@@ -95,6 +96,7 @@ export const PlaygroundArena = () => {
                     description={item.description}
                     descriptionForInput={item.descriptionForInput}
                     placeholder={item.placeholder}
+                    editMode={item.editMode}
                 />
             )
         }, [],

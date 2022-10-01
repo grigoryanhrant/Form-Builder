@@ -9,7 +9,7 @@ interface IDroppedElementContainer {
     index: number
     moveCard: (dragIndex: number, hoverIndex: number) => void
     elementAddress?: string
-    id: string | undefined
+    id?: string
 
     type?: string
     name?: string
@@ -19,6 +19,7 @@ interface IDroppedElementContainer {
     required?: boolean
 
     value?: string
+    editMode: boolean | undefined
 }
 
 export type TDragObject = {
@@ -42,7 +43,8 @@ export const DroppedElementContainer: FC<IDroppedElementContainer> = memo( (
         id,
 
         index,
-        moveCard
+        moveCard,
+        editMode,
     }) => {
 
     const DroppedRef = useRef<HTMLDivElement>(null)
@@ -88,6 +90,7 @@ export const DroppedElementContainer: FC<IDroppedElementContainer> = memo( (
             placeholder={placeholder}
             required={required}
             value={value}
+            editMode={editMode}
         />
     )
 })

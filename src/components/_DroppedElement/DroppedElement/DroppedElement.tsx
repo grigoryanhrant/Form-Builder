@@ -1,8 +1,8 @@
 import {useAppDispatch} from "../../../store/hooks";
-import {editMode, removeField} from "../../../store/slices/fields/fields";
+import {editModeOn, removeField} from "../../../store/slices/fields/fields";
 import {ElementDefinition} from "./ElementDefiniton/ElementDefintion";
 import {BsArrowsMove, BsTrash, GrDocumentConfig} from "../../../common/Icons";
-import {RefObject, useState} from "react";
+import {RefObject} from "react";
 import {Identifier} from "dnd-core";
 import './DroppedElement.sass';
 
@@ -11,7 +11,7 @@ interface IDroppedElement {
     DroppedRef: RefObject<HTMLDivElement>,
     handlerId: Identifier | null,
 
-    id: string | undefined
+    id: string | undefined,
     type: string | undefined,
 
     name: string | undefined,
@@ -20,6 +20,7 @@ interface IDroppedElement {
     placeholder: string | undefined,
     required: boolean | undefined,
     value: string | undefined,
+    editMode: boolean | undefined
 }
 
 export const DroppedElement = (
@@ -37,6 +38,7 @@ export const DroppedElement = (
         placeholder,
         required,
         value,
+        editMode,
     }: IDroppedElement) => {
 
     const dispatch = useAppDispatch()
@@ -47,10 +49,10 @@ export const DroppedElement = (
         dispatch(removeField(id))
     }
 
-    const [editingIsOpen, setEditingIsOpen] = useState<boolean>(false)
-
     const setEditing = () => {
-        dispatch(editMode(id))
+        if(editMode) return false
+
+        dispatch(editModeOn(id))
     }
 
     return (

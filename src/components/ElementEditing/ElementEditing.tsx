@@ -1,6 +1,5 @@
 import React from "react";
 import "./ElementEditing.sass"
-
 import {
     CHECKBOX,
     DATEPICKER,
@@ -17,15 +16,15 @@ import {MultiselectEditing} from "./elements/MultiselectEditing";
 import {FileUploadEditing} from "./elements/FileUploadEditing";
 
 export interface IElementEditing {
-    id: string
+    id: string | undefined
     name: string | undefined
     placeholder: string | undefined
     type?: string | undefined
 }
 
-export const ElementEditing = ({ id, name, placeholder, type }: IElementEditing) => {
+export const ElementEditing = ({id, name, placeholder, type}: IElementEditing) => {
 
-    switch(type) {
+    switch (type) {
         case TEXT_INPUT:
         case EMAIL_INPUT:
         case PHONE_INPUT:
@@ -40,25 +39,25 @@ export const ElementEditing = ({ id, name, placeholder, type }: IElementEditing)
         case LONG_TEXT:
 
             return (
-                <TextareaEditing />
+                <TextareaEditing/>
             )
 
         case SELECT:
 
             return (
-                <SelectEditing />
+                <SelectEditing/>
             )
 
         case MULTISELECT:
 
             return (
-                <MultiselectEditing />
+                <MultiselectEditing/>
             )
 
         case UPLOAD:
 
             return (
-                <FileUploadEditing />
+                <FileUploadEditing/>
             )
     }
 

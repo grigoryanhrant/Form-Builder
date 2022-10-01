@@ -29,11 +29,11 @@ export interface IRemoveFieldPayload {
 
 export interface IChangePlaceholderPayload {
     payload: {
-        id: string
-        inputPlaceholder: string
+        id: string | undefined
+        inputPlaceholder: string | undefined
     }
 }
 
 export interface IEditModePayload {
-    payload: string
+    payload: string | undefined
 }

@@ -1,27 +1,19 @@
 import "./ElementEditing.sass"
 import React from "react";
 import {ElementEditing} from "./ElementEditing";
-import {getEditingItem} from "../../store/selectors";
-
-interface IEditingItem {
-    description: string
-    descriptionForInput: string | undefined
-    dropid: number
-    editMode: boolean
-    id: string
-    name: string
-    placeholder: string
-    required: boolean
-    type: string
-}
+import {useAppSelector} from "../../store/hooks";
 
 export const ElementEditingContainer = () => {
 
-    const editingItem: any = getEditingItem()
+    const {fields} = useAppSelector((state) => state.fieldsSlices)
+
+    const editingItem = fields.filter(item => item.editMode)[0]
+
+    if (!editingItem) return false
 
     return (
         <div className='ElementEditing'>
-            <span className='ElementEditing__Name'>{ editingItem.name }</span>
+            <span className='ElementEditing__Name'>{editingItem.name}</span>
 
             <div className='ElementEditing__Group'>
                 <ElementEditing
