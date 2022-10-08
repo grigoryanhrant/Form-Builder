@@ -54,12 +54,12 @@ export const ElementDefinition = ({id, type, name, placeholder, value, descripti
 
         case SELECT:
             return (
-                <MySelect />
+                <MySelect id={id}/>
             )
 
         case MULTISELECT:
             return (
-                <MySelect multiselect={true}/>
+                <MySelect multiselect={true} id={id}/>
             )
 
         case UPLOAD:

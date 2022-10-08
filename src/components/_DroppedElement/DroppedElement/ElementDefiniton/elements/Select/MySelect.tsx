@@ -1,6 +1,8 @@
 import Select from "react-select";
 import {selectOptions} from "./data";
 import {customStyles} from "./customStyles/customStyles";
+import {IElementDefinition} from "../../ElementDefintion";
+import {useAppSelector} from "../../../../../../store/hooks";
 
 export interface ISelectOption {
     readonly value: string;
@@ -10,12 +12,17 @@ export interface ISelectOption {
     readonly isDisabled?: boolean;
 }
 
-interface IMySelect {
+interface IMySelect extends IElementDefinition{
     multiselect?: boolean
 }
 
 
-export const MySelect = ({ multiselect }: IMySelect) => {
+export const MySelect = ({ multiselect, id }: IMySelect) => {
+
+    const { selectFields } = useAppSelector((state) => state.fieldsSlices)
+
+    console.log(selectFields);
+
     return (
         <>
             <Select

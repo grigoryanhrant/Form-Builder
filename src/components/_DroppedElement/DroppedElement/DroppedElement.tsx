@@ -1,10 +1,11 @@
 import {useAppDispatch} from "../../../store/hooks";
-import {editModeOn, removeField} from "../../../store/slices/fields/fields";
+import {editModeOn, removeField, updateFields} from "../../../store/slices/fields/fields";
 import {ElementDefinition} from "./ElementDefiniton/ElementDefintion";
 import {BsArrowsMove, BsTrash, GrDocumentConfig} from "../../../common/Icons";
 import {RefObject} from "react";
 import {Identifier} from "dnd-core";
 import './DroppedElement.sass';
+import _ from "lodash";
 
 interface IDroppedElement {
     isDragging: boolean,
@@ -38,7 +39,6 @@ export const DroppedElement = (
         placeholder,
         required,
         value,
-        editMode,
     }: IDroppedElement) => {
 
     const dispatch = useAppDispatch()
@@ -49,17 +49,18 @@ export const DroppedElement = (
         dispatch(removeField(id))
     }
 
-    const setEditing = () => {
-        if(editMode) return false
-
+    const setEditing = (e: any) => {
+        console.log(e.target.className)
+        if(e.target.className === 'select__input-container css-ujecln-Input2') {
+            return false
+        }
         dispatch(editModeOn(id))
     }
 
     return (
         <div
             className='DroppedElement'
-            onClick={setEditing}
-            style={{opacity: isDragging ? 1 : 1,}}>
+            style={{opacity: isDragging ? 1 : 1,}} onClick={setEditing}>
 
             <div
                 className={isDragging ? 'DroppedElement__isDragging' : 'DroppedElement__isNotDragging'}

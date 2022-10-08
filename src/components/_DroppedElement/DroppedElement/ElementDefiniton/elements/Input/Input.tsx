@@ -3,7 +3,7 @@ import {getCurrentDate} from "../../../../../../global/helpers";
 import {IElementDefinition} from "../../ElementDefintion";
 import "./Input.sass"
 
-export const Input = ({id, type, name, placeholder, value, descriptionForInput}: IElementDefinition) => {
+export const Input = ({type, name, placeholder, value, descriptionForInput}: IElementDefinition) => {
 
     const $htmlForInput = _uniqueId(`${name} - `)
 

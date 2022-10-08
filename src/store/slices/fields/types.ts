@@ -9,6 +9,14 @@ export interface IElement {
     placeholder: string
     editMode?: boolean
     required?: boolean
+
+    selectFields?: IElementSelects[]
+}
+
+interface IElementSelects {
+    value: string
+    label: string
+    color: string
 }
 
 export interface IFieldInitialState {
@@ -27,10 +35,23 @@ export interface IRemoveFieldPayload {
     payload: string
 }
 
+export interface IChangeDescriptionPayload {
+    payload: {
+        id: string | undefined
+        description: string
+    }
+}
+
 export interface IChangePlaceholderPayload {
     payload: {
         id: string | undefined
-        inputPlaceholder: string | undefined
+        inputPlaceholder: string
+    }
+}
+
+export interface IValueRemovePayload {
+    payload: {
+        id: string | undefined
     }
 }
 

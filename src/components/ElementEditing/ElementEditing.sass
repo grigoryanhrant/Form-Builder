@@ -1,7 +1,5 @@
 .ElementEditing
-  position: absolute
-  top: 0
-  right: 0
+  position: relative
   min-width: 250px
   height: max-content
   display: flex
@@ -31,6 +29,26 @@
   &__Input
     display: block
     width: 100%
-    padding: 8px
+    padding: 8px 32px 8px 8px
     outline: none
     border: 1px solid rgba(145, 145, 145, 0.4)
+    overflow: hidden
+    text-overflow: ellipsis
+    font-size: 13px
+
+  &__Close
+    position: absolute
+    top: 8px
+    right: 8px
+    cursor: pointer
+
+  &__InputWrapper
+    position: relative
+    display: flex
+    align-items: center
+
+  &__FieldRemove
+    position: absolute
+    right: 10px
+    z-index: 10
+    cursor: pointer

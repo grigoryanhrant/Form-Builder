@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef, useState} from "react";
+import React, {memo, useCallback, useEffect, useRef, useState} from "react";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import {addField, updateFields} from "../../store/slices/fields/fields";
 import {IElement} from "../../store/slices/fields/types";
@@ -27,25 +27,31 @@ export const PlaygroundArena = () => {
 
     const [cards, setCards] = useState(fields);
 
+    const myElement = useRef<HTMLDivElement>(null);
+
     useEffect(() => {
         setCards(fields)
     }, [fields])
 
     useEffect(() => {
-        myElement.current.addEventListener('mouseleave', mouseLeaveUpdateHandler, false)
+
+        if(myElement && myElement.current) {
+            myElement.current.addEventListener('mouseup', mouseLeaveUpdateHandler, true)
+        }
 
         return () => {
-            myElement.current.removeEventListener('mouseleave', mouseLeaveUpdateHandler, false)
+            if(myElement && myElement.current) {
+                myElement.current.removeEventListener('mouseup', mouseLeaveUpdateHandler, true)
+            }
         }
     }, [cards, fields])
 
     const mouseLeaveUpdateHandler = () => {
+        console.log(`mouseup`)
         if(!_.isEqual(cards, fields)) {
             dispatch(updateFields(cards))
         }
     }
-
-    const myElement = useRef<any>(null);
 
     const [{isOver}, drop] = useDrop(() => ({
         accept: 'element',

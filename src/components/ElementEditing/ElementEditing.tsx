@@ -11,7 +11,7 @@ import {
 } from "../../global/constants";
 import {InputEditing} from "./elements/InputEditing";
 import {TextareaEditing} from "./elements/TextareaEditing";
-import {SelectEditing} from "./elements/SelectEditing";
+import {SelectEditing} from "./elements/SelectEditing/SelectEditing";
 import {MultiselectEditing} from "./elements/MultiselectEditing";
 import {FileUploadEditing} from "./elements/FileUploadEditing";
 
@@ -39,13 +39,13 @@ export const ElementEditing = ({id, name, placeholder, type}: IElementEditing) =
         case LONG_TEXT:
 
             return (
-                <TextareaEditing/>
+                <TextareaEditing id={id} name={name} placeholder={placeholder}/>
             )
 
         case SELECT:
 
             return (
-                <SelectEditing/>
+                <SelectEditing id={id} name={name}/>
             )
 
         case MULTISELECT:

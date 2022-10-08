@@ -1,7 +1,9 @@
 import {contactInfoElementsRender, specialElementsRender} from "./data/renderList";
 import "./FormElements.sass";
+import {memo} from "react";
 
-export const FormElements = () => {
+export const FormElements = memo( () => {
+
     return (
         <div className='FormElements'>
             <div className='FormElements__Wrapper'>
@@ -19,4 +21,4 @@ export const FormElements = () => {
             </div>
         </div>
     );
-};
+});

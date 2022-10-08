@@ -3,7 +3,6 @@ import type { Identifier } from "dnd-core";
 import {DragSourceMonitor, DropTargetMonitor, useDrag, useDrop} from "react-dnd";
 import {DragDropCounting} from "./helpers/DragDropCounting";
 import {DroppedElement} from "./DroppedElement/DroppedElement";
-import {ElementEditingContainer} from "../ElementEditing/ElementEditingContainer";
 
 interface IDroppedElementContainer {
     index: number
@@ -48,6 +47,7 @@ export const DroppedElementContainer: FC<IDroppedElementContainer> = memo( (
     }) => {
 
     const DroppedRef = useRef<HTMLDivElement>(null)
+
 
     const [{ handlerId }, drop] = useDrop<TDragObject, void, { handlerId: Identifier | null }>({
         accept: 'dropped_element',
