@@ -17,9 +17,7 @@ export const TextareaEditing = ({id, name, placeholder}: ITextareaEditing) => {
         dispatch(placeholderChange({id, inputPlaceholder: evt.target.value}))
     }
 
-    const placeholderRemoveHandler = () => {
-        dispatch(placeholderRemove({id}))
-    }
+    const placeholderRemoveHandler = () => dispatch(placeholderRemove({id}))
 
     const fieldRemove = placeholder && (
         <div className='ElementEditing__FieldRemove' onClick={placeholderRemoveHandler}>

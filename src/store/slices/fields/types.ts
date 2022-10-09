@@ -6,7 +6,7 @@ export interface IElement {
     name: string
     description: string
     descriptionForInput?: string
-    placeholder: string
+    placeholder?: string
     editMode?: boolean
     required?: boolean
 

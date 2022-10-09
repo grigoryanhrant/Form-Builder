@@ -1,11 +1,10 @@
 import {useAppDispatch} from "../../../store/hooks";
-import {editModeOn, removeField, updateFields} from "../../../store/slices/fields/fields";
+import {editModeOn, removeField} from "../../../store/slices/fields/fields";
 import {ElementDefinition} from "./ElementDefiniton/ElementDefintion";
 import {BsArrowsMove, BsTrash, GrDocumentConfig} from "../../../common/Icons";
 import {RefObject} from "react";
 import {Identifier} from "dnd-core";
 import './DroppedElement.sass';
-import _ from "lodash";
 
 interface IDroppedElement {
     isDragging: boolean,
@@ -49,13 +48,7 @@ export const DroppedElement = (
         dispatch(removeField(id))
     }
 
-    const setEditing = (e: any) => {
-        console.log(e.target.className)
-        if(e.target.className === 'select__input-container css-ujecln-Input2') {
-            return false
-        }
-        dispatch(editModeOn(id))
-    }
+    const setEditing = () => dispatch(editModeOn(id))
 
     return (
         <div

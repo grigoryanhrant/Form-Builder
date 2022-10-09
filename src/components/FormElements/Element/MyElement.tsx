@@ -13,7 +13,7 @@ interface IFormElement {
     name: string
     description: string
     descriptionForInput?: string
-    placeholder: string
+    placeholder: string | undefined
     required?: boolean
 }
 

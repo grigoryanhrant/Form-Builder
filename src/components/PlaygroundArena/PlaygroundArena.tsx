@@ -36,18 +36,17 @@ export const PlaygroundArena = () => {
     useEffect(() => {
 
         if(myElement && myElement.current) {
-            myElement.current.addEventListener('mouseup', mouseLeaveUpdateHandler, true)
+            myElement.current.addEventListener('mouseleave', mouseLeaveUpdateHandler, true)
         }
 
         return () => {
             if(myElement && myElement.current) {
-                myElement.current.removeEventListener('mouseup', mouseLeaveUpdateHandler, true)
+                myElement.current.removeEventListener('mouseleave', mouseLeaveUpdateHandler, true)
             }
         }
     }, [cards, fields])
 
     const mouseLeaveUpdateHandler = () => {
-        console.log(`mouseup`)
         if(!_.isEqual(cards, fields)) {
             dispatch(updateFields(cards))
         }

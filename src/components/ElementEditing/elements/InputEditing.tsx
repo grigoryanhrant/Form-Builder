@@ -9,7 +9,7 @@ export interface IEditingInput {
     placeholder: string | undefined
 }
 
-export const InputEditing = ({ id, placeholder, name }: IEditingInput) => {
+export const InputEditing = ({ id, placeholder }: IEditingInput) => {
 
     const dispatch = useAppDispatch()
 
@@ -17,9 +17,7 @@ export const InputEditing = ({ id, placeholder, name }: IEditingInput) => {
         dispatch(placeholderChange({id, inputPlaceholder: evt.target.value}))
     }
 
-    const placeholderRemoveHandler = () => {
-        dispatch(placeholderRemove({id}))
-    }
+    const placeholderRemoveHandler = () => dispatch(placeholderRemove({id}))
 
     const fieldRemove = placeholder && (
         <div className='ElementEditing__FieldRemove' onClick={placeholderRemoveHandler}>

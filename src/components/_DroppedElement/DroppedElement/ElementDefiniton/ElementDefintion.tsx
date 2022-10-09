@@ -21,7 +21,6 @@ export interface IElementDefinition {
     required?: boolean
 }
 
-
 export const ElementDefinition = ({id, type, name, placeholder, value, descriptionForInput, required}: IElementDefinition) => {
 
     switch(type) {

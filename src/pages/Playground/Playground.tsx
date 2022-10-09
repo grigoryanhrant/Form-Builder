@@ -10,7 +10,7 @@ export const Playground = () => {
 
     const editingItem = fields.find(item => item.editMode === true);
 
-    const elementEditor = editingItem && <ElementEditingContainer element={editingItem}/>
+    const elementEditor = editingItem && <ElementEditingContainer {...editingItem}/>
 
     return (
         <div className='Playground'>

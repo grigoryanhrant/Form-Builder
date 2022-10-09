@@ -6,7 +6,6 @@ import {
     IRemoveFieldPayload,
     IUpdateFieldPayload, IValueRemovePayload
 } from "./types";
-import {RootState} from "../../store";
 import {dropId} from "./helpers";
 
 const initialState: IFieldInitialState = {
@@ -37,7 +36,7 @@ export const fieldsSlice = createSlice({
                 })
             }
 
-            else {
+            else if (action.payload.type !== 'SELECT') {
                 draft.fields.push(action.payload)
             }
         },
@@ -51,45 +50,23 @@ export const fieldsSlice = createSlice({
         },
 
         descriptionChange: (draft, action: IChangeDescriptionPayload) => {
-            draft.fields.map(item => {
-                if (item.id === action.payload.id) {
-                    item.description = action.payload.description
-                }
-            })
+            draft.fields.map(item => item.id === action.payload.id ? item.description = action.payload.description : item.description)
         },
 
         placeholderChange: (draft, action: IChangePlaceholderPayload) => {
-            draft.fields.map(item => {
-                if (item.id === action.payload.id) {
-                    item.placeholder = action.payload.inputPlaceholder
-                }
-            })
+            draft.fields.map(item => item.id === action.payload.id ? item.placeholder = action.payload.inputPlaceholder : item.placeholder)
         },
 
         placeholderRemove: (draft, action: IValueRemovePayload) => {
-            draft.fields.map(item => {
-                if (item.id === action.payload.id) {
-                    item.placeholder = ""
-                }
-            })
+            draft.fields.map(item => item.id === action.payload.id ? item.placeholder = '' : item.placeholder)
         },
 
         descriptionRemove: (draft, action: IValueRemovePayload) => {
-            draft.fields.map(item => {
-                if (item.id === action.payload.id) {
-                    item.description = ""
-                }
-            })
+            draft.fields.map(item => item.id === action.payload.id ? item.description = '' : item.description)
         },
 
         editModeOn: (draft, action: IEditModePayload) => {
-            draft.fields.map(item => {
-                if (item.id === action.payload && item.editMode === true) {
-                    item.editMode = false
-                    return
-                }
-                item.editMode = item.id === action.payload
-            })
+            draft.fields.map(item => item.editMode = item.id === action.payload)
         },
 
         editModeOff: (draft) => {
@@ -109,7 +86,5 @@ export const {
     descriptionRemove,
     editModeOff
 } = fieldsSlice.actions
-
-export const selectFields = (state: RootState) => state.fieldsSlices
 
 export default fieldsSlice.reducer

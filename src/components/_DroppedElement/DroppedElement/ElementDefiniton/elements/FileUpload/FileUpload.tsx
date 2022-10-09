@@ -16,7 +16,6 @@ export interface IFile {
     webkitRelativePath: string
 }
 
-
 export const FileUpload = () => {
 
     const [uploadFiles, setUploadFiles] = useState<IFile[]>([])
