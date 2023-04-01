@@ -1,19 +1,20 @@
-import React from "react";
+import {GlobalStyles} from "./global/styles/globalstyles.styled";
+import {DefaultContainer} from "./common/container/container.styled";
 import {Playground} from "./pages/Playground/Playground";
 import {useDrop} from "react-dnd";
-import "./app.sass";
 
 export const App = () => {
 
-    const [, drop] = useDrop(() => ({accept: 'element',}));
-    const [, drop2] = useDrop(() => ({accept: 'dropped_element',}));
+    const [, dropZone] = useDrop(() => ({accept: 'element',}));
+    const [, dropZoneTwo] = useDrop(() => ({accept: 'dropped_element',}));
 
     return (
-        <div className={`app`} ref={drop}>
-            <div ref={drop2} style={{width: '100%'}}>
-                <div className='container'>
+        <div ref={dropZone}>
+            <GlobalStyles/>
+            <div ref={dropZoneTwo}>
+                <DefaultContainer ref={dropZoneTwo}>
                     <Playground/>
-                </div>
+                </DefaultContainer>
             </div>
         </div>
     );

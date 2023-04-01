@@ -1,4 +1,4 @@
-import {contactInfoElementsRender, specialElementsRender} from "./data/renderList";
+import {contactInfoElementsRender, specialElementsRender} from "./fields/renderList";
 import "./FormElements.sass";
 import {memo} from "react";
 

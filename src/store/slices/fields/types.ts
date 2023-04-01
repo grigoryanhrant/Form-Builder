@@ -32,7 +32,7 @@ export interface IUpdateFieldPayload {
 }
 
 export interface IRemoveFieldPayload {
-    payload: string
+    payload: string | undefined
 }
 
 export interface IChangeDescriptionPayload {

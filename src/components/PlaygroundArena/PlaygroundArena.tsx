@@ -4,7 +4,7 @@ import {addField, updateFields} from "../../store/slices/fields/fields";
 import {IElement} from "../../store/slices/fields/types";
 import update from 'immutability-helper';
 import {DropTargetMonitor, useDrop} from "react-dnd";
-import {DroppedElementContainer} from "../_DroppedElement/DroppedElementContainer";
+import {DroppedElementMain} from "../DroppedElement/DroppedElementMain";
 import _ from "lodash";
 import {ELEMENT_ADDRESS_DROPPED, ELEMENT_ADDRESS_FORM} from "../../global/constants";
 import "./PlaygroundArena.sass";
@@ -34,7 +34,6 @@ export const PlaygroundArena = () => {
     }, [fields])
 
     useEffect(() => {
-
         if(myElement && myElement.current) {
             myElement.current.addEventListener('mouseleave', mouseLeaveUpdateHandler, true)
         }
@@ -89,7 +88,7 @@ export const PlaygroundArena = () => {
     const fieldsRenderCallback = useCallback(
         (item: IElement, index: number) => {
             return (
-                <DroppedElementContainer
+                <DroppedElementMain
                     key={item.id}
                     id={item.id}
                     index={index}
