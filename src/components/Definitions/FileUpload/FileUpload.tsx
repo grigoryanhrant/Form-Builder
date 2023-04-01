@@ -4,8 +4,17 @@ import {NativeTypes} from "react-dnd-html5-backend";
 import {AiOutlineCloudUpload} from "../../../static/icons";
 import _uniqueId from "lodash/uniqueId";
 import {FileOn} from "../File/FileOn";
-import "./FileUpload.sass";
 import {UniqueObjectsSet} from "../../../helpers/uniqueObjectsSet";
+import {
+    Description,
+    Details, Files,
+    Icon,
+    Input,
+    Label, Main,
+    TargetBox,
+    TargetBoxCenter,
+    UploadFromInput
+} from "./FileUpload.styled";
 
 export interface IFile {
     lastModified: number
@@ -68,28 +77,27 @@ export const FileUpload = () => {
     const $htmlForInput = _uniqueId()
 
     return (
-        <div className='DroppedElementUpload'>
+        <Main>
+            <TargetBox ref={drop}>
+                <TargetBoxCenter>
 
-            <div ref={drop} className='TargetBox'>
-                <div className='TargetBox__Center'>
+                    <Label htmlFor={$htmlForInput}>
 
-                    <label htmlFor={$htmlForInput}>
-
-                        <div className='TargetBox__Details'>
-                            <div className='TargetBox__Icon'>
+                        <Details>
+                            <Icon>
                                 <AiOutlineCloudUpload/>
-                            </div>
+                            </Icon>
 
-                            <div className='TargetBox__Description'>
+                            <Description>
                                 {canDrop && isOver ? 'Release to drop' : 'Drag file here'}
-                            </div>
+                            </Description>
 
-                            <div className='TargetBox__Description TargetBox__UploadFromInput'>
+                            <UploadFromInput>
                                 Or click here
-                            </div>
-                        </div>
+                            </UploadFromInput>
+                        </Details>
 
-                        <input
+                        <Input
                             type='file'
                             id={$htmlForInput}
                             name='upload'
@@ -97,13 +105,13 @@ export const FileUpload = () => {
                             onChange={handleChange}
                         />
 
-                    </label>
-                </div>
-            </div>
+                    </Label>
+                </TargetBoxCenter>
+            </TargetBox>
 
-            <div className='DroppedElementUpload__Files'>
+            <Files>
                 {filesRender}
-            </div>
-        </div>
+            </Files>
+        </Main>
     );
 };

@@ -1,24 +1,24 @@
-import {contactInfoElementsRender, specialElementsRender} from "./fields/renderList";
-import "./FormElements.sass";
 import {memo} from "react";
+import {contactInfoElementsRender, specialElementsRender} from "./fields/renderList";
+import {Group, GroupParent, Main, Title} from "./FormElements.styled";
 
-export const FormElements = memo( () => {
+export const FormElements = memo(() => {
 
     return (
-        <div className='FormElements'>
-            <div className='FormElements__Wrapper'>
-                <span className='FormElements__Name'>Contact Info</span>
-                <div className='FormElements__Group'>
+        <Main>
+            <GroupParent>
+                <Title>Contact Info</Title>
+                <Group>
                     {contactInfoElementsRender}
-                </div>
-            </div>
+                </Group>
+            </GroupParent>
 
-            <div className='FormElements__Wrapper'>
-                <span className='FormElements__Name'>Special</span>
-                <div className='FormElements__Group'>
+            <GroupParent>
+                <Title>Special</Title>
+                <Group>
                     {specialElementsRender}
-                </div>
-            </div>
-        </div>
+                </Group>
+            </GroupParent>
+        </Main>
     );
 });

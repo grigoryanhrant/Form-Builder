@@ -1,41 +1,38 @@
-import React from 'react';
+import type {ChangeEvent} from "react";
 import {useAppDispatch} from "../../../../store/hooks";
 import {placeholderChange, placeholderRemove} from "../../../../store/slices/fields/fields";
 import {FaRemoveFormat} from "../../../../static/icons"
+import {FieldRemove, Input, InputWrapper, Label} from "../../ElementEditing/ElementEditing.styled";
 
 export interface IEditingInput {
-    id: string | undefined
-    name: string | undefined
-    placeholder: string | undefined
+    id?: string
+    placeholder?: string
 }
 
-export const InputEditing = ({ id, placeholder }: IEditingInput) => {
+export const InputEditing = ({id, placeholder}: IEditingInput) => {
 
     const dispatch = useAppDispatch()
 
-    const placeholderChangeHandler = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    const placeholderChangeHandler = (evt: ChangeEvent<HTMLInputElement>) => {
         dispatch(placeholderChange({id, inputPlaceholder: evt.target.value}))
     }
 
     const placeholderRemoveHandler = () => dispatch(placeholderRemove({id}))
 
-    const fieldRemove = placeholder && (
-        <div className='ElementEditing__FieldRemove' onClick={placeholderRemoveHandler}>
-            <FaRemoveFormat />
-        </div>
-    )
-
     return (
-        <div className='ElementEditing__Block'>
-            <label className='ElementEditing__Label' htmlFor={id}>Placeholder</label>
-            <div className='ElementEditing__InputWrapper'>
-                <input
+        <>
+            <Label htmlFor={id}>Placeholder</Label>
+            <InputWrapper>
+                <Input
                     id={id}
-                    className='ElementEditing__Input'
                     value={placeholder}
                     onChange={placeholderChangeHandler}/>
-                {fieldRemove}
-            </div>
-        </div>
+                {placeholder &&
+                    <FieldRemove onClick={placeholderRemoveHandler}>
+                        <FaRemoveFormat/>
+                    </FieldRemove>
+                }
+            </InputWrapper>
+        </>
     );
 };

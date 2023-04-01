@@ -1,4 +1,3 @@
-import React from 'react';
 import {FileUpload, Input, MySelect, Textarea} from "../Definitions";
 
 import {
@@ -12,7 +11,7 @@ import {
 import {setInputType} from "../../helpers/setInputType";
 
 export interface IElementDefinition {
-    id: string | undefined
+    id?: string
     type?: string
     name?: string
     placeholder?: string
@@ -21,9 +20,17 @@ export interface IElementDefinition {
     required?: boolean
 }
 
-export const ElementDefinition = ({id, type, name, placeholder, value, descriptionForInput, required}: IElementDefinition) => {
+export const ElementDefinition = ({
+                                      id,
+                                      type,
+                                      name,
+                                      placeholder,
+                                      value,
+                                      descriptionForInput,
+                                      required
+                                  }: IElementDefinition) => {
 
-    switch(type) {
+    switch (type) {
         case TEXT_INPUT:
         case EMAIL_INPUT:
         case PHONE_INPUT:
@@ -63,7 +70,7 @@ export const ElementDefinition = ({id, type, name, placeholder, value, descripti
 
         case UPLOAD:
             return (
-                <FileUpload />
+                <FileUpload/>
             )
         default:
     }

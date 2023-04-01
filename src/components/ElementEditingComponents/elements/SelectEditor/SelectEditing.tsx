@@ -1,10 +1,7 @@
-import React from 'react';
-
-export interface ISelectEditing {
-    id: string | undefined
-    name: string | undefined
+interface ISelectEditing {
+    id?: string
+    name?: string
 }
-
 
 export const SelectEditing = ({ id, name }: ISelectEditing) => {
 

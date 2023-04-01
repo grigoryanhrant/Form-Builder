@@ -1,12 +1,13 @@
-import "./FormDesigner.sass"
+
+import {Group, Main, Title, Settings} from "./FormDesigner.styled";
 
 export const FormDesigner = () => {
     return (
-        <div className='FormDesigner'>
-            <span className='FormDesigner__Name'>Form Designer</span>
-            <div className='FormDesigner__Group'>
-                <div className='FormDesigner__Group__Setting'>Color Theme</div>
-            </div>
-        </div>
+        <Main>
+            <Title>Form Designer</Title>
+            <Group>
+                <Settings>Color Theme</Settings>
+            </Group>
+        </Main>
     );
 };

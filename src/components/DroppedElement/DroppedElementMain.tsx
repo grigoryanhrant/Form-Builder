@@ -1,10 +1,10 @@
 import type {Identifier} from "dnd-core";
 import type {DragSourceMonitor, DropTargetMonitor} from "react-dnd";
+import type {TDragObject} from "../../global/types";
 import {useRef, FC, memo} from "react";
 import {useDrag, useDrop} from "react-dnd";
 import {DroppedElement} from "./DroppedElement";
 import {DragDropCounting} from "../../helpers/dragDropCounting";
-import {TDragObject} from "../../global/types";
 
 interface IDroppedElementParent {
     index: number

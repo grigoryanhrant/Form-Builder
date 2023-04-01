@@ -1,13 +1,14 @@
-import React, {memo, useCallback, useEffect, useRef, useState} from "react";
-import { useAppSelector, useAppDispatch } from "../../store/hooks";
-import {addField, updateFields} from "../../store/slices/fields/fields";
-import {IElement} from "../../store/slices/fields/types";
-import update from 'immutability-helper';
-import {DropTargetMonitor, useDrop} from "react-dnd";
-import {DroppedElementMain} from "../DroppedElement/DroppedElementMain";
+import type {DropTargetMonitor} from "react-dnd";
+import type {IElement} from "../../store/slices/fields/types";
+import React, {useCallback, useEffect, useRef, useState} from "react";
 import _ from "lodash";
+import {useAppSelector, useAppDispatch} from "../../store/hooks";
+import {DroppedElementMain} from "../DroppedElement/DroppedElementMain";
 import {ELEMENT_ADDRESS_DROPPED, ELEMENT_ADDRESS_FORM} from "../../global/constants";
-import "./PlaygroundArena.sass";
+import {DropZone, Main, Wrapper} from "./PlaygroundArena.styled";
+import {addField, updateFields} from "../../store/slices/fields/fields";
+import update from 'immutability-helper';
+import {useDrop} from "react-dnd";
 
 interface IPlaygroundArenaDropItem {
     elementAddress: string,
@@ -23,7 +24,7 @@ export const PlaygroundArena = () => {
 
     const dispatch = useAppDispatch()
 
-    const { fields } = useAppSelector((state) => state.fieldsSlices)
+    const {fields} = useAppSelector((state) => state.fieldsSlices)
 
     const [cards, setCards] = useState(fields);
 
@@ -34,19 +35,19 @@ export const PlaygroundArena = () => {
     }, [fields])
 
     useEffect(() => {
-        if(myElement && myElement.current) {
+        if (myElement && myElement.current) {
             myElement.current.addEventListener('mouseleave', mouseLeaveUpdateHandler, true)
         }
 
         return () => {
-            if(myElement && myElement.current) {
+            if (myElement && myElement.current) {
                 myElement.current.removeEventListener('mouseleave', mouseLeaveUpdateHandler, true)
             }
         }
     }, [cards, fields])
 
     const mouseLeaveUpdateHandler = () => {
-        if(!_.isEqual(cards, fields)) {
+        if (!_.isEqual(cards, fields)) {
             dispatch(updateFields(cards))
         }
     }
@@ -94,7 +95,6 @@ export const PlaygroundArena = () => {
                     index={index}
                     moveCard={moveCard}
                     elementAddress={ELEMENT_ADDRESS_DROPPED}
-
                     type={item.type}
                     name={item.name}
                     description={item.description}
@@ -107,13 +107,13 @@ export const PlaygroundArena = () => {
     )
 
     return (
-        <div ref={myElement} className='PlaygroundArenaWrapper'>
-            <div ref={drop} className='PlaygroundArena' style={{borderColor: isOver ? '#58cfef' : ''}}>
+        <Main ref={myElement}>
+            <Wrapper ref={drop} isOver={isOver}>
 
                 {cards.map((card, i) => fieldsRenderCallback(card, i))}
 
-                {isOver && <div className='PlaygroundArena__DropHere'>DROP THE ELEMENT HERE</div>}
-            </div>
-        </div>
+                {isOver && <DropZone>DROP THE ELEMENT HERE</DropZone>}
+            </Wrapper>
+        </Main>
     );
 };

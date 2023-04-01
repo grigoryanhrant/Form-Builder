@@ -2,14 +2,14 @@ import React from 'react';
 import {placeholderChange, placeholderRemove} from "../../../../store/slices/fields/fields";
 import {useAppDispatch} from "../../../../store/hooks";
 import {FaRemoveFormat} from "../../../../static/icons";
+import {FieldRemove, Input, InputWrapper, Label} from "../../ElementEditing/ElementEditing.styled";
 
 export interface ITextareaEditing {
     id: string | undefined
-    name: string | undefined
     placeholder: string | undefined
 }
 
-export const TextareaEditing = ({id, name, placeholder}: ITextareaEditing) => {
+export const TextareaEditing = ({id, placeholder}: ITextareaEditing) => {
 
     const dispatch = useAppDispatch()
 
@@ -19,23 +19,20 @@ export const TextareaEditing = ({id, name, placeholder}: ITextareaEditing) => {
 
     const placeholderRemoveHandler = () => dispatch(placeholderRemove({id}))
 
-    const fieldRemove = placeholder && (
-        <div className='ElementEditing__FieldRemove' onClick={placeholderRemoveHandler}>
-            <FaRemoveFormat />
-        </div>
-    )
-
     return (
-        <div className='ElementEditing__Block'>
-            <label className='ElementEditing__Label' htmlFor={id}>Placeholder</label>
-            <div className='ElementEditing__InputWrapper'>
-                <input
+        <>
+            <Label htmlFor={id}>Placeholder</Label>
+            <InputWrapper>
+                <Input
                     id={id}
-                    className='ElementEditing__Input'
                     value={placeholder}
                     onChange={placeholderChangeHandler}/>
-                {fieldRemove}
-            </div>
-        </div>
+                {placeholder &&
+                    <FieldRemove onClick={placeholderRemoveHandler}>
+                        <FaRemoveFormat/>
+                    </FieldRemove>
+                }
+            </InputWrapper>
+        </>
     );
 };

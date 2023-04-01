@@ -1,8 +1,8 @@
 import {FormElements} from "../../components/FormElements/FormElements";
 import {PlaygroundArena} from "../../components/PlaygroundArena/PlaygroundArena";
-import {ElementEditingContainer} from "../../components/ElementEditingComponents/ElementEditingContainer/ElementEditingContainer";
-import "./Playground.sass";
+import {ElementEditingMain} from "../../components/ElementEditingComponents/ElementEditing/ElementEditingMain";
 import {useAppSelector} from "../../store/hooks";
+import {Main} from "./Playground.styled";
 
 export const Playground = () => {
 
@@ -10,13 +10,11 @@ export const Playground = () => {
 
     const editingItem = fields.find(item => item.editMode === true);
 
-    const elementEditor = editingItem && <ElementEditingContainer {...editingItem}/>
-
     return (
-        <div className='Playground'>
+        <Main>
             <FormElements />
             <PlaygroundArena />
-            {elementEditor}
-        </div>
+            {editingItem && <ElementEditingMain {...editingItem}/>}
+        </Main>
     );
 };

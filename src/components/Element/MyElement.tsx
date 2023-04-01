@@ -1,42 +1,38 @@
-import {DragSourceMonitor, useDrag} from "react-dnd";
-import "./MyElement.sass";
-import {ELEMENT_ADDRESS_FORM} from "../../global/constants";
-import {ReactElement} from "react";
+import type {ReactElement} from "react";
+import type {DragSourceMonitor} from "react-dnd";
+import {useDrag} from "react-dnd";
 import {addField} from "../../store/slices/fields/fields";
 import {useAppDispatch} from "../../store/hooks";
+import {ELEMENT_ADDRESS_FORM} from "../../global/constants";
+import {Icon, Main, Title} from "./MyElement.styled";
 
 interface IFormElement {
     elementAddress?: typeof ELEMENT_ADDRESS_FORM,
     icon: ReactElement
-
     type: string
     name: string
     description: string
     descriptionForInput?: string
-    placeholder: string | undefined
+    placeholder?: string
     required?: boolean
 }
-
 
 export const MyElement = (
     {
         elementAddress = ELEMENT_ADDRESS_FORM,
         icon,
-
         type,
         name,
         description,
         descriptionForInput,
         placeholder,
         required
-
     }: Readonly<IFormElement>) => {
 
-    const [{isDragging}, drag] = useDrag(() => ({
+    const [, drag] = useDrag(() => ({
         type: 'element',
         item: {
             elementAddress,
-
             type,
             name,
             description,
@@ -46,7 +42,7 @@ export const MyElement = (
         },
 
         collect: (monitor: DragSourceMonitor) => ({
-            isDragging: !!monitor.isDragging(),
+            isDragging: monitor.isDragging(),
         }),
 
     }));
@@ -66,13 +62,9 @@ export const MyElement = (
     }
 
     return (
-        <div className='MyElement'
-             ref={drag}
-             style={{cursor: isDragging ? 'move' : 'move'}}
-             onClick={addFieldHandler}
-        >
-            <div className='MyElement__Icon'>{icon}</div>
-            <span className='MyElement__Name'>{name}</span>
-        </div>
+        <Main ref={drag} onClick={addFieldHandler}>
+            <Icon>{icon}</Icon>
+            <Title>{name}</Title>
+        </Main>
     );
 };
