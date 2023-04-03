@@ -5,6 +5,7 @@ import { addField } from '@store/slices/fields/fields'
 import { useAppDispatch } from '@store/hooks'
 import { ELEMENT_ADDRESS_FORM } from '@global/constants'
 import { Icon, Main, Title } from './SidebarElement.styled'
+import { memo } from 'react'
 
 interface IElement {
     elementAddress?: typeof ELEMENT_ADDRESS_FORM
@@ -17,53 +18,57 @@ interface IElement {
     required?: boolean
 }
 
-export const SidebarElement: FC<Readonly<IElement>> = ({
-    elementAddress = ELEMENT_ADDRESS_FORM,
-    icon,
-    type,
-    name,
-    description,
-    descriptionForInput,
-    placeholder,
-    required,
-}): ReactElement => {
-    const [, drag] = useDrag(() => ({
-        type: 'element',
-        item: {
-            elementAddress,
-            type,
-            name,
-            description,
-            descriptionForInput,
-            placeholder,
-            required,
-        },
+export const SidebarElement: FC<Readonly<IElement>> = memo(
+    ({
+        elementAddress = ELEMENT_ADDRESS_FORM,
+        icon,
+        type,
+        name,
+        description,
+        descriptionForInput,
+        placeholder,
+        required,
+    }): ReactElement => {
+        const [, drag] = useDrag(() => ({
+            type: 'element',
+            item: {
+                elementAddress,
+                type,
+                name,
+                description,
+                descriptionForInput,
+                placeholder,
+                required,
+            },
 
-        collect: (monitor: DragSourceMonitor) => ({
-            isDragging: monitor.isDragging(),
-        }),
-    }))
-
-    const dispatch = useAppDispatch()
-
-    const addFieldHandler = () => {
-        dispatch(
-            addField({
-                type: type,
-                name: name,
-                description: description,
-                descriptionForInput: descriptionForInput,
-                placeholder: placeholder,
-                required: required,
-                editMode: false,
+            collect: (monitor: DragSourceMonitor) => ({
+                isDragging: monitor.isDragging(),
             }),
-        )
-    }
+        }))
 
-    return (
-        <Main ref={drag} onClick={addFieldHandler}>
-            <Icon>{icon}</Icon>
-            <Title>{name}</Title>
-        </Main>
-    )
-}
+        const dispatch = useAppDispatch()
+
+        const addFieldHandler = () => {
+            dispatch(
+                addField({
+                    type: type,
+                    name: name,
+                    description: description,
+                    descriptionForInput: descriptionForInput,
+                    placeholder: placeholder,
+                    required: required,
+                    editMode: false,
+                }),
+            )
+        }
+
+        return (
+            <Main ref={drag} onClick={addFieldHandler}>
+                <Icon>{icon}</Icon>
+                <Title>{name}</Title>
+            </Main>
+        )
+    },
+)
+
+SidebarElement.displayName = 'SidebarElement'

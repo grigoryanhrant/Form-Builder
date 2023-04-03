@@ -1,8 +1,8 @@
+import type { FC, ReactElement } from 'react'
 import { SidebarFormFields } from './fields'
 import { Group, GroupParent, Main, Title } from './SidebarForm.styled'
-import type { FC, ReactElement } from 'react'
-import { memo } from 'react'
 import { SidebarElement } from '../SidebarElement/SidebarElement'
+import { memo } from 'react'
 
 export const SidebarForm: FC = memo((): ReactElement => {
     return (

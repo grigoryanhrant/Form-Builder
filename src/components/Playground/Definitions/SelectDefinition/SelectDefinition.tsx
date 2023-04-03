@@ -12,8 +12,6 @@ interface IMySelect extends IElementDefinition {
 export const SelectDefinition: FC<IMySelect> = ({ multiselect }): ReactElement => {
     const { fields } = useAppSelector((state) => state.fieldsSlices)
 
-    console.log(fields)
-
     return (
         <>
             <Select
