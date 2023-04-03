@@ -1,17 +1,15 @@
 import type {IElementDefinition} from "../../DroppedElement/ElementDefintion";
-import _uniqueId from "lodash/uniqueId";
 import {getCurrentDate} from "@helpers/getCurrentDate";
 import {Main, DefInput, Label} from "./InputDefinition.styled";
+import {nanoid} from "@reduxjs/toolkit";
 
 export const InputDefinition = ({type, name, placeholder, value, descriptionForInput}: IElementDefinition) => {
-
-    const $htmlForInput = _uniqueId(`${name} - `)
 
     return (
         <Main>
             <DefInput
                 descriptionForInput={!!descriptionForInput}
-                id={descriptionForInput && $htmlForInput}
+                id={descriptionForInput && nanoid()}
                 name={name}
                 placeholder={placeholder}
                 value={type === 'date' ? getCurrentDate() : value}
@@ -19,7 +17,7 @@ export const InputDefinition = ({type, name, placeholder, value, descriptionForI
                 onChange={() => {
                 }}/>
             {descriptionForInput && <Label
-                htmlFor={$htmlForInput}>
+                htmlFor={nanoid()}>
                 {descriptionForInput}
             </Label>}
         </Main>

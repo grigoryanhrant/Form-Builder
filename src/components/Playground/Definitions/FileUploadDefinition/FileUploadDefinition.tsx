@@ -1,12 +1,12 @@
 import type {DropTargetMonitor} from "react-dnd";
-import type {ChangeEvent} from 'react';
+import type {ChangeEvent} from "react";
 import {NativeTypes} from "react-dnd-html5-backend";
 import {UniqueObjectsSet} from "@helpers/uniqueObjectsSet";
-import {useCallback, useState} from 'react';
+import {useCallback, useState} from "react";
 import {useDrop} from "react-dnd";
 import {AiOutlineCloudUpload} from "@static/icons";
-import _uniqueId from "lodash/uniqueId";
 import {File} from "./File";
+import {nanoid} from "@reduxjs/toolkit";
 import {
     Description,
     Details, Files,
@@ -67,7 +67,7 @@ export const FileUploadDefinition = () => {
     let filesRender = uniqueFiles.map((item: IFile) => {
         return (
             <File
-                key={_uniqueId()}
+                key={nanoid()}
                 name={item.name}
                 size={item.size}
                 uploadFiles={uploadFiles}
@@ -76,7 +76,7 @@ export const FileUploadDefinition = () => {
         )
     })
 
-    const $htmlForInput = _uniqueId()
+    const $htmlForInput = nanoid()
 
     return (
         <Main>

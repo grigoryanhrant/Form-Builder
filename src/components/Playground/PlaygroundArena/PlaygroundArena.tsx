@@ -1,7 +1,6 @@
 import type {DropTargetMonitor} from "react-dnd";
 import type {IElement} from "@store/slices/fields/types";
 import {useCallback, useEffect, useRef, useState} from "react";
-import _ from "lodash";
 import {addField, updateFields} from "@store/slices/fields/fields";
 import update from 'immutability-helper';
 import {useDrop} from "react-dnd";
@@ -9,6 +8,7 @@ import {useAppSelector, useAppDispatch} from "@store/hooks";
 import {DroppedElementMain} from "../DroppedElement/DroppedElementMain";
 import {ELEMENT_ADDRESS_DROPPED, ELEMENT_ADDRESS_FORM} from "@global/constants";
 import {DropZone, Main, Wrapper} from "./PlaygroundArena.styled";
+import {compareObjects} from "@helpers/compareObjects";
 
 interface IPlaygroundArenaDropItem {
     elementAddress: string,
@@ -47,7 +47,7 @@ export const PlaygroundArena = () => {
     }, [cards, fields])
 
     const mouseLeaveUpdateHandler = () => {
-        if (!_.isEqual(cards, fields)) {
+        if (!compareObjects(cards, fields)) {
             dispatch(updateFields(cards))
         }
     }
