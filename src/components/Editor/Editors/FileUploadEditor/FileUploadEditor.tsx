@@ -1,7 +1,3 @@
 export const FileUploadEditor = () => {
-    return (
-        <div>
-
-        </div>
-    );
-};
+    return <div></div>
+}

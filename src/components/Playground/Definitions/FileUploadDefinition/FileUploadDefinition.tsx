@@ -1,22 +1,24 @@
-import type {DropTargetMonitor} from "react-dnd";
-import type {ChangeEvent, FC, ReactElement} from "react";
-import {NativeTypes} from "react-dnd-html5-backend";
-import {UniqueObjectsSet} from "@helpers/uniqueObjectsSet";
-import {useCallback, useState} from "react";
-import {useDrop} from "react-dnd";
-import {AiOutlineCloudUpload} from "@static/icons";
-import {File} from "./File";
-import {nanoid} from "@reduxjs/toolkit";
+import type { DropTargetMonitor } from 'react-dnd'
+import type { ChangeEvent, FC, ReactElement } from 'react'
+import { NativeTypes } from 'react-dnd-html5-backend'
+import { UniqueObjectsSet } from '@helpers/uniqueObjectsSet'
+import { useCallback, useState } from 'react'
+import { useDrop } from 'react-dnd'
+import { AiOutlineCloudUpload } from '@static/icons'
+import { File } from './File'
+import { nanoid } from '@reduxjs/toolkit'
 import {
     Description,
-    Details, Files,
+    Details,
+    Files,
     Icon,
     Input,
-    Label, Main,
+    Label,
+    Main,
     TargetBox,
     TargetBoxCenter,
-    UploadFromInput
-} from "./FileUploadDefinition.styled";
+    UploadFromInput,
+} from './FileUploadDefinition.styled'
 
 export interface IFile {
     lastModified: number
@@ -28,23 +30,24 @@ export interface IFile {
 }
 
 export const FileUploadDefinition: FC = (): ReactElement => {
-
     const [uploadFiles, setUploadFiles] = useState<IFile[]>([])
 
     const handleChange = (evt: ChangeEvent<HTMLInputElement>) => {
+        evt.preventDefault()
 
-        evt.preventDefault();
-
-        if (!evt.target.files) return;
+        if (!evt.target.files) return
 
         addFileHandler(evt.target.files)
     }
 
-    const addFileHandler = useCallback((item: FileList) => {
-        setUploadFiles((prev: IFile[]) => [...prev, ...item]);
-    }, [uploadFiles])
+    const addFileHandler = useCallback(
+        (item: FileList) => {
+            setUploadFiles((prev: IFile[]) => [...prev, ...item])
+        },
+        [uploadFiles],
+    )
 
-    const [{canDrop, isOver}, drop] = useDrop(
+    const [{ canDrop, isOver }, drop] = useDrop(
         () => ({
             accept: [NativeTypes.FILE],
 
@@ -64,7 +67,7 @@ export const FileUploadDefinition: FC = (): ReactElement => {
 
     const uniqueFiles = Array.from(new UniqueObjectsSet(uploadFiles))
 
-    let filesRender = uniqueFiles.map((item: IFile) => {
+    const filesRender = uniqueFiles.map((item: IFile) => {
         return (
             <File
                 key={nanoid()}
@@ -82,21 +85,17 @@ export const FileUploadDefinition: FC = (): ReactElement => {
         <Main>
             <TargetBox ref={drop}>
                 <TargetBoxCenter>
-
                     <Label htmlFor={$htmlForInput}>
-
                         <Details>
                             <Icon>
-                                <AiOutlineCloudUpload/>
+                                <AiOutlineCloudUpload />
                             </Icon>
 
                             <Description>
                                 {canDrop && isOver ? 'Release to drop' : 'Drag file here'}
                             </Description>
 
-                            <UploadFromInput>
-                                Or click here
-                            </UploadFromInput>
+                            <UploadFromInput>Or click here</UploadFromInput>
                         </Details>
 
                         <Input
@@ -106,14 +105,11 @@ export const FileUploadDefinition: FC = (): ReactElement => {
                             multiple
                             onChange={handleChange}
                         />
-
                     </Label>
                 </TargetBoxCenter>
             </TargetBox>
 
-            <Files>
-                {filesRender}
-            </Files>
+            <Files>{filesRender}</Files>
         </Main>
-    );
-};
+    )
+}

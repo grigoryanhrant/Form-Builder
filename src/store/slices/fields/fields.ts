@@ -1,15 +1,18 @@
-import {createSlice, nanoid} from "@reduxjs/toolkit";
+import { createSlice, nanoid } from '@reduxjs/toolkit'
 import {
-    IAddFieldPayload, IChangeDescriptionPayload,
-    IChangePlaceholderPayload, IEditModePayload,
+    IAddFieldPayload,
+    IChangeDescriptionPayload,
+    IChangePlaceholderPayload,
+    IEditModePayload,
     IFieldInitialState,
     IRemoveFieldPayload,
-    IUpdateFieldPayload, IValueRemovePayload
-} from "./types";
-import {dropId} from "./helpers";
+    IUpdateFieldPayload,
+    IValueRemovePayload,
+} from './types'
+import { dropId } from './helpers'
 
 const initialState: IFieldInitialState = {
-    fields: []
+    fields: [],
 }
 
 export const fieldsSlice = createSlice({
@@ -17,13 +20,13 @@ export const fieldsSlice = createSlice({
     initialState,
     reducers: {
         addField: (draft, action: IAddFieldPayload) => {
-            action.payload.dropid = dropId();
+            action.payload.dropid = dropId()
 
-            action.payload.id = nanoid();
+            action.payload.id = nanoid()
 
-            action.payload.editMode = false;
+            action.payload.editMode = false
 
-            if(action.payload.type === 'SELECT') {
+            if (action.payload.type === 'SELECT') {
                 draft.fields.push({
                     ...action.payload,
                     selectFields: [
@@ -34,9 +37,7 @@ export const fieldsSlice = createSlice({
                         { value: 'orange', label: 'Orange', color: '#FF8B00' },
                     ],
                 })
-            }
-
-            else if (action.payload.type !== 'SELECT') {
+            } else if (action.payload.type !== 'SELECT') {
                 draft.fields.push(action.payload)
             }
         },
@@ -46,31 +47,43 @@ export const fieldsSlice = createSlice({
         },
 
         removeField: (draft, action: IRemoveFieldPayload) => {
-            draft.fields = draft.fields.filter(item => item.id !== action.payload)
+            draft.fields = draft.fields.filter((item) => item.id !== action.payload)
         },
 
         descriptionChange: (draft, action: IChangeDescriptionPayload) => {
-            draft.fields.map(item => item.id === action.payload.id ? item.description = action.payload.description : item.description)
+            draft.fields.map((item) =>
+                item.id === action.payload.id
+                    ? (item.description = action.payload.description)
+                    : item.description,
+            )
         },
 
         placeholderChange: (draft, action: IChangePlaceholderPayload) => {
-            draft.fields.map(item => item.id === action.payload.id ? item.placeholder = action.payload.inputPlaceholder : item.placeholder)
+            draft.fields.map((item) =>
+                item.id === action.payload.id
+                    ? (item.placeholder = action.payload.inputPlaceholder)
+                    : item.placeholder,
+            )
         },
 
         placeholderRemove: (draft, action: IValueRemovePayload) => {
-            draft.fields.map(item => item.id === action.payload.id ? item.placeholder = '' : item.placeholder)
+            draft.fields.map((item) =>
+                item.id === action.payload.id ? (item.placeholder = '') : item.placeholder,
+            )
         },
 
         descriptionRemove: (draft, action: IValueRemovePayload) => {
-            draft.fields.map(item => item.id === action.payload.id ? item.description = '' : item.description)
+            draft.fields.map((item) =>
+                item.id === action.payload.id ? (item.description = '') : item.description,
+            )
         },
 
         editModeOn: (draft, action: IEditModePayload) => {
-            draft.fields.map(item => item.editMode = item.id === action.payload)
+            draft.fields.map((item) => (item.editMode = item.id === action.payload))
         },
 
         editModeOff: (draft) => {
-            draft.fields.map(item => item.editMode ? item.editMode = false : null)
+            draft.fields.map((item) => (item.editMode ? (item.editMode = false) : null))
         },
     },
 })
@@ -84,7 +97,7 @@ export const {
     descriptionChange,
     placeholderRemove,
     descriptionRemove,
-    editModeOff
+    editModeOff,
 } = fieldsSlice.actions
 
 export default fieldsSlice.reducer

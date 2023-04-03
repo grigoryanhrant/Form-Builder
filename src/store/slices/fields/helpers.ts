@@ -1,5 +1,5 @@
 const getDropId = () => {
-    let count = 0;
+    let count = 0
 
     return () => ++count
 }

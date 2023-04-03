@@ -1,11 +1,16 @@
-import type {IElementDefinition} from "../../DroppedElement/ElementDefintion";
-import type {FC, ReactElement} from "react";
-import {getCurrentDate} from "@helpers/getCurrentDate";
-import {Main, DefInput, Label} from "./InputDefinition.styled";
-import {nanoid} from "@reduxjs/toolkit";
+import type { IElementDefinition } from '../../DroppedElement/ElementDefintion'
+import type { FC, ReactElement } from 'react'
+import { getCurrentDate } from '@helpers/getCurrentDate'
+import { Main, DefInput, Label } from './InputDefinition.styled'
+import { nanoid } from '@reduxjs/toolkit'
 
-export const InputDefinition: FC<IElementDefinition> = ({type, name, placeholder, value, descriptionForInput}): ReactElement => {
-
+export const InputDefinition: FC<IElementDefinition> = ({
+    type,
+    name,
+    placeholder,
+    value,
+    descriptionForInput,
+}): ReactElement => {
     return (
         <Main>
             <DefInput
@@ -15,12 +20,9 @@ export const InputDefinition: FC<IElementDefinition> = ({type, name, placeholder
                 placeholder={placeholder}
                 value={type === 'date' ? getCurrentDate() : value}
                 type={type}
-                onChange={() => {
-                }}/>
-            {descriptionForInput && <Label
-                htmlFor={nanoid()}>
-                {descriptionForInput}
-            </Label>}
+                onChange={() => 'temp variable'}
+            />
+            {descriptionForInput && <Label htmlFor={nanoid()}>{descriptionForInput}</Label>}
         </Main>
-    );
-};
+    )
+}

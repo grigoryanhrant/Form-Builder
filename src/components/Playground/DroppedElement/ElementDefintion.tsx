@@ -1,14 +1,23 @@
-import type {ReactElement} from "react";
-import {FileUploadDefinition, InputDefinition, SelectDefinition, TextareaDefinition} from "../Definitions";
+import type { ReactElement } from 'react'
+import {
+    FileUploadDefinition,
+    InputDefinition,
+    SelectDefinition,
+    TextareaDefinition,
+} from '../Definitions'
 import {
     CHECKBOX,
     DATEPICKER,
-    EMAIL_INPUT, LONG_TEXT, MULTISELECT,
-    PHONE_INPUT, SELECT,
+    EMAIL_INPUT,
+    LONG_TEXT,
+    MULTISELECT,
+    PHONE_INPUT,
+    SELECT,
     SHORT_TEXT,
-    TEXT_INPUT, UPLOAD
-} from "@global/constants";
-import {setInputType} from "@helpers/setInputType";
+    TEXT_INPUT,
+    UPLOAD,
+} from '@global/constants'
+import { setInputType } from '@helpers/setInputType'
 
 export interface IElementDefinition {
     id?: string
@@ -20,13 +29,25 @@ export interface IElementDefinition {
     required?: boolean
 }
 
-type TElementDefinition = ({id, type, name, placeholder, value, descriptionForInput, required}: IElementDefinition) => ReactElement;
+type TElementDefinition = ({
+    id,
+    type,
+    name,
+    placeholder,
+    value,
+    descriptionForInput,
+    required,
+}: IElementDefinition) => ReactElement
 
-export const ElementDefinition: TElementDefinition = (
-    {
-        id, type, name, placeholder, value, descriptionForInput, required
-    }) => {
-
+export const ElementDefinition: TElementDefinition = ({
+    id,
+    type,
+    name,
+    placeholder,
+    value,
+    descriptionForInput,
+    required,
+}) => {
     switch (type) {
         case TEXT_INPUT:
         case EMAIL_INPUT:
@@ -42,34 +63,25 @@ export const ElementDefinition: TElementDefinition = (
                     descriptionForInput={descriptionForInput}
                     value={value}
                     required={required}
-                    type={setInputType(type)}/>
+                    type={setInputType(type)}
+                />
             )
 
         case LONG_TEXT:
             return (
-                <TextareaDefinition
-                    id={id}
-                    name={name}
-                    placeholder={placeholder}
-                    value={value}/>
+                <TextareaDefinition id={id} name={name} placeholder={placeholder} value={value} />
             )
 
         case SELECT:
-            return (
-                <SelectDefinition id={id}/>
-            )
+            return <SelectDefinition id={id} />
 
         case MULTISELECT:
-            return (
-                <SelectDefinition multiselect={true} id={id}/>
-            )
+            return <SelectDefinition multiselect={true} id={id} />
 
         case UPLOAD:
-            return (
-                <FileUploadDefinition/>
-            )
+            return <FileUploadDefinition />
 
         default:
             return <></>
     }
-};
+}

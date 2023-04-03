@@ -7,9 +7,9 @@ export const customStyles = {
         fontSize: '14px',
         cursor: 'pointer',
 
-        "&:hover": {
-            backgroundColor: "#aad7ff"
-        }
+        '&:hover': {
+            backgroundColor: '#aad7ff',
+        },
     }),
     control: () => ({
         display: 'flex',
@@ -18,9 +18,9 @@ export const customStyles = {
         borderRadius: '2px',
         fontSize: '14px',
     }),
-    singleValue: (provided: any, state: any) => {
-        const transition = 'opacity 300ms';
+    singleValue: (provided: any) => {
+        const transition = 'opacity 300ms'
 
-        return {...provided, transition};
-    }
+        return { ...provided, transition }
+    },
 }

@@ -1,4 +1,4 @@
-import {Group, Main, Title, Settings} from "./FormDesigner.styled";
+import { Group, Main, Title, Settings } from './FormDesigner.styled'
 
 export const FormDesigner = () => {
     return (
@@ -8,5 +8,5 @@ export const FormDesigner = () => {
                 <Settings>Color Theme</Settings>
             </Group>
         </Main>
-    );
-};
+    )
+}

@@ -1,7 +1,11 @@
-import type {IElementDefinition} from "../../DroppedElement/ElementDefintion";
-import type {FC, ReactElement} from "react";
+import type { IElementDefinition } from '../../DroppedElement/ElementDefintion'
+import type { FC, ReactElement } from 'react'
 
-export const TextareaDefinition: FC<IElementDefinition> = ({name, placeholder, value}): ReactElement => {
+export const TextareaDefinition: FC<IElementDefinition> = ({
+    name,
+    placeholder,
+    value,
+}): ReactElement => {
     return (
         <>
             <textarea
@@ -9,8 +13,8 @@ export const TextareaDefinition: FC<IElementDefinition> = ({name, placeholder, v
                 placeholder={placeholder}
                 defaultValue={value}
                 className='DroppedElement__Textarea'
-                onChange={() => {
-                }}/>
+                onChange={() => 'temp variable'}
+            />
         </>
-    );
-};
+    )
+}

@@ -1,5 +1,5 @@
-export {InputEditor} from "./InputEditor/InputEditor"
-export {MultiselectEditor} from "./MultiselectEditor/MultiselectEditor"
-export {SelectEditor} from "./SelectEditor/SelectEditor"
-export {TextareaEditor} from "./TextareaEditor/TextareaEditor"
-export {FileUploadEditor} from "./FileUploadEditor/FileUploadEditor"
+export { InputEditor } from './InputEditor/InputEditor'
+export { MultiselectEditor } from './MultiselectEditor/MultiselectEditor'
+export { SelectEditor } from './SelectEditor/SelectEditor'
+export { TextareaEditor } from './TextareaEditor/TextareaEditor'
+export { FileUploadEditor } from './FileUploadEditor/FileUploadEditor'

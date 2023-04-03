@@ -4,4 +4,4 @@ export const selectOptions: readonly any[] = [
     { value: 'purple', label: 'Purple', color: '#5243AA' },
     { value: 'red', label: 'Red', color: '#FF5630' },
     { value: 'orange', label: 'Orange', color: '#FF8B00' },
-];
+]

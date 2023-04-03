@@ -1,13 +1,13 @@
-import type {FC, ReactElement} from "react";
-import type {DragSourceMonitor} from "react-dnd";
-import {useDrag} from "react-dnd";
-import {addField} from "@store/slices/fields/fields";
-import {useAppDispatch} from "@store/hooks";
-import {ELEMENT_ADDRESS_FORM} from "@global/constants";
-import {Icon, Main, Title} from "./SidebarElement.styled";
+import type { FC, ReactElement } from 'react'
+import type { DragSourceMonitor } from 'react-dnd'
+import { useDrag } from 'react-dnd'
+import { addField } from '@store/slices/fields/fields'
+import { useAppDispatch } from '@store/hooks'
+import { ELEMENT_ADDRESS_FORM } from '@global/constants'
+import { Icon, Main, Title } from './SidebarElement.styled'
 
 interface IElement {
-    elementAddress?: typeof ELEMENT_ADDRESS_FORM,
+    elementAddress?: typeof ELEMENT_ADDRESS_FORM
     icon: ReactElement
     type: string
     name: string
@@ -17,18 +17,16 @@ interface IElement {
     required?: boolean
 }
 
-export const SidebarElement: FC<Readonly<IElement>> = (
-    {
-        elementAddress = ELEMENT_ADDRESS_FORM,
-        icon,
-        type,
-        name,
-        description,
-        descriptionForInput,
-        placeholder,
-        required
-    }): ReactElement => {
-
+export const SidebarElement: FC<Readonly<IElement>> = ({
+    elementAddress = ELEMENT_ADDRESS_FORM,
+    icon,
+    type,
+    name,
+    description,
+    descriptionForInput,
+    placeholder,
+    required,
+}): ReactElement => {
     const [, drag] = useDrag(() => ({
         type: 'element',
         item: {
@@ -38,27 +36,28 @@ export const SidebarElement: FC<Readonly<IElement>> = (
             description,
             descriptionForInput,
             placeholder,
-            required
+            required,
         },
 
         collect: (monitor: DragSourceMonitor) => ({
             isDragging: monitor.isDragging(),
         }),
-
-    }));
+    }))
 
     const dispatch = useAppDispatch()
 
     const addFieldHandler = () => {
-        dispatch(addField({
-            type: type,
-            name: name,
-            description: description,
-            descriptionForInput: descriptionForInput,
-            placeholder: placeholder,
-            required: required,
-            editMode: false,
-        }))
+        dispatch(
+            addField({
+                type: type,
+                name: name,
+                description: description,
+                descriptionForInput: descriptionForInput,
+                placeholder: placeholder,
+                required: required,
+                editMode: false,
+            }),
+        )
     }
 
     return (
@@ -66,5 +65,5 @@ export const SidebarElement: FC<Readonly<IElement>> = (
             <Icon>{icon}</Icon>
             <Title>{name}</Title>
         </Main>
-    );
-};
+    )
+}

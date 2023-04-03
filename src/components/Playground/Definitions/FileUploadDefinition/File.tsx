@@ -1,7 +1,7 @@
-import type {Dispatch, FC, ReactElement, SetStateAction} from "react";
-import type {IFile} from "./FileUploadDefinition";
-import {BsTrash} from "@static/icons"
-import {Main, Remove, Size} from "./File.styled";
+import type { Dispatch, FC, ReactElement, SetStateAction } from 'react'
+import type { IFile } from './FileUploadDefinition'
+import { BsTrash } from '@static/icons'
+import { Main, Remove, Size } from './File.styled'
 
 interface IFileDiv {
     name: string
@@ -10,8 +10,7 @@ interface IFileDiv {
     setUploadFiles: Dispatch<SetStateAction<IFile[]>>
 }
 
-export const File: FC<IFileDiv> = ({name, size, uploadFiles, setUploadFiles}): ReactElement => {
-
+export const File: FC<IFileDiv> = ({ name, size, uploadFiles, setUploadFiles }): ReactElement => {
     const fileRemoveHandler = () => {
         setUploadFiles(uploadFiles.filter((item: IFile) => item.name !== name))
     }
@@ -19,9 +18,11 @@ export const File: FC<IFileDiv> = ({name, size, uploadFiles, setUploadFiles}): R
     return (
         <Main>
             <Remove onClick={fileRemoveHandler}>
-                <BsTrash/>
+                <BsTrash />
             </Remove>
-            <Size>{name} size: {size} kb</Size>
+            <Size>
+                {name} size: {size} kb
+            </Size>
         </Main>
-    );
+    )
 }
