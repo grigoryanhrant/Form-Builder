@@ -1,6 +1,6 @@
 import type {Dispatch, SetStateAction} from "react";
 import type {IFile} from "./FileUploadDefinition";
-import {BsTrash} from "../../../../static/icons"
+import {BsTrash} from "@static/icons"
 import {Main, Remove, Size} from "./File.styled";
 
 interface IFileDiv {

@@ -1,7 +1,7 @@
-import {SidebarForm} from "../../components/Sidebar/SidebarForm/SidebarForm";
-import {PlaygroundArena} from "../../components/Playground/PlaygroundArena/PlaygroundArena";
-import {ElementEditingMain} from "../../components/Editor/ElementEditing/ElementEditingMain";
-import {useAppSelector} from "../../store/hooks";
+import {SidebarForm} from "@components/Sidebar/SidebarForm/SidebarForm";
+import {PlaygroundArena} from "@components/Playground/PlaygroundArena/PlaygroundArena";
+import {ElementEditingMain} from "@components/Editor/ElementEditing/ElementEditingMain";
+import {useAppSelector} from "@store/hooks";
 import {Main} from "./Playground.styled";
 
 export const Playground = () => {

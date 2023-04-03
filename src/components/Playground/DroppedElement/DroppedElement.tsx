@@ -1,9 +1,9 @@
 import type {RefObject} from "react";
 import type {Identifier} from "dnd-core";
-import {useAppDispatch} from "../../../store/hooks";
-import {editModeOn, removeField} from "../../../store/slices/fields/fields";
+import {useAppDispatch} from "@store/hooks";
+import {editModeOn, removeField} from "@store/slices/fields/fields";
 import {ElementDefinition} from "./ElementDefintion";
-import {BsArrowsMove, BsTrash, GrDocumentConfig} from "../../../static/icons";
+import {BsArrowsMove, BsTrash, GrDocumentConfig} from "@static/icons";
 import {
     Main,
     Wrapper,

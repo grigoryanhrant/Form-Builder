@@ -1,7 +1,7 @@
 import type {XYCoord} from "dnd-core";
 import type {DropTargetMonitor} from "react-dnd";
-import type {TDragObject} from "../global/types";
-import {ELEMENT_ADDRESS_DROPPED} from "../global/constants";
+import type {TDragObject} from "@global/types/types";
+import {ELEMENT_ADDRESS_DROPPED} from "@global/constants";
 
 export const DragDropCounting = (
     item: TDragObject,

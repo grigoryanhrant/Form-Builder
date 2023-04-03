@@ -1,9 +1,9 @@
-import type {IElement} from "../../../store/slices/fields/types";
+import type {IElement} from "@store/slices/fields/types";
 import type {ChangeEvent} from "react";
 import {EditorDefining} from "./EditorDefining";
-import {AiFillCloseSquare, FaRemoveFormat} from "../../../static/icons"
-import {useAppDispatch} from "../../../store/hooks";
-import {descriptionChange, descriptionRemove, editModeOff} from "../../../store/slices/fields/fields";
+import {AiFillCloseSquare, FaRemoveFormat} from "@static/icons"
+import {useAppDispatch} from "@store/hooks";
+import {descriptionChange, descriptionRemove, editModeOff} from "@store/slices/fields/fields";
 import {
     Close,
     Details,

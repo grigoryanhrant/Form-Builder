@@ -8,7 +8,7 @@ import {
     PHONE_INPUT, SELECT,
     SHORT_TEXT,
     TEXT_INPUT, UPLOAD
-} from "../../../global/constants";
+} from "@global/constants";
 
 export interface IElementEditing {
     id?: string

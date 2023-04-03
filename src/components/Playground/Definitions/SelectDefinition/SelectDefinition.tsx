@@ -1,8 +1,8 @@
 import type {IElementDefinition} from "../../DroppedElement/ElementDefintion";
 import Select from "react-select";
 import {customStyles} from "./customStyles/customStyles";
-import {useAppSelector} from "../../../../store/hooks";
-import {selectOptions} from "../../../../mocks";
+import {useAppSelector} from "@store/hooks";
+import {selectOptions} from "@mocks/mocks";
 
 interface IMySelect extends IElementDefinition {
     multiselect?: boolean

@@ -1,7 +1,7 @@
 import type {ChangeEvent} from "react";
-import {useAppDispatch} from "../../../../store/hooks";
-import {placeholderChange, placeholderRemove} from "../../../../store/slices/fields/fields";
-import {FaRemoveFormat} from "../../../../static/icons"
+import {useAppDispatch} from "@store/hooks";
+import {placeholderChange, placeholderRemove} from "@store/slices/fields/fields";
+import {FaRemoveFormat} from "@static/icons"
 import {FieldRemove, Input, InputWrapper, Label} from "../../ElementEditing/ElementEditing.styled";
 
 export interface IEditingInput {

@@ -1,4 +1,3 @@
-
 import {Group, Main, Title, Settings} from "./FormDesigner.styled";
 
 export const FormDesigner = () => {

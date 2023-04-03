@@ -1,4 +1,4 @@
-import {RefObject} from "react";
+import type {RefObject} from "react";
 import useEventListener from "./useEventListener";
 
 export const useOutsideClick = (ref: RefObject<HTMLElement>, callback: () => void, editRef: any): void => {

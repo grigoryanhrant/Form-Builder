@@ -1,9 +1,9 @@
 import type {ReactElement} from "react";
 import type {DragSourceMonitor} from "react-dnd";
 import {useDrag} from "react-dnd";
-import {addField} from "../../../store/slices/fields/fields";
-import {useAppDispatch} from "../../../store/hooks";
-import {ELEMENT_ADDRESS_FORM} from "../../../global/constants";
+import {addField} from "@store/slices/fields/fields";
+import {useAppDispatch} from "@store/hooks";
+import {ELEMENT_ADDRESS_FORM} from "@global/constants";
 import {Icon, Main, Title} from "./SidebarElement.styled";
 
 interface IElement {

@@ -7,8 +7,8 @@ import {
     PHONE_INPUT, SELECT,
     SHORT_TEXT,
     TEXT_INPUT, UPLOAD
-} from "../../../global/constants";
-import {setInputType} from "../../../helpers/setInputType";
+} from "@global/constants";
+import {setInputType} from "@helpers/setInputType";
 
 export interface IElementDefinition {
     id?: string

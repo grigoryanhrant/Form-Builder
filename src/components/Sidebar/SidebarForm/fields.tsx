@@ -20,7 +20,7 @@ import {
     SELECT, SHORT_TEXT,
     TEXT_INPUT,
     UPLOAD
-} from "../../../global/constants";
+} from "@global/constants";
 
 interface ISidebarFormGroup {
     type: string

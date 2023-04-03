@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom/client";
-import {store} from "./store/store";
+import {store} from "@store/store";
 import {DndProvider} from "react-dnd";
 import {Provider} from "react-redux";
 import {HTML5Backend} from "react-dnd-html5-backend";

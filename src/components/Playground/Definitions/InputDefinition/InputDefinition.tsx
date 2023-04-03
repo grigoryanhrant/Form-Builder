@@ -1,6 +1,6 @@
 import type {IElementDefinition} from "../../DroppedElement/ElementDefintion";
 import _uniqueId from "lodash/uniqueId";
-import {getCurrentDate} from "../../../../helpers/getCurrentDate";
+import {getCurrentDate} from "@helpers/getCurrentDate";
 import {Main, DefInput, Label} from "./InputDefinition.styled";
 
 export const InputDefinition = ({type, name, placeholder, value, descriptionForInput}: IElementDefinition) => {

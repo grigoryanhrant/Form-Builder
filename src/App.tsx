@@ -1,5 +1,5 @@
-import {GlobalStyles} from "./global/styles/globalstyles.styled";
-import {DefaultContainer} from "./common/container/container.styled";
+import {GlobalStyles} from "@global/styles/globalstyles.styled";
+import {DefaultContainer} from "@components/common/container/container.styled";
 import {Playground} from "./pages/Playground/Playground";
 import {useDrop} from "react-dnd";
 
