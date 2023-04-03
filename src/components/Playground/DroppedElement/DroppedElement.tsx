@@ -1,4 +1,4 @@
-import type {RefObject} from "react";
+import type {FC, ReactElement, RefObject} from "react";
 import type {Identifier} from "dnd-core";
 import {useAppDispatch} from "@store/hooks";
 import {editModeOn, removeField} from "@store/slices/fields/fields";
@@ -29,7 +29,7 @@ interface IDroppedElement {
     editMode?: boolean
 }
 
-export const DroppedElement = (
+export const DroppedElement: FC<IDroppedElement> = (
     {
         isDragging,
         DroppedRef,
@@ -42,7 +42,7 @@ export const DroppedElement = (
         placeholder,
         required,
         value,
-    }: IDroppedElement) => {
+    }): ReactElement => {
 
     const dispatch = useAppDispatch()
 

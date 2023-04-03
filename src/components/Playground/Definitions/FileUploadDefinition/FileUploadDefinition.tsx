@@ -1,5 +1,5 @@
 import type {DropTargetMonitor} from "react-dnd";
-import type {ChangeEvent} from "react";
+import type {ChangeEvent, FC, ReactElement} from "react";
 import {NativeTypes} from "react-dnd-html5-backend";
 import {UniqueObjectsSet} from "@helpers/uniqueObjectsSet";
 import {useCallback, useState} from "react";
@@ -27,7 +27,7 @@ export interface IFile {
     webkitRelativePath: string
 }
 
-export const FileUploadDefinition = () => {
+export const FileUploadDefinition: FC = (): ReactElement => {
 
     const [uploadFiles, setUploadFiles] = useState<IFile[]>([])
 

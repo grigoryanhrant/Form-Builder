@@ -1,15 +1,15 @@
-import type {ChangeEvent} from "react";
+import type {ChangeEvent, FC, ReactElement} from "react";
 import {placeholderChange, placeholderRemove} from "@store/slices/fields/fields";
 import {useAppDispatch} from "@store/hooks";
 import {FaRemoveFormat} from "@static/icons";
 import {FieldRemove, Input, InputWrapper, Label} from "../../ElementEditing/ElementEditing.styled";
 
 export interface ITextareaEditing {
-    id: string | undefined
-    placeholder: string | undefined
+    id?: string
+    placeholder?: string
 }
 
-export const TextareaEditor = ({id, placeholder}: ITextareaEditing) => {
+export const TextareaEditor: FC<ITextareaEditing> = ({id, placeholder}): ReactElement => {
 
     const dispatch = useAppDispatch()
 

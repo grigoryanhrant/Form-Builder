@@ -1,4 +1,4 @@
-import type {ReactNode} from "react";
+import type {ReactElement} from "react";
 import {InputEditor, TextareaEditor, SelectEditor, MultiselectEditor, FileUploadEditor} from "../Editors";
 import {
     CHECKBOX,
@@ -17,7 +17,9 @@ export interface IElementEditing {
     type?: string
 }
 
-export const EditorDefining = ({id, name, placeholder, type}: IElementEditing): ReactNode => {
+type TEditorDefining = ({id, placeholder, type}: IElementEditing) => ReactElement;
+
+export const EditorDefining: TEditorDefining = ({id, placeholder, type}) => {
 
     switch (type) {
         case TEXT_INPUT:
@@ -40,7 +42,7 @@ export const EditorDefining = ({id, name, placeholder, type}: IElementEditing): 
         case SELECT:
 
             return (
-                <SelectEditor id={id} name={name}/>
+                <SelectEditor/>
             )
 
         case MULTISELECT:

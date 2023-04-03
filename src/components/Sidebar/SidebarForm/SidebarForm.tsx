@@ -1,9 +1,10 @@
 import {SidebarFormFields} from "./fields";
 import {Group, GroupParent, Main, Title} from "./SidebarForm.styled";
+import type {FC, ReactElement} from "react";
 import {memo} from "react";
 import {SidebarElement} from "../SidebarElement/SidebarElement";
 
-export const SidebarForm = memo(() => {
+export const SidebarForm: FC = memo((): ReactElement => {
 
     return (
         <Main>

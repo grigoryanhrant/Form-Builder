@@ -1,13 +1,7 @@
-interface ISelectEditing {
-    id?: string
-    name?: string
-}
-
-export const SelectEditor = ({ id, name }: ISelectEditing) => {
-
+export const SelectEditor = () => {
     return (
         <div>
-            SelectEditing
+
         </div>
     );
 };

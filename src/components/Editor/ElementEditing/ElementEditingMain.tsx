@@ -1,5 +1,5 @@
 import type {IElement} from "@store/slices/fields/types";
-import type {ChangeEvent} from "react";
+import type {ChangeEvent, FC, ReactElement} from "react";
 import {EditorDefining} from "./EditorDefining";
 import {AiFillCloseSquare, FaRemoveFormat} from "@static/icons"
 import {useAppDispatch} from "@store/hooks";
@@ -14,7 +14,7 @@ import {
     Title
 } from "./ElementEditing.styled";
 
-export const ElementEditingMain = ({...rest}: Omit<IElement, "dropid">) => {
+export const ElementEditingMain: FC<Omit<IElement, "dropid">> = ({...rest}): ReactElement => {
 
     const {id, name, placeholder, type, description} = rest;
 

@@ -1,4 +1,4 @@
-import type {ReactNode} from "react";
+import type {ReactElement} from "react";
 import {FileUploadDefinition, InputDefinition, SelectDefinition, TextareaDefinition} from "../Definitions";
 import {
     CHECKBOX,
@@ -20,10 +20,12 @@ export interface IElementDefinition {
     required?: boolean
 }
 
-export const ElementDefinition = (
+type TElementDefinition = ({id, type, name, placeholder, value, descriptionForInput, required}: IElementDefinition) => ReactElement;
+
+export const ElementDefinition: TElementDefinition = (
     {
         id, type, name, placeholder, value, descriptionForInput, required
-    }: IElementDefinition): ReactNode => {
+    }) => {
 
     switch (type) {
         case TEXT_INPUT:

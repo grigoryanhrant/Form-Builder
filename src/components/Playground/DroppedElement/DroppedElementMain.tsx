@@ -1,7 +1,8 @@
 import type {Identifier} from "dnd-core";
 import type {DragSourceMonitor, DropTargetMonitor} from "react-dnd";
 import type {TDragObject} from "@global/types/types";
-import {useRef, FC, memo} from "react";
+import type {FC, ReactElement} from "react";
+import {useRef, memo} from "react";
 import {useDrag, useDrop} from "react-dnd";
 import {DroppedElement} from "./DroppedElement";
 import {DragDropCounting} from "@helpers/dragDropCounting";
@@ -35,7 +36,7 @@ export const DroppedElementMain: FC<IDroppedElementParent> = memo((
         index,
         moveCard,
         editMode,
-    }) => {
+    }): ReactElement => {
 
     const DroppedRef = useRef<HTMLDivElement>(null)
 

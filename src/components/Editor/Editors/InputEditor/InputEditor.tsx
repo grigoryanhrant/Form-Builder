@@ -1,4 +1,4 @@
-import type {ChangeEvent} from "react";
+import type {ChangeEvent, FC, ReactElement} from "react";
 import {useAppDispatch} from "@store/hooks";
 import {placeholderChange, placeholderRemove} from "@store/slices/fields/fields";
 import {FaRemoveFormat} from "@static/icons"
@@ -9,7 +9,7 @@ export interface IEditingInput {
     placeholder?: string
 }
 
-export const InputEditor = ({id, placeholder}: IEditingInput) => {
+export const InputEditor: FC<IEditingInput> = ({id, placeholder}): ReactElement => {
 
     const dispatch = useAppDispatch()
 

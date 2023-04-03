@@ -1,14 +1,15 @@
 import type {DropTargetMonitor} from "react-dnd";
 import type {IElement} from "@store/slices/fields/types";
+import type {FC, ReactElement} from "react";
 import {useCallback, useEffect, useRef, useState} from "react";
 import {addField, updateFields} from "@store/slices/fields/fields";
 import update from 'immutability-helper';
 import {useDrop} from "react-dnd";
+import {compareObjects} from "@helpers/compareObjects";
 import {useAppSelector, useAppDispatch} from "@store/hooks";
 import {DroppedElementMain} from "../DroppedElement/DroppedElementMain";
 import {ELEMENT_ADDRESS_DROPPED, ELEMENT_ADDRESS_FORM} from "@global/constants";
 import {DropZone, Main, Wrapper} from "./PlaygroundArena.styled";
-import {compareObjects} from "@helpers/compareObjects";
 
 interface IPlaygroundArenaDropItem {
     elementAddress: string,
@@ -20,7 +21,7 @@ interface IPlaygroundArenaDropItem {
     required?: boolean
 }
 
-export const PlaygroundArena = () => {
+export const PlaygroundArena: FC = (): ReactElement => {
 
     const dispatch = useAppDispatch()
 

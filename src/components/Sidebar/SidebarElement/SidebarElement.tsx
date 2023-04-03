@@ -1,4 +1,4 @@
-import type {ReactElement} from "react";
+import type {FC, ReactElement} from "react";
 import type {DragSourceMonitor} from "react-dnd";
 import {useDrag} from "react-dnd";
 import {addField} from "@store/slices/fields/fields";
@@ -17,7 +17,7 @@ interface IElement {
     required?: boolean
 }
 
-export const SidebarElement = (
+export const SidebarElement: FC<Readonly<IElement>> = (
     {
         elementAddress = ELEMENT_ADDRESS_FORM,
         icon,
@@ -27,7 +27,7 @@ export const SidebarElement = (
         descriptionForInput,
         placeholder,
         required
-    }: Readonly<IElement>) => {
+    }): ReactElement => {
 
     const [, drag] = useDrag(() => ({
         type: 'element',

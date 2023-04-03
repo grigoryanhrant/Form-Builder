@@ -1,6 +1,7 @@
 import type {IElementDefinition} from "../../DroppedElement/ElementDefintion";
+import type {FC, ReactElement} from "react";
 
-export const TextareaDefinition = ({name, placeholder, value}: IElementDefinition) => {
+export const TextareaDefinition: FC<IElementDefinition> = ({name, placeholder, value}): ReactElement => {
     return (
         <>
             <textarea
