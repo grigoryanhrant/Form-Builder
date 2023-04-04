@@ -30,7 +30,9 @@ export const ElementEditingMain: FC = memo((): ReactElement => {
 
   const { id, name, placeholder, type, description } = editableElement as IElement
 
-  const editModeOffHandler = () => dispatch(editModeOff())
+  const editModeOffHandler = () => {
+    dispatch(editModeOff({ id }))
+  }
 
   const descriptionChangeHandler = (evt: ChangeEvent<HTMLInputElement>) => {
     dispatch(descriptionChange({ id, description: evt.target.value }))

@@ -49,7 +49,7 @@ export const DroppedElement: FC<IDroppedElement> = ({
 
   const setEditing = () => {
     if (!editMode) {
-      dispatch(editModeOn(id))
+      dispatch(editModeOn({ id }))
     }
   }
 

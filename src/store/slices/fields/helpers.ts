@@ -1,7 +1,7 @@
-const getDropId = () => {
-    let count = 0
+const generateDropId = () => {
+  let tempDropId = 0
 
-    return () => ++count
+  return () => ++tempDropId
 }
 
-export const dropId = getDropId()
+export const dropId = generateDropId()
