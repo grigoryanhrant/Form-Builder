@@ -1,58 +1,66 @@
-import type { IElement } from '@store/slices/fields/types'
 import type { ChangeEvent, FC, ReactElement } from 'react'
+import type { IElement } from '@store/slices/fields/types'
 import { EditorDefining } from './EditorDefining'
 import { AiFillCloseSquare, FaRemoveFormat } from '@static/icons'
-import { useAppDispatch } from '@store/hooks'
+import { useAppDispatch, useAppSelector } from '@store/hooks'
 import { descriptionChange, descriptionRemove, editModeOff } from '@store/slices/fields/fields'
+import { memo } from 'react'
 import {
-    Close,
-    Details,
-    EditableElement,
-    FieldRemove,
-    Input,
-    InputWrapper,
-    Label,
-    Title,
+  Close,
+  Details,
+  EditableElement,
+  FieldRemove,
+  Input,
+  InputWrapper,
+  Label,
+  Title,
 } from './ElementEditing.styled'
+import { NO_EDITABLE_ELEMENT } from '@global/constants'
 
-export const ElementEditingMain: FC<Omit<IElement, 'dropid'>> = ({ ...rest }): ReactElement => {
-    const { id, name, placeholder, type, description } = rest
+export const ElementEditingMain: FC = memo((): ReactElement => {
+  const dispatch = useAppDispatch()
 
-    const dispatch = useAppDispatch()
+  const { fields } = useAppSelector((state) => state.fieldsSlices)
 
-    const editModeOffHandler = () => dispatch(editModeOff())
+  const editableElement = fields.find((item) => item.editMode === true)
 
-    const descriptionChangeHandler = (evt: ChangeEvent<HTMLInputElement>) => {
-        dispatch(descriptionChange({ id, description: evt.target.value }))
-    }
+  if (editableElement === NO_EDITABLE_ELEMENT) {
+    return <></>
+  }
 
-    const descriptionRemoveHandler = () => dispatch(descriptionRemove({ id }))
+  const { id, name, placeholder, type, description } = editableElement as IElement
 
-    return (
-        <EditableElement>
-            <Close onClick={editModeOffHandler}>
-                <AiFillCloseSquare />
-            </Close>
+  const editModeOffHandler = () => dispatch(editModeOff())
 
-            <Title>{name}</Title>
+  const descriptionChangeHandler = (evt: ChangeEvent<HTMLInputElement>) => {
+    dispatch(descriptionChange({ id, description: evt.target.value }))
+  }
 
-            <Details>
-                <Label htmlFor='description'>Description</Label>
-                <InputWrapper>
-                    <Input
-                        id='description'
-                        value={description}
-                        onChange={descriptionChangeHandler}
-                    />
-                    {description && (
-                        <FieldRemove onClick={descriptionRemoveHandler}>
-                            <FaRemoveFormat />
-                        </FieldRemove>
-                    )}
-                </InputWrapper>
-            </Details>
+  const descriptionRemoveHandler = () => dispatch(descriptionRemove({ id }))
 
-            <Details>{EditorDefining({ id, name, placeholder, type })}</Details>
-        </EditableElement>
-    )
-}
+  return (
+    <EditableElement>
+      <Close onClick={editModeOffHandler}>
+        <AiFillCloseSquare />
+      </Close>
+
+      <Title>{name}</Title>
+
+      <Details>
+        <Label htmlFor='description'>Description</Label>
+        <InputWrapper>
+          <Input id='description' value={description} onChange={descriptionChangeHandler} />
+          {description && (
+            <FieldRemove onClick={descriptionRemoveHandler}>
+              <FaRemoveFormat />
+            </FieldRemove>
+          )}
+        </InputWrapper>
+      </Details>
+
+      <Details>{EditorDefining({ id, name, placeholder, type })}</Details>
+    </EditableElement>
+  )
+})
+
+ElementEditingMain.displayName = 'ElementEditingMain'
