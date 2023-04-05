@@ -1,4 +1,3 @@
-import type { ReactElement } from 'react'
 import {
   BiText,
   SiGmail,
@@ -25,23 +24,7 @@ import {
   UPLOAD,
 } from '@global/constants'
 
-interface ISidebarFormGroup {
-  type: string
-  name: string
-  description: string
-  descriptionForInput?: string
-  placeholder?: string
-  required?: boolean
-  icon: ReactElement
-  id: number
-}
-
-interface ISidebarFormFields {
-  contactInfo: ISidebarFormGroup[]
-  special: ISidebarFormGroup[]
-}
-
-export const SidebarFormFields: ISidebarFormFields = {
+export const SidebarFormFields = {
   contactInfo: [
     {
       type: TEXT_INPUT,

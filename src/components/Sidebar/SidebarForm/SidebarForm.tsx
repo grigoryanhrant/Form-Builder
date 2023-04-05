@@ -11,7 +11,7 @@ export const SidebarForm: FC = memo((): ReactElement => {
         <Title>Contact Info</Title>
         <Group>
           {SidebarFormFields.contactInfo.map(
-            ({ id, icon, type, name, description, descriptionForInput, placeholder, required }) => {
+            ({ id, icon, type, name, description, placeholder, required }) => {
               return (
                 <SidebarElement
                   key={id}
@@ -19,7 +19,6 @@ export const SidebarForm: FC = memo((): ReactElement => {
                   type={type}
                   name={name}
                   description={description}
-                  descriptionForInput={descriptionForInput}
                   placeholder={placeholder}
                   required={required}
                 />

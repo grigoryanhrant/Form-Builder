@@ -57,7 +57,6 @@ export const SidebarElement: FC<Readonly<IElement>> = memo(
           descriptionForInput: descriptionForInput,
           placeholder: placeholder,
           required: required,
-          editMode: false,
         }),
       )
     }
