@@ -1,23 +1,18 @@
-import type { Dispatch, FC, ReactElement, SetStateAction } from 'react'
-import type { IFile } from './FileUploadDefinition'
+import type { FC, ReactElement } from 'react'
+import type { UploadFileProps } from './FileUploadDefinition'
 import { BsTrash } from '@static/icons'
 import { Main, Remove, Size } from './File.styled'
 
-interface IFileDiv {
-  name: string
-  size: number
-  uploadFiles: IFile[]
-  setUploadFiles: Dispatch<SetStateAction<IFile[]>>
+interface FileProps extends UploadFileProps {
+  fileRemove: (name: string) => void
 }
 
-export const File: FC<IFileDiv> = ({ name, size, uploadFiles, setUploadFiles }): ReactElement => {
-  const fileRemoveHandler = () => {
-    setUploadFiles(uploadFiles.filter((item: IFile) => item.name !== name))
-  }
+export const File: FC<FileProps> = ({ name, size, fileRemove }): ReactElement => {
+  const fileRemoveHandler = () => fileRemove(name)
 
   return (
-    <Main>
-      <Remove onClick={fileRemoveHandler}>
+    <Main onClick={fileRemoveHandler}>
+      <Remove>
         <BsTrash />
       </Remove>
       <Size>

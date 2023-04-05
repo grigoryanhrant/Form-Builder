@@ -20,17 +20,13 @@ import {
   UploadFromInput,
 } from './FileUploadDefinition.styled'
 
-export interface IFile {
-  lastModified: number
-  lastModifiedDate?: string
+export interface UploadFileProps {
   name: string
   size: number
-  type: string
-  webkitRelativePath: string
 }
 
 export const FileUploadDefinition: FC = (): ReactElement => {
-  const [uploadFiles, setUploadFiles] = useState<IFile[]>([])
+  const [uploadFiles, setUploadFiles] = useState<UploadFileProps[]>([])
 
   const handleChange = (evt: ChangeEvent<HTMLInputElement>) => {
     evt.preventDefault()
@@ -41,8 +37,8 @@ export const FileUploadDefinition: FC = (): ReactElement => {
   }
 
   const addFileHandler = useCallback(
-    (item: FileList) => {
-      setUploadFiles((prev: IFile[]) => [...prev, ...item])
+    (files: FileList) => {
+      setUploadFiles((prev: UploadFileProps[]) => [...prev, ...files])
     },
     [uploadFiles],
   )
@@ -51,8 +47,8 @@ export const FileUploadDefinition: FC = (): ReactElement => {
     () => ({
       accept: [NativeTypes.FILE],
 
-      drop(item: { files: FileList }) {
-        addFileHandler(item.files)
+      drop({ files }: { files: FileList }) {
+        addFileHandler(files)
       },
 
       collect: (monitor: DropTargetMonitor) => {
@@ -67,16 +63,12 @@ export const FileUploadDefinition: FC = (): ReactElement => {
 
   const uniqueFiles = Array.from(new UniqueObjectsSet(uploadFiles))
 
-  const filesRender = uniqueFiles.map((item: IFile) => {
-    return (
-      <File
-        key={nanoid()}
-        name={item.name}
-        size={item.size}
-        uploadFiles={uploadFiles}
-        setUploadFiles={setUploadFiles}
-      />
-    )
+  const fileRemove = (removedFileName: string) => {
+    setUploadFiles(uploadFiles.filter(({ name }) => name !== removedFileName))
+  }
+
+  const filesRender = uniqueFiles.map(({ name, size }: UploadFileProps) => {
+    return <File key={nanoid()} name={name} size={size} fileRemove={fileRemove} />
   })
 
   const $htmlForInput = nanoid()

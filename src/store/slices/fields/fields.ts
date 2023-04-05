@@ -47,7 +47,7 @@ export const fieldsSlice = createSlice({
     },
 
     removeField: (draft, action: IRemoveFieldPayload) => {
-      draft.fields = draft.fields.filter((field) => field.id !== action.payload)
+      draft.fields = draft.fields.filter((field) => field.id !== action.payload.id)
     },
 
     descriptionChange: (draft, action: IChangeDescriptionPayload) => {

@@ -1,5 +1,4 @@
 import type { ChangeEvent, FC, ReactElement } from 'react'
-import type { IElement } from '@store/slices/fields/types'
 import { EditorDefining } from './EditorDefining'
 import { AiFillCloseSquare, FaRemoveFormat } from '@static/icons'
 import { useAppDispatch, useAppSelector } from '@store/hooks'
@@ -17,18 +16,26 @@ import {
 } from './ElementEditing.styled'
 import { NO_EDITABLE_ELEMENT } from '@global/constants'
 
+export type FieldIsEditingProps = {
+  id: string
+  name: string
+  description: string
+  type: string
+  placeholder: string
+}
+
 export const ElementEditingMain: FC = memo((): ReactElement => {
   const dispatch = useAppDispatch()
 
   const { fields } = useAppSelector((state) => state.fieldsSlices)
 
-  const editableElement = fields.find((item) => item.editMode === true)
+  const FieldIsEditing = fields.find(({editMode}) => editMode)
 
-  if (editableElement === NO_EDITABLE_ELEMENT) {
+  if (FieldIsEditing === NO_EDITABLE_ELEMENT) {
     return <></>
   }
 
-  const { id, name, placeholder, type, description } = editableElement as IElement
+  const { id, name, placeholder, type, description } = FieldIsEditing as FieldIsEditingProps
 
   const editModeOffHandler = () => {
     dispatch(editModeOff({ id }))
@@ -60,7 +67,7 @@ export const ElementEditingMain: FC = memo((): ReactElement => {
         </InputWrapper>
       </Details>
 
-      <Details>{EditorDefining({ id, name, placeholder, type })}</Details>
+      <Details>{EditorDefining({ id, type, placeholder })}</Details>
     </EditableElement>
   )
 })

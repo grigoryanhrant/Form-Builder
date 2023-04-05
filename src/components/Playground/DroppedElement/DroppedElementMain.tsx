@@ -7,7 +7,7 @@ import { useDrag, useDrop } from 'react-dnd'
 import { DroppedElement } from './DroppedElement'
 import { DragDropCounting } from '@helpers/dragDropCounting'
 
-interface IDroppedElementParent {
+interface DroppedElementMainProps {
   index: number
   moveCard: (dragIndex: number, hoverIndex: number) => void
   elementAddress?: string
@@ -22,7 +22,7 @@ interface IDroppedElementParent {
   editMode?: boolean
 }
 
-export const DroppedElementMain: FC<IDroppedElementParent> = memo(
+export const DroppedElementMain: FC<DroppedElementMainProps> = memo(
   ({
     type,
     name,

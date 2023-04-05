@@ -1,7 +1,7 @@
 import type { ReactElement } from 'react'
+import type {FieldIsEditingProps} from "./ElementEditingMain";
 import {
   InputEditor,
-  TextareaEditor,
   SelectEditor,
   MultiselectEditor,
   FileUploadEditor,
@@ -19,16 +19,11 @@ import {
   UPLOAD,
 } from '@global/constants'
 
-export interface IElementEditing {
-  id?: string
-  name?: string
-  placeholder?: string
-  type?: string
-}
+export type EditorDefiningProps = Pick<FieldIsEditingProps, 'id' | 'type' | 'placeholder'>
 
-type TEditorDefining = ({ id, placeholder, type }: IElementEditing) => ReactElement
+type EditorDefiningType = ({ id, type, placeholder }: EditorDefiningProps) => ReactElement
 
-export const EditorDefining: TEditorDefining = ({ id, placeholder, type }) => {
+export const EditorDefining: EditorDefiningType = ({ id, type, placeholder }) => {
   switch (type) {
     case TEXT_INPUT:
     case EMAIL_INPUT:
@@ -39,7 +34,7 @@ export const EditorDefining: TEditorDefining = ({ id, placeholder, type }) => {
       return <InputEditor id={id} placeholder={placeholder} />
 
     case LONG_TEXT:
-      return <TextareaEditor id={id} placeholder={placeholder} />
+      return <InputEditor id={id} placeholder={placeholder} />
 
     case SELECT:
       return <SelectEditor />
