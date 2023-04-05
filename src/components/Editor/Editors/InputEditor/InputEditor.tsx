@@ -5,30 +5,30 @@ import { FaRemoveFormat } from '@static/icons'
 import { FieldRemove, Input, InputWrapper, Label } from '../../ElementEditing/ElementEditing.styled'
 
 export interface IEditingInput {
-    id?: string
-    placeholder?: string
+  id?: string
+  placeholder?: string
 }
 
 export const InputEditor: FC<IEditingInput> = ({ id, placeholder }): ReactElement => {
-    const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch()
 
-    const placeholderChangeHandler = (evt: ChangeEvent<HTMLInputElement>) => {
-        dispatch(placeholderChange({ id, inputPlaceholder: evt.target.value }))
-    }
+  const placeholderChangeHandler = (evt: ChangeEvent<HTMLInputElement>) => {
+    dispatch(placeholderChange({ id, inputPlaceholder: evt.target.value }))
+  }
 
-    const placeholderRemoveHandler = () => dispatch(placeholderRemove({ id }))
+  const placeholderRemoveHandler = () => dispatch(placeholderRemove({ id }))
 
-    return (
-        <>
-            <Label htmlFor={id}>Placeholder</Label>
-            <InputWrapper>
-                <Input id={id} value={placeholder} onChange={placeholderChangeHandler} />
-                {placeholder && (
-                    <FieldRemove onClick={placeholderRemoveHandler}>
-                        <FaRemoveFormat />
-                    </FieldRemove>
-                )}
-            </InputWrapper>
-        </>
-    )
+  return (
+    <>
+      <Label htmlFor={id}>Placeholder</Label>
+      <InputWrapper>
+        <Input id={id} value={placeholder} onChange={placeholderChangeHandler} />
+        {placeholder && (
+          <FieldRemove onClick={placeholderRemoveHandler}>
+            <FaRemoveFormat />
+          </FieldRemove>
+        )}
+      </InputWrapper>
+    </>
+  )
 }

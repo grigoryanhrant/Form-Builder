@@ -45,7 +45,7 @@ export const DroppedElement: FC<IDroppedElement> = ({
 }): ReactElement => {
   const dispatch = useAppDispatch()
 
-  const cardRemoveHandler = () => dispatch(removeField(id))
+  const cardRemoveHandler = () => dispatch(removeField({ id }))
 
   const setEditing = () => {
     if (!editMode) {

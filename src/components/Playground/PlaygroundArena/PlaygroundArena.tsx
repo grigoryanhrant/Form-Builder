@@ -12,109 +12,109 @@ import { ELEMENT_ADDRESS_DROPPED, ELEMENT_ADDRESS_FORM } from '@global/constants
 import { DropZone, Main, Wrapper } from './PlaygroundArena.styled'
 
 interface IPlaygroundArenaDropItem {
-    elementAddress: string
-    type: string
-    name: string
-    description: string
-    descriptionForInput?: string
-    placeholder: string
-    required?: boolean
+  elementAddress: string
+  type: string
+  name: string
+  description: string
+  descriptionForInput?: string
+  placeholder: string
+  required?: boolean
 }
 
 export const PlaygroundArena: FC = (): ReactElement => {
-    const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch()
 
-    const { fields } = useAppSelector((state) => state.fieldsSlices)
+  const { fields } = useAppSelector((state) => state.fieldsSlices)
 
-    const [cards, setCards] = useState(fields)
+  const [cards, setCards] = useState(fields)
 
-    const myElement = useRef<HTMLDivElement>(null)
+  const myElement = useRef<HTMLDivElement>(null)
 
-    useEffect(() => {
-        setCards(fields)
-    }, [fields])
+  useEffect(() => {
+    setCards(fields)
+  }, [fields])
 
-    useEffect(() => {
-        if (myElement && myElement.current) {
-            myElement.current.addEventListener('mouseleave', mouseLeaveUpdateHandler, true)
-        }
-
-        return () => {
-            if (myElement && myElement.current) {
-                myElement.current.removeEventListener('mouseleave', mouseLeaveUpdateHandler, true)
-            }
-        }
-    }, [cards, fields])
-
-    const mouseLeaveUpdateHandler = () => {
-        if (!compareObjects(cards, fields)) {
-            dispatch(updateFields(cards))
-        }
+  useEffect(() => {
+    if (myElement && myElement.current) {
+      myElement.current.addEventListener('mouseleave', mouseLeaveUpdateHandler, true)
     }
 
-    const [{ isOver }, drop] = useDrop(() => ({
-        accept: 'element',
-        drop: (item: IPlaygroundArenaDropItem) => {
-            if (item.elementAddress !== ELEMENT_ADDRESS_FORM) return
+    return () => {
+      if (myElement && myElement.current) {
+        myElement.current.removeEventListener('mouseleave', mouseLeaveUpdateHandler, true)
+      }
+    }
+  }, [cards, fields])
 
-            dispatch(
-                addField({
-                    type: item.type,
-                    name: item.name,
-                    description: item.description,
-                    descriptionForInput: item.descriptionForInput,
-                    placeholder: item.placeholder,
-                    required: item.required,
-                    editMode: false,
-                }),
-            )
-        },
+  const mouseLeaveUpdateHandler = () => {
+    if (!compareObjects(cards, fields)) {
+      dispatch(updateFields(cards))
+    }
+  }
 
-        collect: (monitor: DropTargetMonitor) => ({
-            isOver: monitor.isOver(),
-            dropHere: monitor.isOver(),
+  const [{ isOver }, drop] = useDrop(() => ({
+    accept: 'element',
+    drop: (item: IPlaygroundArenaDropItem) => {
+      if (item.elementAddress !== ELEMENT_ADDRESS_FORM) return
+
+      dispatch(
+        addField({
+          type: item.type,
+          name: item.name,
+          description: item.description,
+          descriptionForInput: item.descriptionForInput,
+          placeholder: item.placeholder,
+          required: item.required,
+          editMode: false,
         }),
-    }))
+      )
+    },
 
-    const moveCard = useCallback(
-        (dragIndex: number, hoverIndex: number) => {
-            setCards((prevCards: IElement[]) =>
-                update(prevCards, {
-                    $splice: [
-                        [dragIndex, 1],
-                        [hoverIndex, 0, prevCards[dragIndex] as IElement],
-                    ],
-                }),
-            )
-        },
-        [cards],
-    )
+    collect: (monitor: DropTargetMonitor) => ({
+      isOver: monitor.isOver(),
+      dropHere: monitor.isOver(),
+    }),
+  }))
 
-    const fieldsRenderCallback = useCallback((item: IElement, index: number) => {
-        return (
-            <DroppedElementMain
-                key={item.id}
-                id={item.id}
-                index={index}
-                moveCard={moveCard}
-                elementAddress={ELEMENT_ADDRESS_DROPPED}
-                type={item.type}
-                name={item.name}
-                description={item.description}
-                descriptionForInput={item.descriptionForInput}
-                placeholder={item.placeholder}
-                editMode={item.editMode}
-            />
-        )
-    }, [])
+  const moveCard = useCallback(
+    (dragIndex: number, hoverIndex: number) => {
+      setCards((prevCards: IElement[]) =>
+        update(prevCards, {
+          $splice: [
+            [dragIndex, 1],
+            [hoverIndex, 0, prevCards[dragIndex] as IElement],
+          ],
+        }),
+      )
+    },
+    [cards],
+  )
 
+  const fieldsRenderCallback = useCallback((item: IElement, index: number) => {
     return (
-        <Main ref={myElement}>
-            <Wrapper ref={drop} isOver={isOver}>
-                {cards.map((card, i) => fieldsRenderCallback(card, i))}
-
-                {isOver && <DropZone>DROP THE ELEMENT HERE</DropZone>}
-            </Wrapper>
-        </Main>
+      <DroppedElementMain
+        key={item.id}
+        id={item.id}
+        index={index}
+        moveCard={moveCard}
+        elementAddress={ELEMENT_ADDRESS_DROPPED}
+        type={item.type}
+        name={item.name}
+        description={item.description}
+        descriptionForInput={item.descriptionForInput}
+        placeholder={item.placeholder}
+        editMode={item.editMode}
+      />
     )
+  }, [])
+
+  return (
+    <Main ref={myElement}>
+      <Wrapper ref={drop} isOver={isOver}>
+        {cards.map((card, i) => fieldsRenderCallback(card, i))}
+
+        {isOver && <DropZone>DROP THE ELEMENT HERE</DropZone>}
+      </Wrapper>
+    </Main>
+  )
 }

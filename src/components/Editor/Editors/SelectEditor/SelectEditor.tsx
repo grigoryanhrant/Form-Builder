@@ -1,3 +1,3 @@
 export const SelectEditor = () => {
-    return <div></div>
+  return <div></div>
 }

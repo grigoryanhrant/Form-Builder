@@ -8,9 +8,9 @@ import { App } from './App'
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
 root.render(
-    <Provider store={store}>
-        <DndProvider backend={HTML5Backend}>
-            <App />
-        </DndProvider>
-    </Provider>,
+  <Provider store={store}>
+    <DndProvider backend={HTML5Backend}>
+      <App />
+    </DndProvider>
+  </Provider>,
 )

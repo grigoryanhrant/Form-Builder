@@ -4,37 +4,37 @@ import type { TDragObject } from '@global/types/types'
 import { ELEMENT_ADDRESS_DROPPED } from '@global/constants'
 
 export const DragDropCounting = (
-    item: TDragObject,
-    monitor: DropTargetMonitor,
-    DroppedRef: {
-        current: HTMLDivElement | null
-    },
-    index: number,
-    moveCard: (dragIndex: number, hoverIndex: number) => void,
+  item: TDragObject,
+  monitor: DropTargetMonitor,
+  DroppedRef: {
+    current: HTMLDivElement | null
+  },
+  index: number,
+  moveCard: (dragIndex: number, hoverIndex: number) => void,
 ) => {
-    if (item.elementAddress !== ELEMENT_ADDRESS_DROPPED) return
+  if (item.elementAddress !== ELEMENT_ADDRESS_DROPPED) return
 
-    if (!DroppedRef.current) return
+  if (!DroppedRef.current) return
 
-    const dragIndex = item.index
+  const dragIndex = item.index
 
-    const hoverIndex = index
+  const hoverIndex = index
 
-    if (dragIndex === hoverIndex) return
+  if (dragIndex === hoverIndex) return
 
-    const hoverBoundingRect = DroppedRef.current?.getBoundingClientRect()
+  const hoverBoundingRect = DroppedRef.current?.getBoundingClientRect()
 
-    const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
+  const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
 
-    const clientOffset = monitor.getClientOffset()
+  const clientOffset = monitor.getClientOffset()
 
-    const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top
+  const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top
 
-    if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) return
+  if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) return
 
-    if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) return
+  if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) return
 
-    moveCard(dragIndex, hoverIndex)
+  moveCard(dragIndex, hoverIndex)
 
-    item.index = hoverIndex
+  item.index = hoverIndex
 }

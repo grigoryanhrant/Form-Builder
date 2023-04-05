@@ -8,67 +8,67 @@ import { Icon, Main, Title } from './SidebarElement.styled'
 import { memo } from 'react'
 
 interface IElement {
-    elementAddress?: typeof ELEMENT_ADDRESS_FORM
-    icon: ReactElement
-    type: string
-    name: string
-    description: string
-    descriptionForInput?: string
-    placeholder?: string
-    required?: boolean
+  elementAddress?: typeof ELEMENT_ADDRESS_FORM
+  icon: ReactElement
+  type: string
+  name: string
+  description: string
+  descriptionForInput?: string
+  placeholder?: string
+  required?: boolean
 }
 
 export const SidebarElement: FC<Readonly<IElement>> = memo(
-    ({
-        elementAddress = ELEMENT_ADDRESS_FORM,
-        icon,
+  ({
+    elementAddress = ELEMENT_ADDRESS_FORM,
+    icon,
+    type,
+    name,
+    description,
+    descriptionForInput,
+    placeholder,
+    required,
+  }): ReactElement => {
+    const [, drag] = useDrag(() => ({
+      type: 'element',
+      item: {
+        elementAddress,
         type,
         name,
         description,
         descriptionForInput,
         placeholder,
         required,
-    }): ReactElement => {
-        const [, drag] = useDrag(() => ({
-            type: 'element',
-            item: {
-                elementAddress,
-                type,
-                name,
-                description,
-                descriptionForInput,
-                placeholder,
-                required,
-            },
+      },
 
-            collect: (monitor: DragSourceMonitor) => ({
-                isDragging: monitor.isDragging(),
-            }),
-        }))
+      collect: (monitor: DragSourceMonitor) => ({
+        isDragging: monitor.isDragging(),
+      }),
+    }))
 
-        const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch()
 
-        const addFieldHandler = () => {
-            dispatch(
-                addField({
-                    type: type,
-                    name: name,
-                    description: description,
-                    descriptionForInput: descriptionForInput,
-                    placeholder: placeholder,
-                    required: required,
-                    editMode: false,
-                }),
-            )
-        }
+    const addFieldHandler = () => {
+      dispatch(
+        addField({
+          type: type,
+          name: name,
+          description: description,
+          descriptionForInput: descriptionForInput,
+          placeholder: placeholder,
+          required: required,
+          editMode: false,
+        }),
+      )
+    }
 
-        return (
-            <Main ref={drag} onClick={addFieldHandler}>
-                <Icon>{icon}</Icon>
-                <Title>{name}</Title>
-            </Main>
-        )
-    },
+    return (
+      <Main ref={drag} onClick={addFieldHandler}>
+        <Icon>{icon}</Icon>
+        <Title>{name}</Title>
+      </Main>
+    )
+  },
 )
 
 SidebarElement.displayName = 'SidebarElement'
