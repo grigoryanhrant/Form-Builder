@@ -1,28 +1,13 @@
 import type { Identifier } from 'dnd-core'
 import type { DragSourceMonitor, DropTargetMonitor } from 'react-dnd'
-import type { TDragObject } from '@global/types/types'
+import type { DragObjectType } from '@common/types'
 import type { FC, ReactElement } from 'react'
 import { useRef, memo } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
 import { DroppedElement } from './DroppedElement'
 import { DragDropCounting } from '@helpers/dragDropCounting'
 
-interface DroppedElementMainProps {
-  index: number
-  moveCard: (dragIndex: number, hoverIndex: number) => void
-  elementAddress?: string
-  id?: string
-  type?: string
-  name?: string
-  description?: string
-  descriptionForInput?: string
-  placeholder?: string
-  required?: boolean
-  value?: string
-  editMode?: boolean
-}
-
-export const DroppedElementMain: FC<DroppedElementMainProps> = memo(
+export const DroppedElementMain: FC<any> = memo(
   ({
     type,
     name,
@@ -39,7 +24,7 @@ export const DroppedElementMain: FC<DroppedElementMainProps> = memo(
   }): ReactElement => {
     const DroppedRef = useRef<HTMLDivElement>(null)
 
-    const [{ handlerId }, drop] = useDrop<TDragObject, void, { handlerId: Identifier | null }>({
+    const [{ handlerId }, drop] = useDrop<DragObjectType, void, { handlerId: Identifier | null }>({
       accept: 'dropped_element',
 
       collect(monitor) {
@@ -48,15 +33,15 @@ export const DroppedElementMain: FC<DroppedElementMainProps> = memo(
         }
       },
 
-      hover(item: TDragObject, monitor: DropTargetMonitor<TDragObject, void>) {
-        DragDropCounting(item, monitor, DroppedRef, index, moveCard)
+      hover(field: DragObjectType, monitor: DropTargetMonitor<DragObjectType, void>) {
+        DragDropCounting(field, monitor, DroppedRef, index, moveCard)
       },
     })
 
     const [{ isDragging }, drag] = useDrag({
       type: 'dropped_element',
       item: { id, index, elementAddress },
-      collect: (monitor: DragSourceMonitor<TDragObject, TDragObject>) => ({
+      collect: (monitor: DragSourceMonitor<DragObjectType, DragObjectType>) => ({
         isDragging: monitor.isDragging(),
       }),
     })

@@ -1,17 +1,15 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit'
-import {
-  IAddFieldPayload,
-  IChangeDescriptionPayload,
-  IChangePlaceholderPayload,
-  IEditModePayload,
-  IFieldInitialState,
-  IRemoveFieldPayload,
-  IUpdateFieldPayload,
-  IValueRemovePayload,
+import type {
+  StoreInitialProps,
+  AdvanceActionProps,
+  AdvanceActionArrayProps,
+  BasicPayloadProps,
+  DescriptionChangeProps,
+  PlaceholderChangeProps,
 } from './types'
 import { dropId } from './helpers'
 
-const initialState: IFieldInitialState = {
+const initialState: StoreInitialProps = {
   fields: [],
 }
 
@@ -19,8 +17,8 @@ export const fieldsSlice = createSlice({
   name: 'fields',
   initialState,
   reducers: {
-    addField: (draft, action: IAddFieldPayload) => {
-      action.payload.dropid = dropId()
+    addField: (draft, action: AdvanceActionProps) => {
+      action.payload.drop_id = dropId()
 
       action.payload.id = nanoid()
 
@@ -42,15 +40,15 @@ export const fieldsSlice = createSlice({
       }
     },
 
-    updateFields: (draft, action: IUpdateFieldPayload) => {
+    updateFields: (draft, action: AdvanceActionArrayProps) => {
       draft.fields = action.payload
     },
 
-    removeField: (draft, action: IRemoveFieldPayload) => {
+    removeField: (draft, action: BasicPayloadProps) => {
       draft.fields = draft.fields.filter((field) => field.id !== action.payload.id)
     },
 
-    descriptionChange: (draft, action: IChangeDescriptionPayload) => {
+    descriptionChange: (draft, action: DescriptionChangeProps) => {
       draft.fields.map((field) =>
         field.id === action.payload.id
           ? (field.description = action.payload.description)
@@ -58,7 +56,7 @@ export const fieldsSlice = createSlice({
       )
     },
 
-    placeholderChange: (draft, action: IChangePlaceholderPayload) => {
+    placeholderChange: (draft, action: PlaceholderChangeProps) => {
       draft.fields.map((field) =>
         field.id === action.payload.id
           ? (field.placeholder = action.payload.inputPlaceholder)
@@ -66,25 +64,25 @@ export const fieldsSlice = createSlice({
       )
     },
 
-    placeholderRemove: (draft, action: IValueRemovePayload) => {
+    placeholderRemove: (draft, action: BasicPayloadProps) => {
       draft.fields.map((field) =>
         field.id === action.payload.id ? (field.placeholder = '') : field.placeholder,
       )
     },
 
-    descriptionRemove: (draft, action: IValueRemovePayload) => {
+    descriptionRemove: (draft, action: BasicPayloadProps) => {
       draft.fields.map((field) =>
         field.id === action.payload.id ? (field.description = '') : field.description,
       )
     },
 
-    editModeOn: (draft, action: IEditModePayload) => {
+    editModeOn: (draft, action: BasicPayloadProps) => {
       draft.fields.map((field) => {
         field.editMode = field.id === action.payload.id
       })
     },
 
-    editModeOff: (draft, action: IEditModePayload) => {
+    editModeOff: (draft, action: BasicPayloadProps) => {
       draft.fields.find((field) => {
         if (field.id === action.payload.id) {
           field.editMode = false

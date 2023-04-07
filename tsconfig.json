@@ -22,7 +22,7 @@
             "@static/*": ["./static/*"],
             "@helpers/*": ["./helpers/*"],
             "@mocks/*": ["./mocks/*"],
-            "@global/*": ["./global/*"]
+            "@common/*": ["./common/*"]
         }
     },
     "include": ["src"],

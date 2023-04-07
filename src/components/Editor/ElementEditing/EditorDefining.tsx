@@ -1,11 +1,6 @@
 import type { ReactElement } from 'react'
-import type {FieldIsEditingProps} from "./ElementEditingMain";
-import {
-  InputEditor,
-  SelectEditor,
-  MultiselectEditor,
-  FileUploadEditor,
-} from '../Editors'
+import type { FieldIsEditingProps } from './ElementEditingMain'
+import { InputEditor, SelectEditor, MultiselectEditor, FileUploadEditor } from '../Editors'
 import {
   CHECKBOX,
   DATEPICKER,
@@ -17,7 +12,7 @@ import {
   SHORT_TEXT,
   TEXT_INPUT,
   UPLOAD,
-} from '@global/constants'
+} from '../../../common/constants'
 
 export type EditorDefiningProps = Pick<FieldIsEditingProps, 'id' | 'type' | 'placeholder'>
 

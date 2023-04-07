@@ -1,5 +1,4 @@
-import type { FC, ReactElement, RefObject } from 'react'
-import type { Identifier } from 'dnd-core'
+import type { FC, ReactElement } from 'react'
 import { useAppDispatch } from '@store/hooks'
 import { editModeOn, removeField } from '@store/slices/fields/fields'
 import { ElementDefinition } from './ElementDefintion'
@@ -14,22 +13,7 @@ import {
   Description,
 } from './DroppedElement.styled'
 
-interface IDroppedElement {
-  isDragging: boolean
-  DroppedRef: RefObject<HTMLDivElement>
-  handlerId: Identifier | null
-  id?: string
-  type?: string
-  name?: string
-  description?: string
-  descriptionForInput?: string
-  placeholder?: string
-  required?: boolean
-  value?: string
-  editMode?: boolean
-}
-
-export const DroppedElement: FC<IDroppedElement> = ({
+export const DroppedElement: FC<any> = ({
   isDragging,
   DroppedRef,
   handlerId,

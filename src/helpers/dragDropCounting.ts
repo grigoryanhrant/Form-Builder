@@ -1,10 +1,10 @@
 import type { XYCoord } from 'dnd-core'
 import type { DropTargetMonitor } from 'react-dnd'
-import type { TDragObject } from '@global/types/types'
-import { ELEMENT_ADDRESS_DROPPED } from '@global/constants'
+import type { DragObjectType } from '../common/types'
+import { ELEMENT_ADDRESS_DROPPED } from '../common/constants'
 
 export const DragDropCounting = (
-  item: TDragObject,
+  field: DragObjectType,
   monitor: DropTargetMonitor,
   DroppedRef: {
     current: HTMLDivElement | null
@@ -12,11 +12,11 @@ export const DragDropCounting = (
   index: number,
   moveCard: (dragIndex: number, hoverIndex: number) => void,
 ) => {
-  if (item.elementAddress !== ELEMENT_ADDRESS_DROPPED) return
+  if (field.elementAddress !== ELEMENT_ADDRESS_DROPPED) return
 
   if (!DroppedRef.current) return
 
-  const dragIndex = item.index
+  const dragIndex = field.index
 
   const hoverIndex = index
 
@@ -36,5 +36,5 @@ export const DragDropCounting = (
 
   moveCard(dragIndex, hoverIndex)
 
-  item.index = hoverIndex
+  field.index = hoverIndex
 }

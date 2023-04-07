@@ -1,62 +1,44 @@
-export interface IElement {
-  dropid?: number
+import type { ElementMostBasicProps } from '@common/types'
+
+export interface StoreInitialProps {
+  fields: StoreElementProps[]
+}
+
+export interface StoreElementProps extends ElementMostBasicProps {
+  drop_id?: number
   id?: string
-  type: string
-  name: string
-  description: string
-  descriptionForInput?: string
-  placeholder?: string
   editMode?: boolean
-  required?: boolean
-  selectFields?: IElementSelects[]
+  selectFields?: {
+    value: string
+    label: string
+    color: string
+  }[]
 }
 
-interface IElementSelects {
-  value: string
-  label: string
-  color: string
+export interface AdvanceActionProps {
+  payload: StoreElementProps
 }
 
-export interface IFieldInitialState {
-  fields: IElement[]
+export interface AdvanceActionArrayProps {
+  payload: StoreElementProps[]
 }
 
-export interface IAddFieldPayload {
-  payload: IElement
-}
-
-export interface IUpdateFieldPayload {
-  payload: IElement[]
-}
-
-export interface IRemoveFieldPayload {
+export interface BasicPayloadProps {
   payload: {
     id?: string
   }
 }
 
-export interface IChangeDescriptionPayload {
+export interface DescriptionChangeProps {
   payload: {
     id?: string
     description: string
   }
 }
 
-export interface IChangePlaceholderPayload {
+export interface PlaceholderChangeProps {
   payload: {
     id?: string
     inputPlaceholder: string
-  }
-}
-
-export interface IValueRemovePayload {
-  payload: {
-    id?: string
-  }
-}
-
-export interface IEditModePayload {
-  payload: {
-    id?: string
   }
 }

@@ -1,6 +1,8 @@
 import type { DropTargetMonitor } from 'react-dnd'
-import type { IElement } from '@store/slices/fields/types'
 import type { FC, ReactElement } from 'react'
+import type { ElementMostBasicProps } from '@common/types'
+import type { ElementAdditionalProps } from '@common/types'
+import type { StoreElementProps } from '@store/slices/fields/types'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { addField, updateFields } from '@store/slices/fields/fields'
 import update from 'immutability-helper'
@@ -8,18 +10,10 @@ import { useDrop } from 'react-dnd'
 import { compareObjects } from '@helpers/compareObjects'
 import { useAppSelector, useAppDispatch } from '@store/hooks'
 import { DroppedElementMain } from '../DroppedElement/DroppedElementMain'
-import { ELEMENT_ADDRESS_DROPPED, ELEMENT_ADDRESS_FORM } from '@global/constants'
+import { ELEMENT_ADDRESS_DROPPED, ELEMENT_ADDRESS_FORM } from '@common/constants'
 import { DropZone, Main, Wrapper } from './PlaygroundArena.styled'
 
-interface IPlaygroundArenaDropItem {
-  elementAddress: string
-  type: string
-  name: string
-  description: string
-  descriptionForInput?: string
-  placeholder: string
-  required?: boolean
-}
+type DropProps = ElementMostBasicProps & ElementAdditionalProps
 
 export const PlaygroundArena: FC = (): ReactElement => {
   const dispatch = useAppDispatch()
@@ -28,7 +22,7 @@ export const PlaygroundArena: FC = (): ReactElement => {
 
   const [cards, setCards] = useState(fields)
 
-  const myElement = useRef<HTMLDivElement>(null)
+  const myElement = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     setCards(fields)
@@ -54,17 +48,17 @@ export const PlaygroundArena: FC = (): ReactElement => {
 
   const [{ isOver }, drop] = useDrop(() => ({
     accept: 'element',
-    drop: (item: IPlaygroundArenaDropItem) => {
-      if (item.elementAddress !== ELEMENT_ADDRESS_FORM) return
+    drop: (field: DropProps) => {
+      if (field.elementAddress !== ELEMENT_ADDRESS_FORM) return
 
       dispatch(
         addField({
-          type: item.type,
-          name: item.name,
-          description: item.description,
-          descriptionForInput: item.descriptionForInput,
-          placeholder: item.placeholder,
-          required: item.required,
+          type: field.type,
+          name: field.name,
+          description: field.description,
+          descriptionForInput: field.descriptionForInput,
+          placeholder: field.placeholder,
+          required: field.required,
           editMode: false,
         }),
       )
@@ -78,11 +72,11 @@ export const PlaygroundArena: FC = (): ReactElement => {
 
   const moveCard = useCallback(
     (dragIndex: number, hoverIndex: number) => {
-      setCards((prevCards: IElement[]) =>
+      setCards((prevCards: StoreElementProps[]) =>
         update(prevCards, {
           $splice: [
             [dragIndex, 1],
-            [hoverIndex, 0, prevCards[dragIndex] as IElement],
+            [hoverIndex, 0, prevCards[dragIndex] as StoreElementProps],
           ],
         }),
       )
@@ -90,23 +84,41 @@ export const PlaygroundArena: FC = (): ReactElement => {
     [cards],
   )
 
-  const fieldsRenderCallback = useCallback((item: IElement, index: number) => {
-    return (
-      <DroppedElementMain
-        key={item.id}
-        id={item.id}
-        index={index}
-        moveCard={moveCard}
-        elementAddress={ELEMENT_ADDRESS_DROPPED}
-        type={item.type}
-        name={item.name}
-        description={item.description}
-        descriptionForInput={item.descriptionForInput}
-        placeholder={item.placeholder}
-        editMode={item.editMode}
-      />
-    )
-  }, [])
+  type DroppedElementOmittedProps = Omit<StoreElementProps, 'drop_id' | 'selectFields'>
+
+  const fieldsRenderCallback = useCallback(
+    (
+      {
+        id,
+        type,
+        name,
+        description,
+        descriptionForInput,
+        placeholder,
+        required,
+        editMode,
+      }: DroppedElementOmittedProps,
+      index: number,
+    ) => {
+      return (
+        <DroppedElementMain
+          key={id}
+          id={id}
+          index={index}
+          moveCard={moveCard}
+          elementAddress={ELEMENT_ADDRESS_DROPPED}
+          type={type}
+          name={name}
+          description={description}
+          descriptionForInput={descriptionForInput}
+          placeholder={placeholder}
+          editMode={editMode}
+          required={required}
+        />
+      )
+    },
+    [],
+  )
 
   return (
     <Main ref={myElement}>

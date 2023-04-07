@@ -1,4 +1,4 @@
-import type { ReactElement } from 'react'
+import type { FC } from 'react'
 import {
   FileUploadDefinition,
   InputDefinition,
@@ -16,30 +16,10 @@ import {
   SHORT_TEXT,
   TEXT_INPUT,
   UPLOAD,
-} from '@global/constants'
+} from '@common/constants'
 import { setInputType } from '@helpers/setInputType'
 
-export interface IElementDefinition {
-  id?: string
-  type?: string
-  name?: string
-  placeholder?: string
-  descriptionForInput?: string
-  value?: string
-  required?: boolean
-}
-
-type TElementDefinition = ({
-  id,
-  type,
-  name,
-  placeholder,
-  value,
-  descriptionForInput,
-  required,
-}: IElementDefinition) => ReactElement
-
-export const ElementDefinition: TElementDefinition = ({
+export const ElementDefinition: FC<any> = ({
   id,
   type,
   name,

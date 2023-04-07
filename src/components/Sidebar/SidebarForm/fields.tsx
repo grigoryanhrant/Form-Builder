@@ -22,7 +22,7 @@ import {
   SHORT_TEXT,
   TEXT_INPUT,
   UPLOAD,
-} from '@global/constants'
+} from '../../../common/constants'
 
 export const SidebarFormFields = {
   contactInfo: [

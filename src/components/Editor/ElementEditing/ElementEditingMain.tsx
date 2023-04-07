@@ -14,7 +14,7 @@ import {
   Label,
   Title,
 } from './ElementEditing.styled'
-import { NO_EDITABLE_ELEMENT } from '@global/constants'
+import { NO_EDITABLE_ELEMENT } from '../../../common/constants'
 
 export type FieldIsEditingProps = {
   id: string
@@ -29,7 +29,7 @@ export const ElementEditingMain: FC = memo((): ReactElement => {
 
   const { fields } = useAppSelector((state) => state.fieldsSlices)
 
-  const FieldIsEditing = fields.find(({editMode}) => editMode)
+  const FieldIsEditing = fields.find(({ editMode }) => editMode)
 
   if (FieldIsEditing === NO_EDITABLE_ELEMENT) {
     return <></>

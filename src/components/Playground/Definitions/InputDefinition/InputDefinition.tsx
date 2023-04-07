@@ -1,10 +1,9 @@
-import type { IElementDefinition } from '../../DroppedElement/ElementDefintion'
 import type { FC, ReactElement } from 'react'
 import { getCurrentDate } from '@helpers/getCurrentDate'
 import { Main, DefInput, Label } from './InputDefinition.styled'
 import { nanoid } from '@reduxjs/toolkit'
 
-export const InputDefinition: FC<IElementDefinition> = ({
+export const InputDefinition: FC<any> = ({
   type,
   name,
   placeholder,
