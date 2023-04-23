@@ -6,8 +6,15 @@ import { useRef, memo } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
 import { DroppedElement } from './DroppedElement'
 import { DragDropCounting } from '@helpers/dragDropCounting'
+import { ElementFullProps } from '@common/types'
 
-export const DroppedElementMain: FC<any> = memo(
+export type DroppedElementMainProps = ElementFullProps & {
+  moveCard: (dragIndex: number, hoverIndex: number) => void
+  value?: string
+  editMode?: boolean
+}
+
+export const DroppedElementMain: FC<DroppedElementMainProps> = memo(
   ({
     type,
     name,
@@ -16,9 +23,9 @@ export const DroppedElementMain: FC<any> = memo(
     placeholder,
     required,
     value,
-    elementAddress,
     id,
     index,
+    elementAddress,
     moveCard,
     editMode,
   }): ReactElement => {

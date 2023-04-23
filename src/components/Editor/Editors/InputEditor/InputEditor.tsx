@@ -1,9 +1,14 @@
 import type { ChangeEvent, FC, ReactElement } from 'react'
-import type { EditorDefiningProps } from './../../ElementEditing/EditorDefining'
+import type { EditorDefiningProps } from '@components/Editor/ElementEditing/EditorDefining'
 import { useAppDispatch } from '@store/hooks'
 import { placeholderChange, placeholderRemove } from '@store/slices/fields/fields'
 import { FaRemoveFormat } from '@static/icons'
-import { FieldRemove, Input, InputWrapper, Label } from '../../ElementEditing/ElementEditing.styled'
+import {
+  FieldRemove,
+  Input,
+  InputWrapper,
+  Label,
+} from '@components/Editor/ElementEditing/ElementEditing.styled'
 
 type InputEditorProps = Pick<EditorDefiningProps, 'id' | 'placeholder'>
 

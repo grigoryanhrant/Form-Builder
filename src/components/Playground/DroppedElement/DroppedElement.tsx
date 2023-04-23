@@ -1,4 +1,7 @@
-import type { FC, ReactElement } from 'react'
+import type { FC, ReactElement, RefObject } from 'react'
+import type { ElementMostBasicProps } from '@common/types'
+import type { Identifier } from 'dnd-core'
+import type { DroppedElementMainProps } from './DroppedElementMain'
 import { useAppDispatch } from '@store/hooks'
 import { editModeOn, removeField } from '@store/slices/fields/fields'
 import { ElementDefinition } from './ElementDefintion'
@@ -13,7 +16,17 @@ import {
   Description,
 } from './DroppedElement.styled'
 
-export const DroppedElement: FC<any> = ({
+export type DroppedElementPropsPart = ElementMostBasicProps &
+  Pick<DroppedElementMainProps, 'value' | 'editMode'>
+
+export type DroppedElementProps = DroppedElementPropsPart & {
+  isDragging: boolean
+  DroppedRef: RefObject<HTMLDivElement>
+  handlerId: Identifier | null
+  id: DroppedElementMainProps['id']
+}
+
+export const DroppedElement: FC<DroppedElementProps> = ({
   isDragging,
   DroppedRef,
   handlerId,

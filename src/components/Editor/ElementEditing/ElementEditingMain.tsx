@@ -14,15 +14,7 @@ import {
   Label,
   Title,
 } from './ElementEditing.styled'
-import { NO_EDITABLE_ELEMENT } from '../../../common/constants'
-
-export type FieldIsEditingProps = {
-  id: string
-  name: string
-  description: string
-  type: string
-  placeholder: string
-}
+import { NO_EDITABLE_ELEMENT } from '@common/constants'
 
 export const ElementEditingMain: FC = memo((): ReactElement => {
   const dispatch = useAppDispatch()
@@ -35,7 +27,7 @@ export const ElementEditingMain: FC = memo((): ReactElement => {
     return <></>
   }
 
-  const { id, name, placeholder, type, description } = FieldIsEditing as FieldIsEditingProps
+  const { id, name, placeholder, type, description } = FieldIsEditing
 
   const editModeOffHandler = () => {
     dispatch(editModeOff({ id }))

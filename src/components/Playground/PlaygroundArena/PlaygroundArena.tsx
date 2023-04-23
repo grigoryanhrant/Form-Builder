@@ -1,8 +1,7 @@
 import type { DropTargetMonitor } from 'react-dnd'
 import type { FC, ReactElement } from 'react'
-import type { ElementMostBasicProps } from '@common/types'
-import type { ElementAdditionalProps } from '@common/types'
 import type { StoreElementProps } from '@store/slices/fields/types'
+import type { ElementFullProps } from '@common/types'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { addField, updateFields } from '@store/slices/fields/fields'
 import update from 'immutability-helper'
@@ -12,8 +11,6 @@ import { useAppSelector, useAppDispatch } from '@store/hooks'
 import { DroppedElementMain } from '../DroppedElement/DroppedElementMain'
 import { ELEMENT_ADDRESS_DROPPED, ELEMENT_ADDRESS_FORM } from '@common/constants'
 import { DropZone, Main, Wrapper } from './PlaygroundArena.styled'
-
-type DropProps = ElementMostBasicProps & ElementAdditionalProps
 
 export const PlaygroundArena: FC = (): ReactElement => {
   const dispatch = useAppDispatch()
@@ -48,7 +45,7 @@ export const PlaygroundArena: FC = (): ReactElement => {
 
   const [{ isOver }, drop] = useDrop(() => ({
     accept: 'element',
-    drop: (field: DropProps) => {
+    drop: (field: ElementFullProps) => {
       if (field.elementAddress !== ELEMENT_ADDRESS_FORM) return
 
       dispatch(

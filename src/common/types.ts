@@ -6,7 +6,7 @@ export type DragObjectType = {
   elementAddress?: string
 }
 
-export interface ElementMostBasicProps {
+export type ElementMostBasicProps = {
   type: string
   name: string
   description: string
@@ -15,6 +15,8 @@ export interface ElementMostBasicProps {
   required?: boolean
 }
 
-export interface ElementAdditionalProps {
-  elementAddress?: typeof ELEMENT_ADDRESS_FORM
+export type ElementFullProps = DragObjectType & ElementMostBasicProps
+
+export type ElementAddressType = {
+  elementAddress?: 'ELEMENT_ADDRESS_FORM'
 }

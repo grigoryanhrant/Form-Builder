@@ -1,19 +1,19 @@
 import type { FC, ReactElement } from 'react'
 import type { DragSourceMonitor } from 'react-dnd'
-import type { ElementMostBasicProps } from '../../../common/types'
-import type { ElementAdditionalProps } from '../../../common/types'
+import type { ElementMostBasicProps } from '@common/types'
+import type { ElementAddressType } from '@common/types'
 import { useDrag } from 'react-dnd'
 import { addField } from '@store/slices/fields/fields'
 import { useAppDispatch } from '@store/hooks'
 import { memo } from 'react'
-import { ELEMENT_ADDRESS_FORM } from '../../../common/constants'
+import { ELEMENT_ADDRESS_FORM } from '@common/constants'
 import { Icon, Main, Title } from './SidebarElement.styled'
 
-interface SidebarElementProps extends ElementMostBasicProps {
+type SidebarElementProps = ElementMostBasicProps & {
   icon: ReactElement
 }
 
-type SidebarElementType = SidebarElementProps & ElementAdditionalProps
+type SidebarElementType = SidebarElementProps & ElementAddressType
 
 export const SidebarElement: FC<Readonly<SidebarElementType>> = memo(
   ({

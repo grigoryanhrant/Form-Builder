@@ -1,4 +1,7 @@
 import type { FC } from 'react'
+import type { ElementMostBasicProps } from '@common/types'
+import type { DroppedElementPropsPart } from '@components/Playground/DroppedElement/DroppedElement'
+import type { DroppedElementProps } from '@components/Playground/DroppedElement/DroppedElement'
 import {
   FileUploadDefinition,
   InputDefinition,
@@ -19,7 +22,14 @@ import {
 } from '@common/constants'
 import { setInputType } from '@helpers/setInputType'
 
-export const ElementDefinition: FC<any> = ({
+type ElementDefinitionPropsPart = Pick<DroppedElementPropsPart, 'value'> &
+  Omit<ElementMostBasicProps, 'description'>
+
+export type ElementDefinitionProps = ElementDefinitionPropsPart & {
+  id: DroppedElementProps['id']
+}
+
+export const ElementDefinition: FC<ElementDefinitionProps> = ({
   id,
   type,
   name,
