@@ -1,5 +1,3 @@
-import { ELEMENT_ADDRESS_FORM } from './constants'
-
 export type DragObjectType = {
   id?: string
   index: number

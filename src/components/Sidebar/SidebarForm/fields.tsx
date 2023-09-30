@@ -10,7 +10,7 @@ import {
   AiOutlineCheckSquare,
   MdDateRange,
   RiFileUploadLine,
-} from '../../../static/icons'
+} from '@static/icons'
 import {
   CHECKBOX,
   DATEPICKER,
@@ -22,7 +22,7 @@ import {
   SHORT_TEXT,
   TEXT_INPUT,
   UPLOAD,
-} from '../../../common/constants'
+} from '@common/constants'
 
 export const SidebarFormFields = {
   contactInfo: [
