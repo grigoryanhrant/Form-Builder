@@ -34,7 +34,7 @@ export const getEditor = (type: string, id?: string, placeholder?: string): JSX.
       return <SelectEditor />
 
     case MULTISELECT:
-      return <MultiselectEditor />
+      return <MultiselectEditor id={id} />
 
     case UPLOAD:
       return <FileUploadEditor />

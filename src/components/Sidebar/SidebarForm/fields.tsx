@@ -90,7 +90,7 @@ export const SidebarFormFields = {
 
     {
       type: SELECT,
-      name: 'SelectEditor',
+      name: 'Select',
       description: 'Whats your least favorite chore',
       icon: <BiCheckbox />,
       id: 7,
@@ -98,7 +98,7 @@ export const SidebarFormFields = {
 
     {
       type: MULTISELECT,
-      name: 'Multi SelectEditor',
+      name: 'Multi Select',
       description: 'SelectEditor a set of ',
       icon: <RiCheckboxMultipleBlankLine />,
       id: 8,
