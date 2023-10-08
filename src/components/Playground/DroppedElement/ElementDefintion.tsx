@@ -38,6 +38,8 @@ export const ElementDefinition: FC<ElementDefinitionProps> = ({
   descriptionForInput,
   required,
 }) => {
+  const inpType = setInputType(type)
+
   switch (type) {
     case TEXT_INPUT:
     case EMAIL_INPUT:
@@ -53,7 +55,7 @@ export const ElementDefinition: FC<ElementDefinitionProps> = ({
           descriptionForInput={descriptionForInput}
           value={value}
           required={required}
-          type={setInputType(type)}
+          type={inpType}
         />
       )
 

@@ -9,6 +9,7 @@ import {
   InputWrapper,
   Label,
 } from '@components/Editor/ElementEditing/ElementEditing.styled'
+import { nanoid } from '@reduxjs/toolkit'
 
 type InputEditorProps = Pick<EditorDefiningProps, 'id' | 'placeholder'>
 
@@ -21,16 +22,20 @@ export const InputEditor: FC<InputEditorProps> = ({ id, placeholder }): ReactEle
 
   const placeholderRemoveHandler = () => dispatch(placeholderRemove({ id }))
 
+  const nanoId = nanoid()
+
+  if (placeholder === undefined) {
+    return <></>
+  }
+
   return (
     <>
-      <Label htmlFor={id}>Placeholder</Label>
+      <Label htmlFor={id + nanoId}>Placeholder</Label>
       <InputWrapper>
-        <Input id={id} value={placeholder} onChange={placeholderChangeHandler} />
-        {placeholder && (
-          <FieldRemove onClick={placeholderRemoveHandler}>
-            <FaRemoveFormat />
-          </FieldRemove>
-        )}
+        <Input id={id + nanoId} value={placeholder} onChange={placeholderChangeHandler} />
+        <FieldRemove onClick={placeholderRemoveHandler}>
+          <FaRemoveFormat />
+        </FieldRemove>
       </InputWrapper>
     </>
   )

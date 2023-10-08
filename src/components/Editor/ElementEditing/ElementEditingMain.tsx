@@ -21,13 +21,13 @@ export const ElementEditingMain: FC = memo((): ReactElement => {
 
   const { fields } = useAppSelector((state) => state.fieldsSlices)
 
-  const FieldIsEditing = fields.find(({ editMode }) => editMode)
+  const fieldIsEditing = fields.find(({ editMode }) => editMode)
 
-  if (FieldIsEditing === NO_EDITABLE_ELEMENT) {
+  if (fieldIsEditing === NO_EDITABLE_ELEMENT) {
     return <></>
   }
 
-  const { id, name, placeholder, type, description } = FieldIsEditing
+  const { id, name, placeholder, type, description } = fieldIsEditing
 
   const editModeOffHandler = () => {
     dispatch(editModeOff({ id }))
@@ -59,7 +59,7 @@ export const ElementEditingMain: FC = memo((): ReactElement => {
         </InputWrapper>
       </Details>
 
-      <Details>{EditorDefining({ id, type, placeholder })}</Details>
+      {EditorDefining({ id, type, placeholder })}
     </EditableElement>
   )
 })
